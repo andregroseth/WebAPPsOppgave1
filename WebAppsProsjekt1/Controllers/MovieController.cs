@@ -9,10 +9,10 @@ namespace WebAppsProsjekt1.Controllers
 {
     public class MovieController : Controller
     {
-        // GET: Film
-        public ActionResult MovieView1()
+        // GET: Movie
+        public ActionResult ListAllMovies()
         {
-            var movie = new Movie() { Name = "Shrek" };
+            var movie = new Movie() { Title = "Shrek" };
             return View(movie);
         }
     }
