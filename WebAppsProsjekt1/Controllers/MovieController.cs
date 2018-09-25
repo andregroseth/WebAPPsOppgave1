@@ -15,5 +15,32 @@ namespace WebAppsProsjekt1.Controllers
             var movie = new Movie() { Title = "Shrek" };
             return View(movie);
         }
+
+        [HttpPost]
+        public ActionResult AddMovie(Models.Movie newMovie)
+        {
+            using (var db = new Models.DB())
+            {
+                try
+                {
+                    db.Movies.Add(newMovie);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+            return RedirectToAction("List");
+        }
+
+        public ActionResult Liste()
+        {
+            using (var db = new Models.DB())
+            {
+                List<Models.Movie> allMovies = db.Movies.ToList();
+                return View(allMovies);
+            }
+        }
     }
 }
