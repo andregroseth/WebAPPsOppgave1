@@ -205,8 +205,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Movie\ListAllMovies.cshtml" />
-    <Content Include="Views\Movie\Liste.cshtml" />
+    <Content Include="Views\Movie\Movies.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

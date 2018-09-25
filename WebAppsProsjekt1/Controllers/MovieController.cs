@@ -10,31 +10,7 @@ namespace WebAppsProsjekt1.Controllers
     public class MovieController : Controller
     {
         // GET: Movie
-        public ActionResult ListAllMovies()
-        {
-            var movie = new Movie() { Title = "Shrek" };
-            return View(movie);
-        }
-
-        [HttpPost]
-        public ActionResult AddMovie(Models.Movie newMovie)
-        {
-            using (var db = new Models.DB())
-            {
-                try
-                {
-                    db.Movies.Add(newMovie);
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-            return RedirectToAction("List");
-        }
-
-        public ActionResult Liste()
+        public ActionResult Movies()
         {
             using (var db = new Models.DB())
             {
