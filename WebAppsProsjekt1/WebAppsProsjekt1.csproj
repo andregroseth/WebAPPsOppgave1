@@ -198,6 +198,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Content\css\UserLogin.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -215,6 +216,7 @@
     <Content Include="Views\User\RegisterUser.cshtml" />
     <Content Include="Views\User\ListUser.cshtml" />
     <Content Include="Views\Movie\ListMovie.cshtml" />
+    <Content Include="Views\User\UserLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
