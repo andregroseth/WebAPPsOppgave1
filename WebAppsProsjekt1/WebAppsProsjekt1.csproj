@@ -177,7 +177,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\images\movie\matrix.jpg" />
+    <Content Include="Content\images\movie\antmanImage.jpg" />
+    <Content Include="Content\images\movie\brightImage.jpg" />
+    <Content Include="Content\images\movie\gladiatorImage.jpg" />
+    <Content Include="Content\images\movie\hitmanImage.jpg" />
+    <Content Include="Content\images\movie\kongImage.jpg" />
+    <Content Include="Content\images\movie\matrixImage.jpg" />
+    <Content Include="Content\images\movie\theamazingspidermanImage.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

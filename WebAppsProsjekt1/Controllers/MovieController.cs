@@ -9,13 +9,15 @@ namespace WebAppsProsjekt1.Controllers
 {
     public class MovieController : Controller
     {
-        private DB db = new Models.DB();
-
         // GET: Movie/ListMovie
         public ActionResult ListMovie()
         {
-            List<Models.Movie> allMovies = db.Movie.ToList();
-            return View(allMovies);
+            using (var db = new Models.DB())
+            {
+
+                List<Models.Movie> allMovies = db.Movie.ToList();
+                return View(allMovies);
+            }
         }
     }
 }
