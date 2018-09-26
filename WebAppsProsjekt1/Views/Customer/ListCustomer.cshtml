@@ -1,0 +1,89 @@
+﻿@model List<WebAppsProsjekt1.Models.Customer>
+@{
+    ViewBag.Title = "ListCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List</h2>
+
+<p>
+    <a href="/Customer/RegisterCustomer">Register</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Surname
+        </th>
+        <th>
+            Password
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            ZipCode
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Id
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Surname
+            </td>
+            <td>
+                @item.Password
+            </td>
+            <td>
+                @item.Address
+            </td>
+            <td>
+                @*@item.Mail.ZipCode*@
+            </td>
+            <td>
+                <a href="/Customer/DeleteCustomer?Id=@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+
+    @foreach (var customer in Model)
+    {
+        <p>
+            Customer name: @customer.Name <br />
+
+            @foreach (var order in customer.Order)
+            {
+            <p>
+                Order date: @order.Date <br />
+
+                @foreach (var orderline in order.Orderline)
+                {
+                <p>
+                    Movie name: @orderline.Movie.Title <br />
+                    Movie cost: @orderline.Movie.Cost <br />
+                </p>
+            }
+                </p>
+            }
+            </p>
+        }
+</table>
