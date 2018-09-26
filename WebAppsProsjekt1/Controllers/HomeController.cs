@@ -26,14 +26,5 @@ namespace WebAppsProsjekt1.Controllers
 
             return View();
         }
-
-        public ActionResult Movies()
-        {
-            using (var db = new Models.DB())
-            {
-                List<Models.Movie> allMovies = db.Movies.ToList();
-                return View(allMovies);
-            }
-        }
     }
 }

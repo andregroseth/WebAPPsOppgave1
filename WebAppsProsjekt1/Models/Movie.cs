@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace WebAppsProsjekt1.Models
 {
@@ -11,5 +13,6 @@ namespace WebAppsProsjekt1.Models
         public String Title { get; set; }
         public String Category { get; set; }
         public int Value { get; set; }
+        public String ImagePath { get; set; }
     }
 }

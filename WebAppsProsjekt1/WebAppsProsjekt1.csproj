@@ -158,6 +158,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809261137039_Initial.cs" />
+    <Compile Include="Migrations\201809261137039_Initial.Designer.cs">
+      <DependentUpon>201809261137039_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DB.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -171,6 +176,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\MovieImages\antmanImage.jpg" />
+    <Content Include="Content\MovieImages\brightImage.jpg" />
+    <Content Include="Content\MovieImages\gladiatorImage.jpg" />
+    <Content Include="Content\MovieImages\hitmanImage.jpg" />
+    <Content Include="Content\MovieImages\kongImage.jpg" />
+    <Content Include="Content\MovieImages\theamazingspidermanImage.jpg" />
+    <Content Include="Content\MovieImages\thematrixImage.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -205,9 +217,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Movie\Movies.cshtml" />
+    <Content Include="Views\Movie\Movie.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -220,6 +231,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809261137039_Initial.resx">
+      <DependentUpon>201809261137039_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
