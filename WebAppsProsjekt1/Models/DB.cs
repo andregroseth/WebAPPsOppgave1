@@ -13,8 +13,16 @@ namespace WebAppsProsjekt1.Models
             : base("name=Customer")
         {
             Database.CreateIfNotExists();
+            //Database.SetInitializer(new DbInit());
         }
-        public DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
         
+        public virtual DbSet<Movie> Movie { get; set; }
+
+        public virtual  DbSet<Order> Order { get; set; }
+
+        public virtual DbSet<Orderline> Orderline { get; set; }
+
+        public virtual DbSet<Mail> Mail { get; set; }
     }
 }
