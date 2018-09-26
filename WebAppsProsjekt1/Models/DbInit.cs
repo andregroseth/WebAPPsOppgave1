@@ -10,8 +10,9 @@ namespace WebAppsProsjekt1.Models
     {
         protected override void Seed(DB context)
         {
-            var testCustomer = new Customer
+            var testUser = new User
             {
+                Userlvl = 1,
                 Email = "test@test.test",
                 Name = "testname",
                 Surname = "testsurname",
@@ -29,8 +30,14 @@ namespace WebAppsProsjekt1.Models
 
             var testOrder = new Order
             {
-                Customer = testCustomer,
+                User = testUser,
                 Date = "13.33.37"
+            };
+
+            var testMail = new Mail
+            {
+                ZipCode = "9999",
+                Area = "bever"
             };
 
             var testOrderLine = new Orderline
@@ -45,9 +52,10 @@ namespace WebAppsProsjekt1.Models
 
             var testOrderList = new List<Order>();
             testOrderList.Add(testOrder);
-            testCustomer.Order = testOrderList;
+            testUser.Order = testOrderList;
+            testUser.Mail = testMail;
 
-            context.Customer.Add(testCustomer);
+            context.User.Add(testUser);
             base.Seed(context);
         }
     }

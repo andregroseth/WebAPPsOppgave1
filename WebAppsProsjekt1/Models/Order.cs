@@ -10,7 +10,7 @@ namespace WebAppsProsjekt1.Models
         public int Id { get; set; }
 
         public string Date { get; set; }
-        public virtual Customer Customer { get; set; }
+        public virtual User User { get; set; }
         public virtual List<Orderline> Orderline { get; set; }
     }
 }

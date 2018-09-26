@@ -10,12 +10,12 @@ namespace WebAppsProsjekt1.Models
     public class DB : DbContext
     {
         public DB()
-            : base("name=Customer")
+            : base("name=MovieMonster")
         {
             Database.CreateIfNotExists();
             //Database.SetInitializer(new DbInit());
         }
-        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<User> User { get; set; }
         
         public virtual DbSet<Movie> Movie { get; set; }
 

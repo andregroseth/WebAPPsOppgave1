@@ -13,6 +13,6 @@ namespace WebAppsProsjekt1.Models
         public string ZipCode { get; set; }
 
         public string Area { get; set; }
-        public virtual List<Customer> Customer { get; set; }
+        public virtual List<User> User { get; set; }
     }
 }
