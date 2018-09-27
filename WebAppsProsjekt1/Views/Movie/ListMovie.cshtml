@@ -17,11 +17,14 @@
 
                 // Hente inn data-taggene fra a-href link
                 var data_title = $(this).data('title');
+                var data_cost = $(this).data('cost');
+                var data_image = $(this).data('image');
                 var data_id = $(this).data('id');
 
                 // Legge data inn i div'en i modal-viewet
-                $('#movieDetailsModalDiv').html(data_title);
-                $('#movieDetailsModalDiv').html();
+                //$('#movieDetailsModalDiv').html(data_title);
+
+                $('#movieImage').attr("src", data_image);
             })
         });
     </script>
