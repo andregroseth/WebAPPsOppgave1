@@ -1,0 +1,19 @@
+﻿@model WebAppsProsjekt1.Models.Movie
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <th>@Model.Title</th>
+                </tr>
+            <tr>
+                <th>
+                    <a href="#movieDetailsModal" id="movieModal" data-navn="@Model.Title" data-id="@Model.Title" data-toggle="modal" data-movieDetailsModal="true">
+                        <img id="@Model.Id" src="@Url.Content(Model.ImagePath)" alt="@Model.Title" height="250px" width="150px" /></a>
+                </th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+

@@ -8,23 +8,20 @@
 <body>
     <div>
         <h2>Movies</h2>
-        <table class="table">
-            <tr>
-            </tr>
-            @foreach (var movie in Model)
+        @foreach (var movie in Model)
+        {
+            if (movie.ImagePath == null)
             {
                 
-                if (movie.ImagePath == null)
-                {
-                    <th></th>
-                }
-                else
-                {
-                    <th><a><img src="@Url.Content(movie.ImagePath)" alt="Image" height="250px" width="150px" /></a></th>
-                }
-                
             }
-        </table>
+            else
+            {
+                @Html.Partial("ListMoviePartial", movie)
+            }
+        }
+
+        @Html.Partial("movieDetailsModal")
+
     </div>
 </body>
 
