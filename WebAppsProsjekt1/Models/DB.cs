@@ -25,4 +25,7 @@ namespace WebAppsProsjekt1.Models
 
         public virtual DbSet<Mail> Mail { get; set; }
     }
+
+
+    
 }

@@ -21,41 +21,42 @@ namespace WebAppsProsjekt1.Controllers
         //GET: Customer/ListUser
         public ActionResult ListUser()
         {
-            List<Models.User> allUsers = db.User.ToList();
+            var db = new DBUser();
+            List<HelperTable> allUsers = db.AllUserInfo();
             return View(allUsers);
         }
 
         [HttpPost]
-        public ActionResult NewUser(Models.User inUser)
+        public ActionResult RegisterUser(HelperTable inUser)
         {
+            if (ModelState.IsValid)
             {
-                try
+                var db = new DBUser();
+                bool OK = db.SaveUserToDB(inUser);
+                if (OK)
                 {
-                    db.User.Add(inUser);
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-
+                    return RedirectToAction("ListUser");
                 }
             }
-            return RedirectToAction("ListUser");
+            return View();
         }
       
 
         public ActionResult DeleteUser(int Id)
         {
-            try
+            var db = new DBUser();
+            bool OK = db.DeleteUser(Id);
+            if (OK)
             {
-                Models.User deleteUser = db.User.Find(Id);
-                db.User.Remove(deleteUser);
-                db.SaveChanges();
+                return RedirectToAction("ListUser");
             }
-            catch
-            {
+            return View();
+        }
 
-            }
-            return RedirectToAction ("ListUser");
+        public ActionResult UserDetail(int id) {
+            var db = new DBUser();
+            HelperTable oneUser = db.GetUserInfo(id);
+            return View(oneUser);
         }
 
         protected override void Dispose(bool disposing)
