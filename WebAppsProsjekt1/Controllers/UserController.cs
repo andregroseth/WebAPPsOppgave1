@@ -18,22 +18,43 @@ namespace WebAppsProsjekt1.Controllers
             return View();
         }
 
-        public ActionResult Login(string email, string password)
+        [HttpPost]
+        public ActionResult UserLogin(User loginAttempt)
         {
-            List<Models.User> allUsers = db.User.ToList();
-            foreach(var user in allUsers)
+            if(FindUser(loginAttempt))
             {
-                if (user.Email == email)
-                {
-                    if (user.Password == password)
-                    {
-                        Session[email] = user.Id;
-                        FormsAuthentication.SetAuthCookie(user.Id.ToString(), true);
-                        return RedirectToAction("ListMovie");
-                    }
-                }
+                Session["Login"] = loginAttempt.Id;
+                return RedirectToAction("ListMovie", "Movie");
+            } else
+            {
+                return UserLogin();
             }
-            return View();
+        }
+        
+        public void UserLogout()
+        {
+            Session.Clear();
+            Response.Redirect("UserLogin");
+        }
+
+        private bool FindUser(User user)
+        {
+            User verifiedUser = db.User.FirstOrDefault(b => b.Email == user.Email);
+            if (verifiedUser != null)
+            {
+                string password = user.Password;
+                if(password != null)
+                {
+                    bool verifiedPassword = verifiedUser.Password.SequenceEqual(password);
+                    return verifiedPassword;
+                } else
+                {
+                    return false;
+                }
+            } else
+            {
+                return false;
+            }
         }
 
         //GET: User/RegisterUser
