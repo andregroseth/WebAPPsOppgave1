@@ -10,6 +10,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/css/cssMovie/imageHover.css" rel="stylesheet" />
     <script type="text/javascript">
         $(document).ready(function () {
             // Hendelse som utføres når en a-href med "data-movieDetailsModal = true" trykkes
@@ -22,9 +23,9 @@
                 var data_id = $(this).data('id');
 
                 // Legge data inn i div'en i modal-viewet
-                //$('#movieDetailsModalDiv').html(data_title);
-
+                $('#movieTitle').html(data_title);
                 $('#movieImage').attr("src", data_image);
+                $('#movieCost').html(data_cost);
             })
         });
     </script>
@@ -41,10 +42,12 @@
             }
             else
             {
+                // Render film-objektene og displayer dem i viewet
                 @Html.Partial("ListMoviePartial", movie)
             }
         }
 
+        @*Pop-up modalen som viser når man velger en film*@
         @Html.Partial("movieDetailsModal")
 
     </div>
