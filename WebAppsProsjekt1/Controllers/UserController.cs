@@ -33,8 +33,14 @@ namespace WebAppsProsjekt1.Controllers
         
         public void UserLogout()
         {
-            Session.Clear();
-            Response.Redirect("UserLogin");
+            if (Session["Login"] != null)
+            {
+                Session.Clear();
+                Response.Redirect("UserLogin");
+            } else
+            {
+                Response.Redirect("/Movie/ListMovie");
+            }
         }
 
         private bool FindUser(User user)
