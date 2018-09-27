@@ -8,8 +8,13 @@
                 </tr>
             <tr>
                 <th>
-                    <a href="#movieDetailsModal" id="movieModal" data-navn="@Model.Title" data-id="@Model.Title" data-toggle="modal" data-movieDetailsModal="true">
-                        <img id="@Model.Id" src="@Url.Content(Model.ImagePath)" alt="@Model.Title" height="250px" width="150px" /></a>
+                    <a href="#movieDetailsModal" id="movieModal"
+                       data-id="@Model.Id"
+                       data-title="@Model.Title" 
+                       data-category="@Model.Category" 
+                       data-cost="@Model.Cost" 
+                       data-image="@Model.ImagePath" data-toggle="modal" data-movieDetailsModal="true">
+                       <img id="@Model.Id" src="@Url.Content(Model.ImagePath)" alt="@Model.Title" height="250px" width="150px" /></a>
                 </th>
             </tr>
         </table>

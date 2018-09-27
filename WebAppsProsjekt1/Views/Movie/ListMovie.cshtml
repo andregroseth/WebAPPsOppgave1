@@ -5,6 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Hendelse som utføres når en a-href med "data-movieDetailsModal = true" trykkes
+            $('a[data-movieDetailsModal=true]').click(function () {
+
+                // Hente inn data-taggene fra a-href link
+                var data_title = $(this).data('title');
+                var data_id = $(this).data('id');
+
+                // Legge data inn i div'en i modal-viewet
+                $('#movieDetailsModalDiv').html(data_title);
+                $('#movieDetailsModalDiv').html();
+            })
+        });
+    </script>
+</head>
+
 <body>
     <div>
         <h2>Movies</h2>
@@ -12,7 +34,7 @@
         {
             if (movie.ImagePath == null)
             {
-                
+
             }
             else
             {
@@ -24,4 +46,4 @@
 
     </div>
 </body>
-
+</html>
