@@ -10,7 +10,7 @@ namespace WebAppsProsjekt1.Controllers
 {
     public class UserController : Controller
     {
-        private DB db = new Models.DB();
+        //private DB db = new Models.DB();
 
         //GET: User/Login
         public ActionResult UserLogin()
@@ -45,21 +45,26 @@ namespace WebAppsProsjekt1.Controllers
 
         private bool FindUser(User user)
         {
-            User verifiedUser = db.User.FirstOrDefault(b => b.Email == user.Email);
-            if (verifiedUser != null)
+            using (var db = new DB())
             {
-                string password = user.Password;
-                if(password != null)
+                User verifiedUser = db.User.FirstOrDefault(b => b.Email == user.Email);
+                if (verifiedUser != null)
                 {
-                    bool verifiedPassword = verifiedUser.Password.SequenceEqual(password);
-                    return verifiedPassword;
-                } else
+                    string password = user.Password;
+                    if (password != null)
+                    {
+                        bool verifiedPassword = verifiedUser.Password.SequenceEqual(password);
+                        return verifiedPassword;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
                 {
                     return false;
                 }
-            } else
-            {
-                return false;
             }
         }
 
@@ -73,13 +78,17 @@ namespace WebAppsProsjekt1.Controllers
         //GET: User/ListUser
         public ActionResult ListUser()
         {
-            List<Models.User> allUsers = db.User.ToList();
-            return View(allUsers);
+            using (var db = new DB())
+            {
+                List<Models.User> allUsers = db.User.ToList();
+                return View(allUsers);
+            }
         }
 
         [HttpPost]
         public ActionResult NewUser(Models.User inUser)
         {
+            using (var db = new DB())
             {
                 try
                 {
@@ -97,26 +106,29 @@ namespace WebAppsProsjekt1.Controllers
 
         public ActionResult DeleteUser(int Id)
         {
-            try
+            using (var db = new DB())
             {
-                Models.User deleteUser = db.User.Find(Id);
-                db.User.Remove(deleteUser);
-                db.SaveChanges();
-            }
-            catch
-            {
+                try
+                {
+                    Models.User deleteUser = db.User.Find(Id);
+                    db.User.Remove(deleteUser);
+                    db.SaveChanges();
+                }
+                catch
+                {
 
+                }
             }
             return RedirectToAction ("ListUser");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }

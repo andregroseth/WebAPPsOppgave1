@@ -65,25 +65,3 @@
         </tr>
     }
 </table>
-
-    @foreach (var user in Model)
-    {
-        <p>
-            User name: @user.Email <br />
-
-            @foreach (var order in user.Order)
-            {
-            <p>
-                Order date: @order.Date <br />
-
-                @foreach (var orderline in order.Orderline)
-                {
-                <p>
-                    Movie name: @orderline.Movie.Title <br />
-                    Movie cost: @orderline.Movie.Cost <br />
-                </p>
-            }
-                </p>
-            }
-            </p>
-        }
