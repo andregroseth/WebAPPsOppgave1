@@ -1,10 +1,10 @@
-﻿@model List<WebAppsProsjekt1.Models.User>
+﻿@model IEnumerable<WebAppsProsjekt1.Models.HelperTable>
+
 @{
     ViewBag.Title = "ListUser";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>List</h2>
+<h2>List of User</h2>
 
 <p>
     <a href="/User/RegisterUser">Register</a>
@@ -13,55 +13,65 @@
 <table class="table">
     <tr>
         <th>
-            Id
+            @Html.DisplayNameFor(model => model.Userlvl)
         </th>
         <th>
-            Email
+            @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
-            Name
+            @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            Surname
+            @Html.DisplayNameFor(model => model.Surname)
         </th>
         <th>
-            Password
+            @Html.DisplayNameFor(model => model.Password)
         </th>
         <th>
-            Address
+            @Html.DisplayNameFor(model => model.Address)
         </th>
         <th>
-            ZipCode
+            @Html.DisplayNameFor(model => model.ZipCode)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Area)
+        </th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @item.Id
+                @Html.DisplayFor(modelItem => item.Userlvl)
             </td>
             <td>
-                @item.Email
+                @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @item.Name
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @item.Surname
+                @Html.DisplayFor(modelItem => item.Surname)
             </td>
             <td>
-                @item.Password
+                @Html.DisplayFor(modelItem => item.Password)
             </td>
             <td>
-                @item.Address
+                @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                @*@item.Mail.ZipCode*@
+                @Html.DisplayFor(modelItem => item.ZipCode)
             </td>
             <td>
-                <a href="/User/DeleteUser?Id=@item.Id">Delete</a>
+                @Html.DisplayFor(modelItem => item.Area)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "UserDetail", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "DeleteUser", new { id = item.Id })
             </td>
         </tr>
     }
+
 </table>

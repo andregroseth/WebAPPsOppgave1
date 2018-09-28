@@ -78,48 +78,43 @@ namespace WebAppsProsjekt1.Controllers
         //GET: User/ListUser
         public ActionResult ListUser()
         {
-            using (var db = new DB())
-            {
-                List<Models.User> allUsers = db.User.ToList();
-                return View(allUsers);
-            }
+            var db = new DBUser();
+            List<HelperTable> allUsers = db.AllUserInfo();
+            return View(allUsers);
         }
 
         [HttpPost]
-        public ActionResult NewUser(Models.User inUser)
+        public ActionResult RegisterUser(HelperTable inUser)
         {
-            using (var db = new DB())
+            if (ModelState.IsValid)
             {
-                try
+                var db = new DBUser();
+                bool OK = db.SaveUserToDB(inUser);
+                if (OK)
                 {
-                    db.User.Add(inUser);
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-
+                    return RedirectToAction("ListUser");
                 }
             }
-            return RedirectToAction("ListUser");
+            return View();
         }
       
 
         public ActionResult DeleteUser(int Id)
         {
-            using (var db = new DB())
+            var db = new DBUser();
+            bool OK = db.DeleteUser(Id);
+            if (OK)
             {
-                try
-                {
-                    Models.User deleteUser = db.User.Find(Id);
-                    db.User.Remove(deleteUser);
-                    db.SaveChanges();
-                }
-                catch
-                {
-
-                }
+                return RedirectToAction("ListUser");
             }
-            return RedirectToAction ("ListUser");
+            return View();
+        }
+
+        public ActionResult UserDetail(int id)
+        {
+            var db = new DBUser();
+            HelperTable oneUser = db.GetUserInfo(id);
+            return View(oneUser);
         }
 
         //protected override void Dispose(bool disposing)
