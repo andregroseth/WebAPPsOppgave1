@@ -19,5 +19,10 @@ namespace WebAppsProsjekt1.Controllers
                 return View(allMovies);
             }
         }
+
+        public void addToCart()
+        {
+
+        }
     }
 }

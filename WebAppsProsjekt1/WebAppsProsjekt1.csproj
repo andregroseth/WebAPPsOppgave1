@@ -245,6 +245,7 @@
     <Content Include="Views\User\RegisterUser.cshtml" />
     <Content Include="Views\User\ListUser.cshtml" />
     <Content Include="Views\User\UserDetail.cshtml" />
+    <Content Include="Views\Cart\CartOverview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

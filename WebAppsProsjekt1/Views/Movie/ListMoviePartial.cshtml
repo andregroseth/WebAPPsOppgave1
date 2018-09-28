@@ -1,16 +1,28 @@
 ﻿@model WebAppsProsjekt1.Models.Movie
 
-<div class="card--content">
-    @*<div class="tile">*@
+<div class="tile">
+    <div class="tile__media">
         <a href="#movieDetailsModal" id="movieModal"
            data-id="@Model.Id"
            data-title="@Model.Title"
            data-category="@Model.Category"
            data-cost="@Model.Cost"
            data-image="@Model.ImagePath" data-toggle="modal" data-movieDetailsModal="true">
-            <img id="@Model.Id" src="@Url.Content(Model.ImagePath)" alt="@Model.Title"/>
+            <img id="@Model.Id" class="tile__img " src="@Url.Content(Model.ImagePath)" alt="@Model.Title" />
         </a>
-    @*</div>*@
+    </div>
+    <a href="#movieDetailsModal" id="movieModal"
+       data-id="@Model.Id"
+       data-title="@Model.Title"
+       data-category="@Model.Category"
+       data-cost="@Model.Cost"
+       data-image="@Model.ImagePath" data-toggle="modal" data-movieDetailsModal="true">
+        <div class="tile__details">
+            <div class="tile__title">
+                @Model.Title
+            </div>
+        </div>
+    </a>
 </div>
 
 
