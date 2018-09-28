@@ -5,33 +5,55 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ListMovie</h2>
+<!DOCTYPE html>
 
-@if (Session["Login"] != null)
-{
-    <h2>authenticated</h2>
-}
-else
-{
-    <h2>denied</h2>
-}
-@Html.ActionLink("Logout", "UserLogout", "User")
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @*<link href="~/Content/css/cssScrolling/netflixScroll.css" rel="stylesheet" />*@
+    <link href="~/Content/css/cssScrolling/horizontalScroll.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Hendelse som utføres når en a-href med "data-movieDetailsModal = true" trykkes
+            $('a[data-movieDetailsModal=true]').click(function () {
 
-@foreach (var movie in Model)
-{
-    <tr>
-        <td>
-            @movie.Title
-        </td>
-        <td>
-            @movie.Category
-        </td>
-        <td>
-            @movie.Cost
-        </td>
-        <td>
-            <img src="@Url.Content(movie.ImagePath)" alt="image" />
-        </td>
-    </tr>
-}
+                // Hente inn data-taggene fra a-href link
+                var data_title = $(this).data('title');
+                var data_cost = $(this).data('cost');
+                var data_image = $(this).data('image');
+                var data_id = $(this).data('id');
 
+                // Legge data inn i div'en i modal-viewet
+                $('#movieTitle').html(data_title);
+                $('#movieImage').attr("src", data_image);
+                $('#movieCost').html(data_cost);
+
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <div>
+        <h2>Movies</h2>
+        <section class="card">
+            @*<div class="row__inner">*@
+                @foreach (var movie in Model)
+                {
+                    if (movie.ImagePath == null)
+                    {
+                    }
+                    else
+                    {
+                        // Render film-objektene og displayer dem i viewet
+                        @Html.Partial("ListMoviePartial", movie)
+                    }
+                }
+            @*</div>*@
+        </section>
+        
+        @*Pop-up modalen som viser når man velger en film*@
+        @Html.Partial("movieDetailsModal")
+    </div>
+</body>
+</html>

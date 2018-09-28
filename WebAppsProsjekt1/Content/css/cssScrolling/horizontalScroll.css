@@ -1,0 +1,78 @@
+﻿body,
+html {
+    padding: 0 10px;
+    margin: 0;
+    background: #0e0f11;
+    color: #ecf0f1;
+    font-family: 'Open Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.card {
+    display: flex;
+    min-width: 100%;
+    min-height: 300px;
+    overflow-x: auto;
+}
+
+.card--content {
+    min-width: 180px;
+    min-height: 250px;
+    margin: 5px;
+    box-shadow: 3px 5px rgba(255,255,255,0.05);
+
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 450ms all;
+    transform-origin: center left;
+}
+
+.card--content img {
+    width: 180px;
+    height: 250px;
+}
+
+.card::-webkit-scrollbar {
+    display: none;
+}
+
+/*CSS for lenker*/
+a:link,
+a:hover,
+a:active,
+a:visited {
+    transition: color 150ms;
+    color: #95a5a6;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #7f8c8d;
+    text-decoration: underline;
+}
+
+/*CSS for divs*/
+.card:hover {
+    transform: translate3d(-62.5px, 0, 0);
+}
+
+.card:hover .card--content {
+    opacity: 0.3;
+}
+
+.card:hover .card--content:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.card:hover ~ .card--content {
+    transform: translate3d(125px, 0, 0);
+}

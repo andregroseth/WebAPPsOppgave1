@@ -177,7 +177,29 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\images\movie\matrix.jpg" />
+    <Content Include="Content\css\cssScrolling\horizontalScroll.css" />
+    <Content Include="Content\css\cssMovie\imageHover.css" />
+    <Content Include="Content\css\cssScrolling\netflixScroll.css" />
+    <Content Include="Content\images\movie\antmanImage.jpg" />
+    <Content Include="Content\images\movie\backtothefuture.jpg" />
+    <Content Include="Content\images\movie\blackpanther.jpg" />
+    <Content Include="Content\images\movie\brightImage.jpg" />
+    <Content Include="Content\images\movie\deadpool2.jpg" />
+    <Content Include="Content\images\movie\gladiatorImage.jpg" />
+    <Content Include="Content\images\movie\hitchhikersguide.jpg" />
+    <Content Include="Content\images\movie\hitmanImage.jpg" />
+    <Content Include="Content\images\movie\iboy.jpg" />
+    <Content Include="Content\images\movie\inception.jpg" />
+    <Content Include="Content\images\movie\infinitywar.jpg" />
+    <Content Include="Content\images\movie\justiceleague.jpg" />
+    <Content Include="Content\images\movie\kongImage.jpg" />
+    <Content Include="Content\images\movie\limitless.jpg" />
+    <Content Include="Content\images\movie\matrixImage.jpg" />
+    <Content Include="Content\images\movie\readyplayerone.jpg" />
+    <Content Include="Content\images\movie\solo.jpg" />
+    <Content Include="Content\images\movie\theamazingspidermanImage.jpg" />
+    <Content Include="Content\images\movie\tron.jpg" />
+    <Content Include="Content\images\movie\tronlegacy.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -193,6 +215,8 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.mousewheel.js" />
+    <Content Include="Scripts\jquery.mousewheel.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -216,6 +240,8 @@
     <Content Include="Views\User\RegisterUser.cshtml" />
     <Content Include="Views\User\ListUser.cshtml" />
     <Content Include="Views\Movie\ListMovie.cshtml" />
+    <Content Include="Views\Movie\movieDetailsModal.cshtml" />
+    <Content Include="Views\Movie\ListMoviePartial.cshtml" />
     <Content Include="Views\User\UserLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
