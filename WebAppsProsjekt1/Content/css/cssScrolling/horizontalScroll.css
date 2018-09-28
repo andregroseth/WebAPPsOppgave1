@@ -14,13 +14,15 @@ html {
 }
 
 .card {
+    background: #95a5a6;
     display: flex;
     min-width: 100%;
-    min-height: 300px;
+    min-height: 100%;
     overflow-x: auto;
 }
 
 .card--content {
+    background: #ecf0f1;
     min-width: 180px;
     min-height: 250px;
     margin: 5px;
