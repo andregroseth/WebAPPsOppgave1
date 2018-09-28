@@ -44,6 +44,7 @@ html {
     display: none;
 }
 
+/*CSS for lenker*/
 a:link,
 a:hover,
 a:active,
@@ -58,6 +59,7 @@ a:hover {
     text-decoration: underline;
 }
 
+/*CSS for divs*/
 .card:hover {
     transform: translate3d(-62.5px, 0, 0);
 }
