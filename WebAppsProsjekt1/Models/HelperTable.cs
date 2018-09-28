@@ -14,14 +14,19 @@ namespace WebAppsProsjekt1.Models
         public int Userlvl { get; set; }
 
         [Required(ErrorMessage = "Fill in your E-mail address")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Fill in your name")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Fill in your surname")]
         public string Surname { get; set; }
-        [Required(ErrorMessage = "Fill in your desired password")]
+        [Required(ErrorMessage = "Fill in your password")]
         public string Password { get; set; }
+
+        //[CustomValidation(Password.Equals(ConfirmPassword),ErrorMessage = "Confirm password")]
+        public string ConfirmPassword { get; set; }
+
         [Required(ErrorMessage = "Fill in your address")]
         public string Address { get; set; }
 
@@ -32,4 +37,5 @@ namespace WebAppsProsjekt1.Models
         [Required(ErrorMessage = "Fill in your area")]
         public string Area { get; set; }
     }
+
 }
