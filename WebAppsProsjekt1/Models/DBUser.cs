@@ -19,7 +19,7 @@ namespace WebAppsProsjekt1.Models
                     Id = k.Id,
                     Userlvl = k.Userlvl,
                     Email = k.Email,
-                    Name = k.Name,
+                    Firstname = k.Firstname,
                     Surname = k.Surname,
                     Password = k.Password,
                     Address = k.Address,
@@ -39,7 +39,7 @@ namespace WebAppsProsjekt1.Models
 
                 Userlvl = InUser.Userlvl,
                 Email = InUser.Email,
-                Name = InUser.Name,
+                Firstname = InUser.Firstname,
                 Surname = InUser.Surname,
                 Password = InUser.Password,
                 Address = InUser.Address
@@ -93,6 +93,7 @@ namespace WebAppsProsjekt1.Models
 
         }
 
+
         public HelperTable GetUserInfo(int id)
         {
             var db = new DB();
@@ -109,7 +110,7 @@ namespace WebAppsProsjekt1.Models
                     Id = oneUser.Id,
                     Userlvl = oneUser.Userlvl,
                     Email = oneUser.Email,
-                    Name = oneUser.Name,
+                    Firstname = oneUser.Firstname,
                     Surname = oneUser.Surname,
                     Password = oneUser.Password,
                     Address = oneUser.Address,
@@ -120,5 +121,6 @@ namespace WebAppsProsjekt1.Models
                 return oneUserOuptput;
             }
         }
+
     }
 }

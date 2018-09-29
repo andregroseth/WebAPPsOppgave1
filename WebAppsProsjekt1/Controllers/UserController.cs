@@ -21,7 +21,7 @@ namespace WebAppsProsjekt1.Controllers
         [HttpPost]
         public ActionResult UserLogin(User loginAttempt)
         {
-            if(UserFind(loginAttempt))
+            if(FindUser(loginAttempt))
             {
                 Session["Login"] = loginAttempt.Id;
                 return RedirectToAction("MovieList", "Movie");
@@ -43,7 +43,7 @@ namespace WebAppsProsjekt1.Controllers
             }
         }
 
-        private bool UserFind(User user)
+        private bool FindUser(User user)
         {
             using (var db = new DB())
             {
@@ -69,14 +69,14 @@ namespace WebAppsProsjekt1.Controllers
         }
 
         //GET: User/RegisterUser
-        public ActionResult UserRegister()
+        public ActionResult RegisterUser()
         {
             return View();
             
         }
 
         //GET: User/ListUser
-        public ActionResult UserList()
+        public ActionResult ListUser()
         {
             var db = new DBUser();
             List<HelperTable> allUsers = db.AllUserInfo();
@@ -84,7 +84,7 @@ namespace WebAppsProsjekt1.Controllers
         }
 
         [HttpPost]
-        public ActionResult UserRegister(HelperTable inUser)
+        public ActionResult RegisterUser(HelperTable inUser)
         {
             if (ModelState.IsValid)
             {
@@ -92,20 +92,20 @@ namespace WebAppsProsjekt1.Controllers
                 bool OK = db.SaveUserToDB(inUser);
                 if (OK)
                 {
-                    return RedirectToAction("UserList");
+                    return RedirectToAction("ListUser");
                 }
             }
             return View();
         }
       
 
-        public ActionResult UserDelete(int Id)
+        public ActionResult DeleteUser(int Id)
         {
             var db = new DBUser();
             bool OK = db.DeleteUser(Id);
             if (OK)
             {
-                return RedirectToAction("UserList");
+                return RedirectToAction("ListUser");
             }
             return View();
         }
@@ -116,5 +116,25 @@ namespace WebAppsProsjekt1.Controllers
             HelperTable oneUser = db.GetUserInfo(id);
             return View(oneUser);
         }
+
+
+        //Sjekker om Email eksistere fra før.
+        public JsonResult CheckEmail(string Email)
+        {
+            using (var db = new DB())
+            {
+                  
+                return Json(!db.User.Any(x => x.Email == Email), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }
