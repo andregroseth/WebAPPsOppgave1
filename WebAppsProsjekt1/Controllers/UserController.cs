@@ -69,14 +69,14 @@ namespace WebAppsProsjekt1.Controllers
         }
 
         //GET: User/RegisterUser
-        public ActionResult RegisterUser()
+        public ActionResult UserRegister()
         {
             return View();
             
         }
 
         //GET: User/ListUser
-        public ActionResult ListUser()
+        public ActionResult UserList()
         {
             var db = new DBUser();
             List<HelperTable> allUsers = db.AllUserInfo();
@@ -84,7 +84,7 @@ namespace WebAppsProsjekt1.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegisterUser(HelperTable inUser)
+        public ActionResult UserRegister(HelperTable inUser)
         {
             if (ModelState.IsValid)
             {
@@ -92,20 +92,20 @@ namespace WebAppsProsjekt1.Controllers
                 bool OK = db.SaveUserToDB(inUser);
                 if (OK)
                 {
-                    return RedirectToAction("ListUser");
+                    return RedirectToAction("UserList");
                 }
             }
             return View();
         }
       
 
-        public ActionResult DeleteUser(int Id)
+        public ActionResult UserDelete(int Id)
         {
             var db = new DBUser();
             bool OK = db.DeleteUser(Id);
             if (OK)
             {
-                return RedirectToAction("ListUser");
+                return RedirectToAction("UserList");
             }
             return View();
         }
