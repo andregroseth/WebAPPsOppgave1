@@ -2,7 +2,11 @@
 @{
     ViewBag.Title = "UserLogin";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Content/css/cssUser/UserLogin.css")
 }
+<head>
+
+</head>
 <div class="container">
     <div class="main-div">
         @using (Html.BeginForm())
@@ -29,16 +33,12 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Login" class="btn btn-success"/>
+                    <input type="submit" value="Login" class="btn btn-success" />
                 </div>
             </div>
         }
         <div class="col-md-offset-2 col-md-10">
             <a href="/User/RegisterUser">Sign up</a>
         </div>
-        </div>
     </div>
-
-@section Scripts {
-    <link href="~/Content/css/cssUser/UserLogin.css" rel="stylesheet" />
-}
+</div>
