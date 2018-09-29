@@ -14,7 +14,7 @@ namespace WebAppsProsjekt1.Models
             {
                 Userlvl = 1,
                 Email = "test@test.test",
-                Name = "testname",
+                Firstname = "testname",
                 Surname = "testsurname",
                 Password = "testpassword",
                 Address = "testaddress",

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebAppsProsjekt1.Models
 {
@@ -15,6 +16,7 @@ namespace WebAppsProsjekt1.Models
         public int Userlvl { get; set; }
 
         [Required(ErrorMessage = "Fill in your E-mail address")]
+        [Remote("CheckEmail", "User", ErrorMessage = "Email Address already in use")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
@@ -22,12 +24,12 @@ namespace WebAppsProsjekt1.Models
         [Required(ErrorMessage = "Confirm email address")]
         [NotMapped]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        [CompareAttribute("Email", ErrorMessage = "Email address does not match")]
+        [System.ComponentModel.DataAnnotations.CompareAttribute("Email", ErrorMessage = "Email address does not match")]
         public string ConfirmEmail { get; set; }
 
         [Display(Name="First Name")]
         [Required(ErrorMessage = "Fill in your name")]
-        public string Name { get; set; }
+        public string Firstname { get; set; }
 
         [Required(ErrorMessage = "Fill in your surname")]
         public string Surname { get; set; }
@@ -38,7 +40,7 @@ namespace WebAppsProsjekt1.Models
         [Display(Name = "Confirm Password")]
         [Required(ErrorMessage ="Confirm Password")]
         [NotMapped]
-        [CompareAttribute("Password",ErrorMessage="Password does not match")]
+        [System.ComponentModel.DataAnnotations.CompareAttribute("Password",ErrorMessage="Password does not match")]
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Fill in your address")]

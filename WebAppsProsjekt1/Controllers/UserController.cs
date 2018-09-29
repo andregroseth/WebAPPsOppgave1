@@ -117,6 +117,17 @@ namespace WebAppsProsjekt1.Controllers
             return View(oneUser);
         }
 
+
+        //Sjekker om Email eksistere fra før.
+        public JsonResult CheckEmail(string Email)
+        {
+            using (var db = new DB())
+            {
+                  
+                return Json(!db.User.Any(x => x.Email == Email), JsonRequestBehavior.AllowGet);
+            }
+        }
+
         //protected override void Dispose(bool disposing)
         //{
         //    if (disposing)
