@@ -14,7 +14,6 @@ namespace WebAppsProsjekt1.Controllers
         {
             using (var db = new Models.DB())
             {
-
                 List<Models.Movie> allMovies = db.Movie.ToList();
                 return View(allMovies);
             }
