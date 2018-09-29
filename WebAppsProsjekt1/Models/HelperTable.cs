@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -17,6 +18,13 @@ namespace WebAppsProsjekt1.Models
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "Confirm email address")]
+        [NotMapped]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        [CompareAttribute("Email", ErrorMessage = "Email address does not match")]
+        public string ConfirmEmail { get; set; }
+
+
         [Required(ErrorMessage = "Fill in your name")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Fill in your surname")]
@@ -24,7 +32,9 @@ namespace WebAppsProsjekt1.Models
         [Required(ErrorMessage = "Fill in your password")]
         public string Password { get; set; }
 
-        //[CustomValidation(Password.Equals(ConfirmPassword),ErrorMessage = "Confirm password")]
+        [Required(ErrorMessage ="Confirm Password")]
+        [NotMapped]
+        [CompareAttribute("Password",ErrorMessage="Password does not match")]
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Fill in your address")]
