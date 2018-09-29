@@ -33,6 +33,13 @@
                         url: '@Url.Action("AddMovieToCart", "Movie")',
                         data: { id: data_id, title: data_title },
                         success: function () {
+                        $.ajax({
+                            url: '@Url.Action("CartList", "Cart")',
+                            success: function () {
+                                // så må siden reloades!
+                                window.location.reload();
+                            }
+                        });
                         },
                         error: function () {
                             alert("Feil");

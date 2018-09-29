@@ -164,6 +164,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DBMovie.cs" />
     <Compile Include="Models\DBUser.cs" />
     <Compile Include="Models\HelperTable.cs" />
     <Compile Include="Models\User.cs" />
@@ -278,7 +279,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\Cart\CartList.cshtml" />
   </ItemGroup>
   <ItemGroup>

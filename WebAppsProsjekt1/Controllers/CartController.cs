@@ -10,13 +10,11 @@ namespace WebAppsProsjekt1.Controllers
     public class CartController : Controller
     {
         // GET: Cart
-        public ActionResult CartList(int id)
+        public ActionResult CartList()
         {
-            using (var db = new Models.DB())
-            {
-                Movie cartMovie = db.getMovie(id);
-                return View(cartMovies);
-            }
+            DBMovie ok = new DBMovie();
+            ok.GetMovies();
+            return View();
         }
     }
 }

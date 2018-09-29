@@ -7,30 +7,44 @@ namespace WebAppsProsjekt1.Models
 {
     public class DBMovie
     {
-        public Movie getMovie(int id)
+        private List<String> parseCookie(HttpCookie cookie)
         {
-            var db = new DB();
-            var oneMovie = db.Movie.Find(id);
-            if (oneMovie == null)
+            List<String> idList = new List<String>();
+            
+            string cookieString = cookie.Value.ToString();
+            //string parsedId = cookieString.Replace()
+            foreach (char c in cookieString)
             {
-                return null;
+                if (int.TryParse(c.ToString(), out _))
+                {
+                    idList.Add(c.ToString());
+                }
+                if (c.ToString() == "=")
+                {
+                    idList.Add(",");
+                }
+            }
+
+            return idList;
+        }
+        //private int extractInt(String cookieString)
+        //{
+
+        //    return;
+        //}
+        public void GetMovies()
+        {
+            HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies["cartCookie"];
+            if (cookie != null)
+            {
+                foreach (string item in parseCookie(cookie))
+                {
+                    System.Diagnostics.Debug.WriteLine(item);
+                }
             }
             else
             {
-                var oneMovieOuptput = new Movie()
-                {
-                    Id = oneMovie.Id,
-                    Userlvl = oneUser.Userlvl,
-                    Email = oneUser.Email,
-                    Name = oneUser.Name,
-                    Surname = oneUser.Surname,
-                    Password = oneUser.Password,
-                    Address = oneUser.Address,
-                    ZipCode = oneUser.Mail.ZipCode,
-                    Area = oneUser.Mail.Area
-
-                };
-                return oneMovieOuptput;
+                
             }
         }
     }
