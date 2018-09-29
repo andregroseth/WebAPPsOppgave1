@@ -26,7 +26,7 @@ namespace WebAppsProsjekt1.Controllers
                 return View();
             }
 
-            if (FindUser(loginAttempt))
+            if (UserFind(loginAttempt))
             {
                 Session["Login"] = loginAttempt.Id;
                 return RedirectToAction("MovieList", "Movie");
@@ -49,7 +49,7 @@ namespace WebAppsProsjekt1.Controllers
             }
         }
 
-        private bool FindUser(User user)
+        private bool UserFind(User user)
         {
             using (var db = new DB())
             {
@@ -74,14 +74,14 @@ namespace WebAppsProsjekt1.Controllers
             }
         }
 
-        //GET: User/RegisterUser
+        //GET: User/UserRegister
         public ActionResult UserRegister()
         {
             return View();
             
         }
 
-        //GET: User/ListUser
+        //GET: User/UserList
         public ActionResult UserList()
         {
             var db = new DBUser();
@@ -133,14 +133,5 @@ namespace WebAppsProsjekt1.Controllers
                 return Json(!db.User.Any(x => x.Email == Email), JsonRequestBehavior.AllowGet);
             }
         }
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
     }
 }

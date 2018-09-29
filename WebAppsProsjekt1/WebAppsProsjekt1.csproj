@@ -182,6 +182,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\cssScrolling\netflixScroll.css" />
+    <Content Include="Content\css\cssBackground.css" />
+    <Content Include="Content\css\cssUser\UserRegister.css" />
     <Content Include="Content\images\movie\antmanImage.jpg" />
     <Content Include="Content\images\movie\backtothefuture.jpg" />
     <Content Include="Content\images\movie\blackpanther.jpg" />
@@ -259,9 +261,8 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\Background.cshtml" />
     <Content Include="Views\Moviemonster\Index.cshtml" />
     <Content Include="Views\Movie\MovieList.cshtml" />
     <Content Include="Views\Movie\movieDetailsModal.cshtml" />
