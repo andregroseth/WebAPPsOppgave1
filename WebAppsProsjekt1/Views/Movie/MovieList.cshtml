@@ -27,6 +27,19 @@
                 $('#movieImage').attr("src", data_image);
                 $('#movieCost').html(data_cost);
 
+                // Legge film til shopping cart
+                $("#addToCartBtn").click(function () {
+                    $.ajax({
+                        url: '@Url.Action("AddMovieToCart", "Movie")',
+                        data: { id: data_id, title: data_title },
+                        success: function () {
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("Feil");
+                        }
+                    });
+                })
             })
         });
     </script>

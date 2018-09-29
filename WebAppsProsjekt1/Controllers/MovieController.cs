@@ -18,5 +18,27 @@ namespace WebAppsProsjekt1.Controllers
                 return View(allMovies);
             }
         }
+
+        public void AddMovieToCart(int id, string title)
+        {
+            int movieCounter = 0;
+
+            HttpCookie cartCookie = new HttpCookie("cartCookie");
+            cartCookie.Expires = DateTime.Now.AddMinutes(30);
+            Response.Cookies.Add(cartCookie);
+
+            if (Request.Cookies["cartCookie"] == null)
+            {
+                Response.Cookies["cartCookie"].Value = Convert.ToString(id);
+            }
+            else
+            {
+                movieCounter = int.Parse(Request.Cookies["movieCounter"].Value);
+                cartCookie.Values.Add(Convert.ToString(id), title);
+                Response.Cookies["movieCounter"].Value = movieCounter.ToString();
+                movieCounter++;
+            }
+
+        }
     }
 }

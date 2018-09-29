@@ -1,0 +1,31 @@
+﻿@model List<WebAppsProsjekt1.Models.Movie>
+
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/css/cssScrolling/netflixScroll.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+</head>
+
+<body>
+    <div>
+        <h2>Cart</h2>
+            <table class="">
+                @foreach (var movie in Model)
+                {
+                    
+                }
+            </table>
+    </div>
+</body>
