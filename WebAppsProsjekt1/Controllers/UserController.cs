@@ -21,10 +21,10 @@ namespace WebAppsProsjekt1.Controllers
         [HttpPost]
         public ActionResult UserLogin(User loginAttempt)
         {
-            if(FindUser(loginAttempt))
+            if(UserFind(loginAttempt))
             {
                 Session["Login"] = loginAttempt.Id;
-                return RedirectToAction("ListMovie", "Movie");
+                return RedirectToAction("MovieList", "Movie");
             } else
             {
                 return UserLogin();
@@ -39,11 +39,11 @@ namespace WebAppsProsjekt1.Controllers
                 Response.Redirect("UserLogin");
             } else
             {
-                Response.Redirect("/Movie/ListMovie");
+                Response.Redirect("/Movie/MovieList");
             }
         }
 
-        private bool FindUser(User user)
+        private bool UserFind(User user)
         {
             using (var db = new DB())
             {
@@ -69,14 +69,14 @@ namespace WebAppsProsjekt1.Controllers
         }
 
         //GET: User/RegisterUser
-        public ActionResult RegisterUser()
+        public ActionResult UserRegister()
         {
             return View();
             
         }
 
         //GET: User/ListUser
-        public ActionResult ListUser()
+        public ActionResult UserList()
         {
             var db = new DBUser();
             List<HelperTable> allUsers = db.AllUserInfo();
@@ -84,7 +84,7 @@ namespace WebAppsProsjekt1.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegisterUser(HelperTable inUser)
+        public ActionResult UserRegister(HelperTable inUser)
         {
             if (ModelState.IsValid)
             {
@@ -92,20 +92,20 @@ namespace WebAppsProsjekt1.Controllers
                 bool OK = db.SaveUserToDB(inUser);
                 if (OK)
                 {
-                    return RedirectToAction("ListUser");
+                    return RedirectToAction("UserList");
                 }
             }
             return View();
         }
       
 
-        public ActionResult DeleteUser(int Id)
+        public ActionResult UserDelete(int Id)
         {
             var db = new DBUser();
             bool OK = db.DeleteUser(Id);
             if (OK)
             {
-                return RedirectToAction("ListUser");
+                return RedirectToAction("UserList");
             }
             return View();
         }
@@ -116,14 +116,5 @@ namespace WebAppsProsjekt1.Controllers
             HelperTable oneUser = db.GetUserInfo(id);
             return View(oneUser);
         }
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
     }
 }

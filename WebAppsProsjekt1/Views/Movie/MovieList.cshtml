@@ -1,0 +1,57 @@
+﻿@model List<WebAppsProsjekt1.Models.Movie>
+
+@{
+    ViewBag.Title = "MovieList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @*<link href="~/Content/css/cssScrolling/netflixScroll.css" rel="stylesheet" />*@
+    <link href="~/Content/css/cssScrolling/horizontalScroll.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Hendelse som utføres når en a-href med "data-movieDetailsModal = true" trykkes
+            $('a[data-movieDetailsModal=true]').click(function () {
+
+                // Hente inn data-taggene fra a-href link
+                var data_title = $(this).data('title');
+                var data_cost = $(this).data('cost');
+                var data_image = $(this).data('image');
+                var data_id = $(this).data('id');
+
+                // Legge data inn i div'en i modal-viewet
+                $('#movieTitle').html(data_title);
+                $('#movieImage').attr("src", data_image);
+                $('#movieCost').html(data_cost);
+
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <div>
+        <h2>Movies</h2>
+        <section class="card">
+                @foreach (var movie in Model)
+                {
+                    if (movie.ImagePath == null)
+                    {
+                    }
+                    else
+                    {
+                        // Render film-objektene og displayer dem i viewet
+                        @Html.Partial("MovieListPartial", movie)
+                    }
+                }
+        </section>
+        
+        @*Pop-up modalen som viser når man velger en film*@
+        @Html.Partial("movieDetailsModal")
+    </div>
+</body>
+</html>

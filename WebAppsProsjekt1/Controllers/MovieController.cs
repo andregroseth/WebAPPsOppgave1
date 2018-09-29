@@ -9,8 +9,8 @@ namespace WebAppsProsjekt1.Controllers
 {
     public class MovieController : Controller
     {
-        // GET: Movie/ListMovie
-        public ActionResult ListMovie()
+        // GET: Movie/MovieList
+        public ActionResult MovieList()
         {
             using (var db = new Models.DB())
             {
