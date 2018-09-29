@@ -18,20 +18,24 @@ namespace WebAppsProsjekt1.Models
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
+        [Display(Name = "Confirm Email")]
         [Required(ErrorMessage = "Confirm email address")]
         [NotMapped]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         [CompareAttribute("Email", ErrorMessage = "Email address does not match")]
         public string ConfirmEmail { get; set; }
 
-
+        [Display(Name="First Name")]
         [Required(ErrorMessage = "Fill in your name")]
         public string Name { get; set; }
+
         [Required(ErrorMessage = "Fill in your surname")]
         public string Surname { get; set; }
+
         [Required(ErrorMessage = "Fill in your password")]
         public string Password { get; set; }
 
+        [Display(Name = "Confirm Password")]
         [Required(ErrorMessage ="Confirm Password")]
         [NotMapped]
         [CompareAttribute("Password",ErrorMessage="Password does not match")]
@@ -40,6 +44,7 @@ namespace WebAppsProsjekt1.Models
         [Required(ErrorMessage = "Fill in your address")]
         public string Address { get; set; }
 
+        [Display(Name = "Zip Code")]
         [Required(ErrorMessage = "Fill in your zipcode")]
         [RegularExpression(@"[0-9]{4}", ErrorMessage = "Invalid 4 digit Zipcode")]
         public string ZipCode { get; set; }
