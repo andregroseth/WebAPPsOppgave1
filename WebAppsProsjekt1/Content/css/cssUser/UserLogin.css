@@ -1,17 +1,11 @@
-﻿.main-div {
-    max-width: 50%;
-    min-width: 33%;
-}
-
-.form-headers {
+﻿.form-headers {
     color: #444444;
     font-size: 5vh;
-    margin: 10vh 0 2vh 1.3vh;
+    margin: 10vh 0 2vh 0;
 }
 
 .form-control {
     margin-bottom: 1vh;
-    width:100%;
 }
 
 .btn.btn-success {

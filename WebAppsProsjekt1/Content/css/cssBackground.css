@@ -1,0 +1,12 @@
+﻿body {
+    background-image:url(http://cdn.strategyonline.ca/wp/wp-content/uploads/2017/05/Big-Purple-Monster_Full-Size1.jpg?w=640);
+}
+
+h1 {
+    font-size: 10vh;
+    text-align:center;
+}
+
+.btn.btn-success {
+    width: 100%;
+}

@@ -27,7 +27,7 @@ namespace WebAppsProsjekt1.Controllers
                 return RedirectToAction("MovieList", "Movie");
             } else
             {
-                return UserLogin();
+                return View();
             }
         }
         
@@ -116,5 +116,14 @@ namespace WebAppsProsjekt1.Controllers
             HelperTable oneUser = db.GetUserInfo(id);
             return View(oneUser);
         }
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }
