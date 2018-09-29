@@ -50,8 +50,6 @@ namespace WebAppsProsjekt1.Models
         [Required(ErrorMessage = "Fill in your zipcode")]
         [RegularExpression(@"[0-9]{4}", ErrorMessage = "Invalid 4 digit Zipcode")]
         public string ZipCode { get; set; }
-
-
         public string Area { get; set; }
     }
 

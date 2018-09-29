@@ -21,13 +21,19 @@ namespace WebAppsProsjekt1.Controllers
         [HttpPost]
         public ActionResult UserLogin(User loginAttempt)
         {
-            if(FindUser(loginAttempt))
+            if (Session["Login"] != null)
+            {
+                return View();
+            }
+
+            if (FindUser(loginAttempt))
             {
                 Session["Login"] = loginAttempt.Id;
                 return RedirectToAction("MovieList", "Movie");
-            } else
+            }
+            else
             {
-                return UserLogin();
+                return View();
             }
         }
         
