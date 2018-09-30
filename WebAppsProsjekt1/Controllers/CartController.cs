@@ -13,8 +13,13 @@ namespace WebAppsProsjekt1.Controllers
         public ActionResult CartList()
         {
             DBMovie ok = new DBMovie();
-            ok.GetMovies();
-            return View();
+            return View(ok.MovieGet());
         }
+
+        //[HttpPost]
+        //public ActionResult CartList(List<Movie> movieList)
+        //{
+        //    return View();
+        //}
     }
 }

@@ -4,7 +4,6 @@
     ViewBag.Title = "MovieList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <!DOCTYPE html>
 
 <html>
@@ -16,28 +15,24 @@
             // Hendelse som utføres når en a-href med "data-movieDetailsModal = true" trykkes
             $('a[data-movieDetailsModal=true]').click(function () {
 
-                // Hente inn data-taggene fra a-href link
+                // Hente inn data-taggene fra a-href link, bugged as shit
                 var data_title = $(this).data('title');
                 var data_cost = $(this).data('cost');
                 var data_image = $(this).data('image');
                 var data_id = $(this).data('id');
-
+                
                 // Legge data inn i div'en i modal-viewet
                 $('#movieTitle').html(data_title);
                 $('#movieImage').attr("src", data_image);
                 $('#movieCost').html(data_cost);
+                $('#movieId').html(data_id);
 
                 // Legge film til shopping cart
                 $("#addToCartBtn").click(function () {
                     $.ajax({
                         url: '@Url.Action("AddMovieToCart", "Movie")',
-                        data: { id: data_id, title: data_title },
+                        data: { id: document.getElementById("movieId").innerHTML },
                         success: function () {
-                        $.ajax({
-                            url: '@Url.Action("CartList", "Cart")',
-                            success: function () {
-                            }
-                        });
                         },
                         error: function () {
                             alert("Feil");
