@@ -7,9 +7,38 @@ namespace WebAppsProsjekt1.Models
 {
     public class DBUser
     {
+        public int SessionGet(User user)
+        {
+            int loginSession;
+            using (var db = new DB()) {
+                var verifiedUser= db.User.FirstOrDefault(u =>u.Email == user.Email);
+                loginSession = verifiedUser.Id;
+            }
+            return loginSession;
+        }
+        public bool UserFind(User user)
+        {
+            using (var db = new DB())
+            {
+                User verifiedUser = db.User.FirstOrDefault(b => b.Email == user.Email);
+                if (verifiedUser != null)
+                {
+                    string password = user.Password;
+                    if (password != null)
+                    {
+                        bool verifiedPassword = verifiedUser.Password.SequenceEqual(password);
+                        if(verifiedPassword)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+        }
+
         public List<HelperTable> AllUserInfo()
         {
-
             using (var db = new DB())
             {
 

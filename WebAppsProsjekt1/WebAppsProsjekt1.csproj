@@ -165,6 +165,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DBMovie.cs" />
+    <Compile Include="Models\DBOrder.cs" />
     <Compile Include="Models\DBUser.cs" />
     <Compile Include="Models\HelperTable.cs" />
     <Compile Include="Models\User.cs" />

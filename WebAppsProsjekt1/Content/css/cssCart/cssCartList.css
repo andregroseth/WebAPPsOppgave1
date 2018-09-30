@@ -9,3 +9,7 @@
     width: 80%;
     border-radius: 0.4vh;
 }
+
+.btn.btn-success {
+    width: 100%;
+}

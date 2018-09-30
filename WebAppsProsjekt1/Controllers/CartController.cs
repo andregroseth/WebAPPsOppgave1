@@ -12,14 +12,26 @@ namespace WebAppsProsjekt1.Controllers
         // GET: Cart
         public ActionResult CartList()
         {
-            DBMovie ok = new DBMovie();
-            return View(ok.MovieGet());
+            DBMovie db = new DBMovie();
+            return View(db.MovieGet());
         }
 
-        //[HttpPost]
-        //public ActionResult CartList(List<Movie> movieList)
-        //{
-        //    return View();
-        //}
+        [HttpPost]
+        public ActionResult CartList(List<Movie> movieList)
+        {
+            var dbMovie = new DBMovie();
+            movieList = dbMovie.MovieGet();
+            if(Session["Login"] != null)
+            {
+                var db = new DBOrder();
+                int userId;
+                int.TryParse(Session["Login"].ToString(), out userId);
+                db.AddOrder(movieList, userId);
+            } else
+            {
+                return RedirectToAction("UserLogin", "User");
+            }
+            return RedirectToAction("MovieList", "Movie");
+        }
     }
 }
