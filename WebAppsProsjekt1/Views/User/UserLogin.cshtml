@@ -8,6 +8,11 @@
 
 </head>
 <div class="container">
+    <div class="main-div">
+        @if (Session["Login"] != null)
+        {
+            <h2>@Session["Login"].ToString()</h2>
+        }
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()

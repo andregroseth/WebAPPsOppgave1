@@ -157,12 +157,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\MoviemonsterController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DBMovie.cs" />
+    <Compile Include="Models\DBOrder.cs" />
     <Compile Include="Models\DBUser.cs" />
     <Compile Include="Models\HelperTable.cs" />
     <Compile Include="Models\User.cs" />
@@ -181,7 +184,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\css\cssScrolling\netflixScroll.css" />
+    <Content Include="Content\css\cssCart\cssCartList.css" />
+    <Content Include="Content\css\cssMovie\cssMovieList.css" />
     <Content Include="Content\css\cssBackground.css" />
     <Content Include="Content\css\cssUser\UserRegister.css" />
     <Content Include="Content\images\movie\antmanImage.jpg" />
@@ -280,6 +284,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Cart\CartList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -293,6 +298,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

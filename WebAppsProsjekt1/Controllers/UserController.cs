@@ -19,19 +19,14 @@ namespace WebAppsProsjekt1.Controllers
         }
 
         [HttpPost]
-        public ActionResult UserLogin(User loginAttempt)
+        public ActionResult UserLogin(User user)
         {
-            if (Session["Login"] != null)
+            var db = new DBUser();
+            if(db.UserFind(user))
             {
-                return View();
-            }
-
-            if (UserFind(loginAttempt))
-            {
-                Session["Login"] = loginAttempt.Id;
+                Session["Login"] = db.GetSession(user).ToString();
                 return RedirectToAction("MovieList", "Movie");
-            }
-            else
+            } else
             {
                 return View();
             }
@@ -46,31 +41,6 @@ namespace WebAppsProsjekt1.Controllers
             } else
             {
                 Response.Redirect("/Movie/MovieList");
-            }
-        }
-
-        private bool UserFind(User user)
-        {
-            using (var db = new DB())
-            {
-                User verifiedUser = db.User.FirstOrDefault(b => b.Email == user.Email);
-                if (verifiedUser != null)
-                {
-                    string password = user.Password;
-                    if (password != null)
-                    {
-                        bool verifiedPassword = verifiedUser.Password.SequenceEqual(password);
-                        return verifiedPassword;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    return false;
-                }
             }
         }
 

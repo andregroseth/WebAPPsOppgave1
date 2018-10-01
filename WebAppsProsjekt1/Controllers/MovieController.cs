@@ -18,5 +18,25 @@ namespace WebAppsProsjekt1.Controllers
                 return View(allMovies);
             }
         }
+
+        public void AddMovieToCart(int id)
+        {
+            HttpCookie cartCookie;
+            if (Request.Cookies["cartCookie"] == null)
+            {
+                cartCookie = new HttpCookie("cartCookie");
+                cartCookie.Expires = DateTime.Now.AddMinutes(30);
+
+                cartCookie.Values.Add(id.ToString(), "");
+                Response.Cookies.Add(cartCookie);
+            }
+            else
+            {
+                cartCookie = Request.Cookies["cartCookie"];
+                cartCookie.Values.Add(id.ToString(), "");
+                Response.Cookies.Add(cartCookie);
+            }
+
+        }
     }
 }

@@ -4,19 +4,18 @@
     ViewBag.Title = "MovieList";
     Layout = "~/Views/Shared/Background.cshtml";
 }
-
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/css/cssScrolling/netflixScroll.css" rel="stylesheet" />
+    <link href="~/Content/css/cssMovie/cssMovieList.css" rel="stylesheet" />
     <script type="text/javascript">
         $(document).ready(function () {
             // Hendelse som utføres når en a-href med "data-movieDetailsModal = true" trykkes
             $('a[data-movieDetailsModal=true]').click(function () {
 
-                // Hente inn data-taggene fra a-href link
+                // Hente inn data-taggene fra a-href link, bugged as shit
                 var data_title = $(this).data('title');
                 var data_cost = $(this).data('cost');
                 var data_image = $(this).data('image');
@@ -26,7 +25,20 @@
                 $('#movieTitle').html(data_title);
                 $('#movieImage').attr("src", data_image);
                 $('#movieCost').html(data_cost);
+                $('#movieId').html(data_id);
 
+                // Legge film til shopping cart
+                $("#addToCartBtn").click(function () {
+                    $.ajax({
+                        url: '@Url.Action("AddMovieToCart", "Movie")',
+                        data: { id: document.getElementById("movieId").innerHTML },
+                        success: function () {
+                        },
+                        error: function () {
+                            alert("Feil");
+                        }
+                    });
+                })
             })
         });
     </script>
