@@ -25,7 +25,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if(Session["Login"] != null) {<li><a href="/User/UserLogout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-				<li><a href="/User/UserDetail"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+				<li><a href="/User/UserAccount"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
 				} else {
                 <li><a href="/User/UserLogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 <li><a href="/User/UserRegister"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>}

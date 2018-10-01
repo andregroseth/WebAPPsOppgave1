@@ -85,6 +85,15 @@ namespace WebAppsProsjekt1.Controllers
             }
             return View();
         }
+        public ActionResult UserAccount() {
+            if (Session["Login"] != null)
+            {
+                int.TryParse(Session["Login"].ToString(), out int userId);
+                return RedirectToAction("UserDetail", new { id = userId});
+
+            }
+            return RedirectToAction("UserLogin");
+        }
 
         public ActionResult UserDetail(int id)
         {
