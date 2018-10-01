@@ -1,23 +1,27 @@
-﻿.backgroundBody {
-    background-image: url(http://cdn.strategyonline.ca/wp/wp-content/uploads/2017/05/Big-Purple-Monster_Full-Size1.jpg?w=640);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    background-position: -3vh 0vh;
+﻿@import url('cssMovieMonsterIndex.css');
+
+
+.movieMonster {
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    font-size: 15vh;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    background-color: transparent;
 }
 
 .footer {
     position: absolute;
     right: 0;
     bottom: 0;
-    left: 0;
+    left: 0;    
     padding: 0rem;
     background-color: transparent;
     text-align: center;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
+
 
 .nav {
     color: #FFF;
@@ -47,9 +51,3 @@
     border-bottom: black solid 2px;
 }
 
-
-
-
-.btn {
-    width:100%;
-}

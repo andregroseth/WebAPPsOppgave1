@@ -13,7 +13,7 @@
     @RenderSection("scripts", required: false)
 </head>
 
-<body>
+<body class="backgroundBody" >
 
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -32,9 +32,9 @@
         </div>
     </nav>
 
-    <div class="container">
-        <h1>MovieMonster</h1>
-    </div>
+    
+
+    
     @*
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -60,7 +60,9 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer Pushed Footer-bottom>
+    </div>
+    <div class="footer">
+        <footer>
             <center><p>&copy; @DateTime.Now.Year Group 4 production</p></center>
         </footer>
     </div>

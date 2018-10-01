@@ -16,3 +16,20 @@
     margin-top: 0.8vh;
 }
 
+.control-label {
+    font-weight: bold;
+    color: white;
+    font-size: 2vh;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    background-color: transparent;
+}
+
+.login {
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    font-size: 15vh;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    opacity: 0.75;
+}
+
