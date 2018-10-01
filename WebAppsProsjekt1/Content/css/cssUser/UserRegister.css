@@ -1,3 +1,24 @@
 ﻿.btn.btn-success {
+    
     width: 100%;
 }
+
+.form-group{
+   
+    font-weight: bold;
+    color: white;
+    font-size: 2vh;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    background-color: transparent;
+}
+
+
+.register{
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    font-size: 15vh;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+  
