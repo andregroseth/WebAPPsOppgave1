@@ -22,31 +22,39 @@
                     @Html.AntiForgeryToken()
                     foreach (var movie in Model)
                     {
-                        <div class="row">
-                            @Html.HiddenFor(model => movie.Id, new { htmlAttributes = new { @class = "form-control", id = "movieId" } })
-                            <div class="form-group">
-                                <div class="col-lg-1">
-                                    <div class="img-container">
-                                        <img src="@movie.ImagePath" style="width:6vh; height:8vh;" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-lg-3">
-                                    <h2>@movie.Title</h2>
-                                    <p>@movie.Category</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-lg-8">
-                                    <h2>@movie.Cost Kroner</h2>
+                    <div class="row">
+                        @Html.HiddenFor(model => movie.Id, new { htmlAttributes = new { @class = "form-control", id = "movieId" } })
+                        <div class="form-group">
+                            <div class="col-lg-1">
+                                <div class="img-container">
+                                    <img src="@movie.ImagePath" style="width:6vh; height:8vh;" />
                                 </div>
                             </div>
                         </div>
-                    }
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-success" />
+                        <div class="form-group">
+                            <div class="col-lg-3">
+                                <h2>@movie.Title</h2>
+                                <p>@movie.Category</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-8">
+                                <h2>@movie.Cost Kroner</h2>
+                            </div>
+                        </div>
                     </div>
+                    }
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-4">
+                            <input type="submit" class="btn btn-success" />
+                        </div>
+                        <div class="col-lg-4">
+                        </div>
+                    </div>
+                </div>
                 }
             </div>
     </body>
