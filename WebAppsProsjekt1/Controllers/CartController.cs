@@ -19,8 +19,6 @@ namespace WebAppsProsjekt1.Controllers
         [HttpPost]
         public ActionResult CartList(List<Movie> movieList)
         {
-            var dbMovie = new DBMovie();
-            movieList = dbMovie.MovieGet();
             if(Session["Login"] != null)
             {
                 var db = new DBOrder();
