@@ -112,5 +112,22 @@ namespace WebAppsProsjekt1.Controllers
                 return Json(!db.User.Any(x => x.Email == Email), JsonRequestBehavior.AllowGet);
             }
         }
+
+        public ActionResult OrderList()
+        {
+            var db = new DBOrder();
+            List<OrderHelper> allOrder = db.AllOrderInfo();
+            return View(allOrder);
+        }
+        public ActionResult OrderDelete(int Id)
+        {
+            var db = new DBOrder();
+            bool OK = db.DeleteOrder(Id);
+            if (OK)
+            {
+                return RedirectToAction("OrderList");
+            }
+            return View();
+        }
     }
 }

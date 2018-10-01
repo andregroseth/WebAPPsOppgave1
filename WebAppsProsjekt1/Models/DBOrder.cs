@@ -39,5 +39,40 @@ namespace WebAppsProsjekt1.Models
                 db.SaveChanges();
             }
         }
+
+        public List<OrderHelper> AllOrderInfo()
+        {
+            using (var db = new DB())
+            {
+                List<OrderHelper> AllOrderInfo = db.Order.Select(k => new OrderHelper
+                {
+                    Id = k.Id,
+                    Date= k.Date,
+                    UserId=k.User.Id
+                }).ToList();
+
+                return AllOrderInfo;
+            }
+
+        }
+        public bool DeleteOrder(int Id)
+        {
+            using (var db = new DB())
+            {
+                try
+                {
+                    var DeleteOrderlineRad = db.Orderline.Where(a=>a.Order.Id== Id);
+                    foreach (var item in DeleteOrderlineRad) {
+                        db.Orderline.Remove(item);
+                    }
+                    var DeleteOrderRad = db.Order.FirstOrDefault(u => u.Id == Id);
+                    db.Order.Remove(DeleteOrderRad);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception error) { return false; }
+            }
+
+        }
     }
 }
