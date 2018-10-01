@@ -55,12 +55,12 @@ namespace WebAppsProsjekt1.Controllers
         public ActionResult UserList()
         {
             var db = new DBUser();
-            List<HelperTable> allUsers = db.AllUserInfo();
+            List<UserHelper> allUsers = db.AllUserInfo();
             return View(allUsers);
         }
 
         [HttpPost]
-        public ActionResult UserRegister(HelperTable inUser)
+        public ActionResult UserRegister(UserHelper inUser)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace WebAppsProsjekt1.Controllers
         public ActionResult UserDetail(int id)
         {
             var db = new DBUser();
-            HelperTable oneUser = db.GetUserInfo(id);
+            UserHelper oneUser = db.GetUserInfo(id);
             return View(oneUser);
         }
 

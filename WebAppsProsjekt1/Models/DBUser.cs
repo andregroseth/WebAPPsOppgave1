@@ -37,12 +37,12 @@ namespace WebAppsProsjekt1.Models
             }
         }
 
-        public List<HelperTable> AllUserInfo()
+        public List<UserHelper> AllUserInfo()
         {
             using (var db = new DB())
             {
 
-                List<HelperTable> AllUserInfo = db.User.Select(k => new HelperTable
+                List<UserHelper> AllUserInfo = db.User.Select(k => new UserHelper
                 {
 
                     Id = k.Id,
@@ -61,7 +61,7 @@ namespace WebAppsProsjekt1.Models
 
         }
 
-        public bool SaveUserToDB(HelperTable InUser)
+        public bool SaveUserToDB(UserHelper InUser)
         {
             var NewUserRad = new User()
             {
@@ -123,7 +123,7 @@ namespace WebAppsProsjekt1.Models
         }
 
 
-        public HelperTable GetUserInfo(int id)
+        public UserHelper GetUserInfo(int id)
         {
             var db = new DB();
             var oneUser = db.User.Find(id);
@@ -134,7 +134,7 @@ namespace WebAppsProsjekt1.Models
             }
             else
             {
-                var oneUserOuptput = new HelperTable()
+                var oneUserOuptput = new UserHelper()
                 {
                     Id = oneUser.Id,
                     Userlvl = oneUser.Userlvl,
