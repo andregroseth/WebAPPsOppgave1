@@ -1,5 +1,4 @@
 ﻿@model List<WebAppsProsjekt1.Models.Movie>
-<link href="~/Content/css/cssMovieList.css" rel="stylesheet" />
 @{
     ViewBag.Title = "MovieList";
     Layout = "~/Views/Shared/Background.cshtml";
@@ -8,14 +7,23 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/css/cssMovie/cssMovieList.css" rel="stylesheet" />
-    <script type="text/javascript">
+	<meta name="viewport" content="width=device-width" />
+	<link href="~/Content/css/cssMovie/cssMovieList.css" rel="stylesheet" />
+	<script src="~/Scripts/scripts/show-modal.js"></script>
+	@if (Session["Purchase"] != null)
+	{
+		<script type="text/javascript">
+			$(window).on('load', function () {
+				window.showModal("Order confirmed.", "green");
+			});
+		</script>
+	}
+	<script type="text/javascript">
         $(document).ready(function () {
             // Hendelse som utføres når en a-href med "data-movieDetailsModal = true" trykkes
             $('a[data-movieDetailsModal=true]').click(function () {
 
-                // Hente inn data-taggene fra a-href link, bugged as shit
+                // Hente inn data-taggene fra a-href link
                 var data_title = $(this).data('title');
                 var data_cost = $(this).data('cost');
                 var data_image = $(this).data('image');
@@ -41,30 +49,31 @@
                 })
             })
         });
-    </script>
+	</script>
 </head>
 
 <body>
-    <div>
-        <h1 class="moviesList">Movies</h1>
-        <div class="row">
-            <div class="row__inner">
-                @foreach (var movie in Model)
-                {
-                    if (movie.ImagePath == null)
-                    {
-                    }
-                    else
-                    {
-                        // Render film-objektene og displayer dem i viewet
-                        @Html.Partial("MovieListPartial", movie)
-                    }
-                }
-            </div>
-        </div>
+	@Html.Partial("~/Views/Modal/validationModal.cshtml")
+	<div>
+		<h1 class="moviesList" style="color:white;">Movies</h1>
+		<div class="row">
+			<div class="row__inner">
+				@foreach (var movie in Model)
+				{
+					if (movie.ImagePath == null)
+					{
+					}
+					else
+					{
+						// Render film-objektene og displayer dem i viewet
+						@Html.Partial("~/Views/Movie/MovieListPartial.cshtml", movie)
+					}
+				}
+			</div>
+		</div>
 
-        @*Pop-up modalen som viser når man velger en film*@
-        @Html.Partial("movieDetailsModal")
-    </div>
+		@*Pop-up modalen som viser når man velger en film*@
+		@Html.Partial("~/Views/Modal/movieDetailsModal.cshtml")
+	</div>
 </body>
 </html>

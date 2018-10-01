@@ -5,6 +5,7 @@
     background-position: center;
     background-size: cover;
     background-position: -3vh 0vh;
+    z-index:1;
 }
 
 .footer {
@@ -16,40 +17,46 @@
     background-color: transparent;
     text-align: center;
     color: white;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-shadow: -0.2vh 0 black, 0 0.2vh black, 0.2vh 0 black, 0 -0.2vh black;
 }
 
 .nav {
     color: #FFF;
     background-color: transparent;
     text-decoration: none;
-    border-bottom: transparent solid 1px;
-    padding-bottom: 5px;
+    border-bottom: transparent solid 0.2vh;
+    min-height: 6vh;
+    z-index:10;
 }
 
     .nav :hover {
-        color: black;
         background-color: transparent;
-        border-bottom: black solid 1px;
+        border-bottom: black solid 0.2vh;
     }
 
 .navbar-header {
-    color: #FFF;
     background-color: transparent;
     text-decoration: none;
-    border-bottom: transparent solid 1px;
-    padding-bottom: 5px;
+    border-bottom: transparent solid 0.2vh;
 }
 
 .navbar-header :hover {
-    color: black;
     background-color: transparent;
-    border-bottom: black solid 2px;
+    border-bottom: black solid 0.4vh;
 }
-
-
-
 
 .btn {
     width:100%;
+}
+
+h1 {
+    font-size: 15vh;
+    text-align:center;
+}
+
+p, h1, h2, .control-label {
+    color: white;
+    text-shadow: 0.2vh 0.2vh 0.6vh #000000;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }

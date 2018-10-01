@@ -22,14 +22,18 @@ namespace WebAppsProsjekt1.Controllers
             if(Session["Login"] != null)
             {
                 var db = new DBOrder();
-                int userId;
-                int.TryParse(Session["Login"].ToString(), out userId);
-                db.AddOrder(movieList, userId);
-            } else
+				int.TryParse(Session["Login"].ToString(), out int userId);
+				db.AddOrder(movieList, userId);
+				
+				var cookieHelper = new CookieHelper();
+				cookieHelper.CookieDelete(Request.Cookies["cartCookie"], Response);
+
+				Session["Purchase"] = "true";
+				return RedirectToAction("MovieList", "Movie");
+			} else
             {
                 return RedirectToAction("UserLogin", "User");
             }
-            return RedirectToAction("MovieList", "Movie");
         }
     }
 }

@@ -25,11 +25,11 @@ namespace WebAppsProsjekt1.Controllers
             if(db.UserFind(user))
             {
                 Session["Login"] = db.GetSession(user).ToString();
-                return RedirectToAction("MovieList", "Movie");
-            } else
-            {
-                return View();
+                Session.Remove("LoginFailed");
+                return RedirectToAction("Movielist", "Movie");
             }
+            Session["LoginFailed"] = "true";
+            return View();
         }
         
         public void UserLogout()

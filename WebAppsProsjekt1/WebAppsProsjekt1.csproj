@@ -164,6 +164,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CookieHelper.cs" />
     <Compile Include="Models\DBMovie.cs" />
     <Compile Include="Models\DBOrder.cs" />
     <Compile Include="Models\DBUser.cs" />
@@ -186,6 +187,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\cssCart\cssCartList.css" />
     <Content Include="Content\css\cssModal\cssModal.css" />
+    <Content Include="Content\css\cssIndex.css" />
     <Content Include="Content\css\cssMovie\cssMovieList.css" />
     <Content Include="Content\css\cssBackground.css" />
     <Content Include="Content\css\cssUser\UserRegister.css" />
@@ -254,10 +256,12 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\scripts\show-modal.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <None Include="Views\Modal\validationModal.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -270,7 +274,7 @@
     <Content Include="Views\Shared\Background.cshtml" />
     <Content Include="Views\Moviemonster\Index.cshtml" />
     <Content Include="Views\Movie\MovieList.cshtml" />
-    <Content Include="Views\Movie\movieDetailsModal.cshtml" />
+    <Content Include="Views\Modal\movieDetailsModal.cshtml" />
     <Content Include="Views\Movie\MovieListPartial.cshtml" />
     <Content Include="Views\User\UserLogin.cshtml" />
     <Content Include="Views\User\UserRegister.cshtml" />
