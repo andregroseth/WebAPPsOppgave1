@@ -44,20 +44,3 @@
     background-color: transparent;
     border-bottom: black solid 0.4vh;
 }
-
-.btn {
-    width:100%;
-}
-
-h1 {
-    font-size: 15vh;
-    text-align: center;
-    opacity: 0.75;
-}
-
-p, h1, h2, .control-label {
-    color: white;
-    text-shadow: 0.2vh 0.2vh 0.6vh #000000;
-    font-weight: bold;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}

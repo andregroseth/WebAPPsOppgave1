@@ -25,7 +25,8 @@ namespace WebAppsProsjekt1
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/css/cssGlobal.css",
+					  "Content/css/cssBackground.css"));
         }
     }
 }
