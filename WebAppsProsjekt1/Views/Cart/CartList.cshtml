@@ -1,61 +1,54 @@
 ﻿@model List<WebAppsProsjekt1.Models.Movie>
-
 @{
-    ViewBag.Title = "CartList";
-    Layout = "~/Views/Shared/Background.cshtml";
+	ViewBag.Title = "CartList";
+	Layout = "~/Views/Shared/Background.cshtml";
+	@Styles.Render("~/Content/css/cssCart/cssCartList.css")
 }
-<!DOCTYPE html>
-
-<html>
-    <head>
-        <link href="~/Content/css/cssCart/cssCartList.css" rel="stylesheet" />
-    </head>
-    <body>
-        <h1>CartList</h1>
-        @if (Session["Login"] != null)
-        {
-            <h2>@Session["Login"].ToString()</h2>
-        }
-            <div class="container-fluid" id="cart_container">
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    for (int i = 0; i < Model.Count; i++)
-                    {
-                    <div class="row">
-                        @Html.HiddenFor(model => Model[i].Id, new { htmlAttributes = new { @class = "form-control", id = "movieId" } })
-                        <div class="form-group">
-                            <div class="col-lg-1">
-                                <div class="img-container">
-                                    <img src="@Model[i].ImagePath" style="width:6vh; height:8vh;" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-3">
-                                <h2>@Model[i].Title</h2>
-                                <p>@Model[i].Category</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-8">
-                                <h2>@Model[i].Cost Kroner</h2>
-                            </div>
-                        </div>
-                    </div>
-                    }
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-lg-4">
-                        </div>
-                        <div class="col-lg-4">
-                            <input type="submit" class="btn btn-success" />
-                        </div>
-                        <div class="col-lg-4">
-                        </div>
-                    </div>
-                </div>
-                }
-            </div>
-    </body>
+<h1>CartList</h1>
+@if (Session["Login"] != null)
+{
+	<h2>@Session["Login"].ToString()</h2>
+}
+<div class="container-fluid" id="cart_container">
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+		for (int i = 0; i < Model.Count; i++)
+		{
+			<div class="row">
+				@Html.HiddenFor(model => Model[i].Id, new { htmlAttributes = new { @class = "form-control", id = "movieId" } })
+				<div class="form-group">
+					<div class="col-lg-1">
+						<div class="img-container">
+							<img src="@Model[i].ImagePath" style="width:6vh; height:8vh;" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-3">
+						<h2>@Model[i].Title</h2>
+						<p>@Model[i].Category</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-8">
+						<h2>@Model[i].Cost Kroner</h2>
+					</div>
+				</div>
+			</div>
+		}
+		<div class="form-group">
+			<div class="row">
+				<div class="col-lg-4">
+				</div>
+				<div class="col-lg-4">
+					<input type="submit" class="btn btn-success" />
+				</div>
+				<div class="col-lg-4">
+				</div>
+			</div>
+		</div>
+	}
+</div>
+</body>
 </html>

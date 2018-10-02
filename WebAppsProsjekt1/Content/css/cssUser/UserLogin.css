@@ -13,16 +13,7 @@
 }
 
 .control-label {
-    margin-top: 0.8vh;
-}
-
-.control-label {
     font-size: 2vh;
-}
-
-.login {
-    text-align: center;
-    color: white;
-    font-size: 15vh;
+	margin-top: 0.8vh;
 }
 

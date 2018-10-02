@@ -1,31 +1,4 @@
-﻿h1{
-    font-size:15vh;
-}
-
-body,
-html {
-    padding: 0;
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-p {
-    text-align: center;
-    width: 100%;
-    max-width: 500px;
-    margin: auto;
-}
-
-a:link,
+﻿a:link,
 a:hover,
 a:active,
 a:visited {
@@ -39,15 +12,9 @@ a:hover {
     text-decoration: underline;
 }
 
-.contain {
-    width: 100%;
-}
-
 .row {
-    display: flex;
-    overflow-x: auto;
-    min-width: 100%;
-    min-height: 250px;
+	overflow-x: auto;
+	min-height: 27vh;
 }
 
     .row::-webkit-scrollbar {
@@ -55,27 +22,26 @@ a:hover {
     }
 
 .row__inner {
-    transition: 450ms transform;
-    white-space: nowrap;
-    margin: 70.3125px 0;
-    padding-bottom: 10px;
-    min-width: 300px;
+	transition: 450ms transform;
+	white-space: nowrap;
+	margin: 7vh 0;
+	padding-bottom: 2vh;
 }
 
 .tile {
     display: inline-block;
     position: relative;
-    width: 180px;
-    height: 250px;
-    margin-right: 10px;
+    width: 19.2vh;
+    height: 26.55vh;
+    margin-right: 1vh;
     cursor: pointer;
     transition: 450ms all;
     transform-origin: center left;
 }
 
 .tile__img {
-    width: 180px;
-    height: 250px;
+    width: 19.2vh;
+    height: 26.5vh;
 }
 
 .tile__details {
@@ -106,11 +72,11 @@ a:hover {
 .tile__title {
     position: absolute;
     bottom: 0;
-    padding: 10px;
+    padding: 1vh;
 }
 
 .row__inner:hover {
-    transform: translate3d(-62.5px, 0, 0);
+    transform: translate3d(-6.5vh, 0, 0);
 }
 
     .row__inner:hover .tile {
@@ -123,7 +89,7 @@ a:hover {
         }
 
 .tile:hover ~ .tile {
-    transform: translate3d(125px, 0, 0);
+    transform: translate3d(10vh, 0, 0);
 }
 
 .btn {

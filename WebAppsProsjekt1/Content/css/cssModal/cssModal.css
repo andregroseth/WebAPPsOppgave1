@@ -1,4 +1,4 @@
-﻿#validation-modal {
+﻿#feedback-modal {
 	margin-top: 6vh;
 	background: green;
 	height: 5vh;
@@ -6,7 +6,7 @@
 }
 
 @media screen and (max-width:1000px) {
-    #validation-modal {
+    #feedback-modal {
         margin-top: 70vh;
     }
 }

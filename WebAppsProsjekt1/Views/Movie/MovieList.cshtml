@@ -1,79 +1,93 @@
 ﻿@model List<WebAppsProsjekt1.Models.Movie>
 @{
-    ViewBag.Title = "MovieList";
-    Layout = "~/Views/Shared/Background.cshtml";
+	ViewBag.Title = "MovieList";
+	Layout = "~/Views/Shared/Background.cshtml";
 }
-<!DOCTYPE html>
 
-<html>
-<head>
-	<meta name="viewport" content="width=device-width" />
-	<link href="~/Content/css/cssMovie/cssMovieList.css" rel="stylesheet" />
-	<script src="~/Scripts/scripts/show-modal.js"></script>
-	@if (Session["Purchase"] != null)
-	{
-		<script type="text/javascript">
-			$(window).on('load', function () {
-				window.showModal("Order confirmed.", "green");
-			});
-		</script>
-	}
+@Styles.Render("~/Content/css/cssMovie/cssMovieList.css");
+
+@*FeedbackModal*@
+@if (Session["PurchaseSuccess"] != null)
+{
 	<script type="text/javascript">
-        $(document).ready(function () {
-            // Hendelse som utføres når en a-href med "data-movieDetailsModal = true" trykkes
-            $('a[data-movieDetailsModal=true]').click(function () {
-
-                // Hente inn data-taggene fra a-href link
-                var data_title = $(this).data('title');
-                var data_cost = $(this).data('cost');
-                var data_image = $(this).data('image');
-                var data_id = $(this).data('id');
-
-                // Legge data inn i div'en i modal-viewet
-                $('#movieTitle').html(data_title);
-                $('#movieImage').attr("src", data_image);
-                $('#movieCost').html(data_cost);
-                $('#movieId').html(data_id);
-
-                // Legge film til shopping cart
-                $("#addToCartBtn").click(function () {
-                    $.ajax({
-                        url: '@Url.Action("AddMovieToCart", "Movie")',
-                        data: { id: document.getElementById("movieId").innerHTML },
-                        success: function () {
-                        },
-                        error: function () {
-                            alert("Feil");
-                        }
-                    });
-                })
-            })
-        });
+		$(window).on('load', function () {
+			showFeedbackModal("Order confirmed.", "green");
+		});
 	</script>
-</head>
+	Session.Remove("PurchaseSuccess");
+}
+else if (Session["PurchaseFailedEmpty"] != null)
+{
+	<script type="text/javascript">
+		$(window).on('load', function () {
+			showFeedbackModal("Empty order.", "red");
+		});
+	</script>
+	Session.Remove("PurchaseFailedEmpty");
+}
+else if (Session["LoginAlready"] != null)
+{
+	<script type="text/javascript">
+		$(window).on('load', function () {
+			showFeedbackModal("Already logged in.", "red");
+		});
+	</script>
+	Session.Remove("LoginAlready");
+}
 
-<body>
-	@Html.Partial("~/Views/Modal/validationModal.cshtml")
-	<div>
-		<h1 class="moviesList" style="color:white;">Movies</h1>
-		<div class="row">
-			<div class="row__inner">
-				@foreach (var movie in Model)
+@*Add to Cart*@
+<script type="text/javascript">
+	$(window).on('load', function () {
+		$('a[data-movieDetailsModal=true]').click(function () {
+			// Hente inn data-taggene fra a-href link
+			var data_title = $(this).data('title');
+			var data_cost = $(this).data('cost');
+			var data_image = $(this).data('image');
+			var data_id = $(this).data('id');
+
+			// Legge data inn i div'en i modal-viewet
+			$('#movieTitle').html(data_title);
+			$('#movieImage').attr("src", data_image);
+			$('#movieCost').html(data_cost);
+			$('#movieId').html(data_id);
+
+			// Legge film til shopping cart
+			$("#addToCartBtn").click(function () {
+				$.ajax({
+					url: '@Url.Action("AddMovieToCart", "Movie")',
+					data: { id: document.getElementById("movieId").innerHTML },
+					success: function () {
+					},
+					error: function () {
+						alert("Feil");
+					}
+				});
+			})
+		})
+	});
+</script>
+
+@Html.Partial("~/Views/Modal/feedbackModal.cshtml")
+<div>
+	<h1 class="moviesList" style="color:white;">Movies</h1>
+	<div class="row">
+		<div class="row__inner">
+			@foreach (var movie in Model)
+			{
+				if (movie.ImagePath == null)
 				{
-					if (movie.ImagePath == null)
-					{
-					}
-					else
-					{
-						// Render film-objektene og displayer dem i viewet
-						@Html.Partial("~/Views/Movie/MovieListPartial.cshtml", movie)
-					}
 				}
-			</div>
+				else
+				{
+					// Render film-objektene og displayer dem i viewet
+					@Html.Partial("~/Views/Movie/MovieListPartial.cshtml", movie)
+				}
+			}
 		</div>
-
-		@*Pop-up modalen som viser når man velger en film*@
-		@Html.Partial("~/Views/Modal/movieDetailsModal.cshtml")
 	</div>
+
+	@*Pop-up modalen som viser når man velger en film*@
+	@Html.Partial("~/Views/Modal/movieDetailsModal.cshtml")
+</div>
 </body>
 </html>

@@ -23,10 +23,13 @@ namespace WebAppsProsjekt1
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+			bundles.Add(new ScriptBundle("~/bundles/modal").Include(
+						"~/Scripts/feedback-modal.js"));
+
+			bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/css/cssGlobal.css",
-					  "Content/css/cssBackground.css"));
+					  "~/Content/css/cssBackground.css"));
         }
     }
 }
