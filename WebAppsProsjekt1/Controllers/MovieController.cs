@@ -22,9 +22,9 @@ namespace WebAppsProsjekt1.Controllers
         public void AddMovieToCart(int id)
         {
             HttpCookie cartCookie;
-			if (Request.Cookies["cartCookie"] == null)
+			if (Request.Cookies["Cart"] == null)
 			{
-                cartCookie = new HttpCookie("cartCookie");
+                cartCookie = new HttpCookie("Cart");
 				cartCookie.Expires = DateTime.Now.AddMinutes(30);
 
                 cartCookie.Values.Add(id.ToString(), "");
@@ -32,7 +32,7 @@ namespace WebAppsProsjekt1.Controllers
             }
             else
             {
-                cartCookie = Request.Cookies["cartCookie"];
+                cartCookie = Request.Cookies["Cart"];
                 cartCookie.Values.Add(id.ToString(), "");
 				cartCookie.Expires = DateTime.Now.AddMinutes(10);
 				Response.Cookies.Add(cartCookie);

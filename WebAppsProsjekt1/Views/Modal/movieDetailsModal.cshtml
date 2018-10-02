@@ -1,38 +1,39 @@
-﻿<link href="~/Content/css/cssModal/cssModal.css" rel="stylesheet" />
+﻿@Styles.Render("~/Content/css/cssModal/cssModal.css")
 <div id="movieDetailsModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div id="movieDetailsModalDiv">
-                    <table class="table">
-                        <tr>
-                            <th id="movieId"></th>
-                            <th></th>
-                            <th>Description</th>
-                        </tr>
-                        <tr>
-                            <td><img id="movieImage" src="" style="height:20vh; width:15vh;" /></td>
-                            <td></td>
-                            <td>NEO IS THE ONE!</td>
-                        </tr>
-                        <tr>
-                            <td id="movieCost"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                           <td id="movieTitle"></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal" id="addToCartBtn">
-                    <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</button>
-            </div>
-        </div>
-    </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<div id="movieDetailsModalDiv">
+					<table class="table">
+						<tr>
+							<th id="movieId"></th>
+							<th></th>
+							<th>Description</th>
+						</tr>
+						<tr>
+							<td><img id="movieImage" src="" style="height:20vh; width:15vh;" /></td>
+							<td></td>
+							<td>NEO IS THE ONE!</td>
+						</tr>
+						<tr>
+							<td id="movieCost"></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td id="movieTitle"></td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" data-dismiss="modal" id="addToCartBtn">
+					<span class="glyphicon glyphicon-shopping-cart"></span> Add to cart
+				</button>
+			</div>
+		</div>
+	</div>
 </div>

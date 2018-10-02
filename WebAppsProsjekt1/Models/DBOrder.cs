@@ -9,7 +9,6 @@ namespace WebAppsProsjekt1.Models
     {
         public void AddOrder(List<Movie> inMovie, int id)
         {
-            
             using (var db = new DB())
             {
                 var user = db.User.FirstOrDefault(u => u.Id == id);

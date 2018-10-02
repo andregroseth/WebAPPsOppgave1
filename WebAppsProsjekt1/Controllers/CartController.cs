@@ -21,17 +21,24 @@ namespace WebAppsProsjekt1.Controllers
         {
             if(Session["Login"] != null)
             {
-                var db = new DBOrder();
+				CookieHelper cookieHelper = new CookieHelper();
+				HttpCookie cartCookie = Request.Cookies["Cart"];
+				if (cartCookie == null || cookieHelper.CookieParse(cartCookie).Count < 1)
+				{
+					Session["PurchaseFailedEmpty"] = "true";
+					return RedirectToAction("MovieList", "Movie");
+				}
+					
+				DBOrder db = new DBOrder();
 				int.TryParse(Session["Login"].ToString(), out int userId);
 				db.AddOrder(movieList, userId);
-				
-				var cookieHelper = new CookieHelper();
-				cookieHelper.CookieDelete(Request.Cookies["cartCookie"], Response);
+				cookieHelper.CookieDelete(cartCookie, Response);
 
-				Session["Purchase"] = "true";
+				Session["PurchaseSuccess"] = "true";
 				return RedirectToAction("MovieList", "Movie");
 			} else
             {
+				Session["PurchaseFailedLogin"] = "true";
                 return RedirectToAction("UserLogin", "User");
             }
         }
