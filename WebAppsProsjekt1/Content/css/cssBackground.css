@@ -51,7 +51,8 @@
 
 h1 {
     font-size: 15vh;
-    text-align:center;
+    text-align: center;
+    opacity: 0.75;
 }
 
 p, h1, h2, .control-label {
