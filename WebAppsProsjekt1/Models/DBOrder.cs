@@ -84,30 +84,31 @@ namespace WebAppsProsjekt1.Models
             using (var db = new DB()) {
                 var UserOrder = db.Order.FirstOrDefault(o=>o.Id==id && o.User.Id==userid);
 
-                if (UserOrder != null)
+                if (UserOrder == null)
                 {
-
-                    var oneOrder = db.Orderline.Where(k => k.Order.Id == id);
-                    if (oneOrder == null)
-                    {
-                        return null;
-                    }
-
-                    List<OrderlineHelper> OrderlineDetail = oneOrder.Select(k => new OrderlineHelper
-                    {
-                        Id = k.Id,
-                        MovieId = k.Movie.Id,
-                        Title = k.Movie.Title,
-                        Category = k.Movie.Category,
-                        Cost = k.Movie.Cost,
-                        ImagePath = k.Movie.ImagePath
-
-                    }).ToList();
-
-                    return OrderlineDetail;
-
+                    return null;   
                 }
-                return null;
+
+                var oneOrder = db.Orderline.Where(k => k.Order.Id == id);
+                if (oneOrder == null)
+                {
+                    return null;
+                }
+
+                List<OrderlineHelper> OrderlineDetail = oneOrder.Select(k => new OrderlineHelper
+                {
+                    Id = k.Id,
+                    MovieId = k.Movie.Id,
+                    Title = k.Movie.Title,
+                    Category = k.Movie.Category,
+                    Cost = k.Movie.Cost,
+                    ImagePath = k.Movie.ImagePath
+
+                }).ToList();
+
+                return OrderlineDetail;
+
+
             }
         }
     }
