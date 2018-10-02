@@ -125,29 +125,31 @@ namespace WebAppsProsjekt1.Models
 
         public UserHelper GetUserInfo(int id)
         {
-            var db = new DB();
-            var oneUser = db.User.Find(id);
-            if (oneUser == null)
+            using (var db = new DB())
             {
-                return null;
-
-            }
-            else
-            {
-                var oneUserOuptput = new UserHelper()
+                var oneUser = db.User.Find(id);
+                if (oneUser == null)
                 {
-                    Id = oneUser.Id,
-                    Userlvl = oneUser.Userlvl,
-                    Email = oneUser.Email,
-                    Firstname = oneUser.Firstname,
-                    Surname = oneUser.Surname,
-                    Password = oneUser.Password,
-                    Address = oneUser.Address,
-                    ZipCode = oneUser.Mail.ZipCode,
-                    Area = oneUser.Mail.Area
+                    return null;
 
-                };
-                return oneUserOuptput;
+                }
+                else
+                {
+                    var oneUserOuptput = new UserHelper()
+                    {
+                        Id = oneUser.Id,
+                        Userlvl = oneUser.Userlvl,
+                        Email = oneUser.Email,
+                        Firstname = oneUser.Firstname,
+                        Surname = oneUser.Surname,
+                        Password = oneUser.Password,
+                        Address = oneUser.Address,
+                        ZipCode = oneUser.Mail.ZipCode,
+                        Area = oneUser.Mail.Area
+
+                    };
+                    return oneUserOuptput;
+                }
             }
         }
 

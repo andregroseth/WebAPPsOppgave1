@@ -85,21 +85,20 @@ namespace WebAppsProsjekt1.Controllers
             }
             return View();
         }
-        public ActionResult UserAccount() {
-            if (Session["Login"] != null)
-            {
-                int.TryParse(Session["Login"].ToString(), out int userId);
-                return RedirectToAction("UserDetail", new { id = userId});
 
-            }
-            return RedirectToAction("UserLogin");
-        }
 
-        public ActionResult UserDetail(int id)
+        public ActionResult UserDetail()
         {
-            var db = new DBUser();
-            UserHelper oneUser = db.GetUserInfo(id);
-            return View(oneUser);
+            try
+            {
+                var db = new DBUser();
+                int.TryParse(Session["Login"].ToString(), out int userId);
+                UserHelper oneUser = db.GetUserInfo(userId);
+                return View(oneUser);
+            }
+            catch {
+                return RedirectToAction("UserLogin");
+            }
         }
 
 
@@ -128,6 +127,13 @@ namespace WebAppsProsjekt1.Controllers
                 return RedirectToAction("OrderList");
             }
             return View();
+        }
+
+        public ActionResult OrderDetail(int id)
+        {
+            var db = new DBOrder();
+            var ShowOrder = db.GetOrderInfo(id);
+            return View(ShowOrder);
         }
     }
 }

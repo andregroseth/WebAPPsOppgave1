@@ -74,5 +74,32 @@ namespace WebAppsProsjekt1.Models
             }
 
         }
+
+        public List<OrderlineHelper> GetOrderInfo(int id)
+        {
+            using (var db = new DB()) {;
+                var oneOrder = db.Orderline.Where(k => k.Order.Id == id);
+                if (oneOrder == null)
+                {
+                    return null;
+                }
+                else
+                {
+                List<OrderlineHelper> OrderlineDetail=oneOrder.Select(k => new OrderlineHelper
+                {
+                    Id = k.Id,
+                    MovieId=k.Movie.Id,
+                    Title=k.Movie.Title,
+                    Category=k.Movie.Category,
+                    Cost=k.Movie.Cost,
+                    ImagePath=k.Movie.ImagePath
+
+                }).ToList();
+
+                    return OrderlineDetail;
+
+                }
+            }
+        }
     }
 }
