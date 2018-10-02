@@ -5,7 +5,12 @@
     Layout = "~/Views/Shared/Background.cshtml";
 
 }
+@if (Session["Login"] == null)
+{
 
+    Response.Redirect("UserLogin");
+
+}
 <h2>List of Orders</h2>
 
 <table class="table">
@@ -22,23 +27,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "OrderDetail", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "OrderDelete", new { id = item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "OrderDetail", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "OrderDelete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

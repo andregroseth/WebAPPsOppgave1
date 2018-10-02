@@ -13,6 +13,7 @@ namespace WebAppsProsjekt1.Controllers
         //private DB db = new Models.DB();
 
         //GET: User/Login
+
         public ActionResult UserLogin()
         {
             return View();
@@ -54,9 +55,12 @@ namespace WebAppsProsjekt1.Controllers
         //GET: User/UserList
         public ActionResult UserList()
         {
-            var db = new DBUser();
-            List<UserHelper> allUsers = db.AllUserInfo();
-            return View(allUsers);
+            if (checkIfAdmin() == true) {
+                var db = new DBUser();
+                List<UserHelper> allUsers = db.AllUserInfo();
+                return View(allUsers);
+            }
+            return RedirectToAction("UserLogin");
         }
 
         [HttpPost]
@@ -101,6 +105,24 @@ namespace WebAppsProsjekt1.Controllers
             }
         }
 
+        public bool checkIfAdmin()
+        {
+            try
+            {
+                var db = new DBUser();
+                int.TryParse(Session["Login"].ToString(), out int userId);
+                UserHelper oneUser = db.GetUserInfo(userId);
+                if (oneUser.Userlvl > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch {
+                return false;
+            }
+        }
+
 
         //Sjekker om Email eksistere fra før.
         public JsonResult CheckEmail(string Email)
@@ -114,9 +136,16 @@ namespace WebAppsProsjekt1.Controllers
 
         public ActionResult OrderList()
         {
-            var db = new DBOrder();
-            List<OrderHelper> allOrder = db.AllOrderInfo();
-            return View(allOrder);
+            if(Session["Login"] != null){
+
+                var db = new DBOrder();
+                int.TryParse(Session["Login"].ToString(), out int userId);
+                List<OrderHelper> allOrder = db.AllOrderInfo(userId);
+                return View(allOrder);
+
+            }
+        
+            return RedirectToAction("UserLogin");
         }
         public ActionResult OrderDelete(int Id)
         {
@@ -131,9 +160,14 @@ namespace WebAppsProsjekt1.Controllers
 
         public ActionResult OrderDetail(int id)
         {
-            var db = new DBOrder();
-            var ShowOrder = db.GetOrderInfo(id);
-            return View(ShowOrder);
+            if (Session["Login"] != null)
+            {
+                var db = new DBOrder();
+                int.TryParse(Session["Login"].ToString(), out int userId);
+                var ShowOrder = db.GetOrderInfo(id, userId);
+                return View(ShowOrder);
+            }
+            return RedirectToAction("UserLogin");
         }
     }
 }

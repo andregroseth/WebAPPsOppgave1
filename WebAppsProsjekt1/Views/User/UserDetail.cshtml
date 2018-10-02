@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/Background.cshtml";
 }
 
+@if (Session["Login"] == null)
+{
+
+    Response.Redirect("UserLogin");
+
+}
 <h2>User Detail</h2>
 <div>
 
@@ -62,5 +68,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "UserList")
+    @Html.ActionLink("Show Order History", "OrderList")
 </p>

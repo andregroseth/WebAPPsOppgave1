@@ -4,7 +4,12 @@
     ViewBag.Title = "OrderDetail";
     Layout = "~/Views/Shared/Background.cshtml";
 }
+@if (Session["Login"] == null)
+{
 
+    Response.Redirect("UserLogin");
+
+}
 <!DOCTYPE html>
 
 <html>

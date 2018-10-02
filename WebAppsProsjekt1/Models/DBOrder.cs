@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace WebAppsProsjekt1.Models
 {
@@ -40,11 +39,16 @@ namespace WebAppsProsjekt1.Models
             }
         }
 
-        public List<OrderHelper> AllOrderInfo()
+        public List<OrderHelper> AllOrderInfo(int id)
         {
+
             using (var db = new DB())
             {
-                List<OrderHelper> AllOrderInfo = db.Order.Select(k => new OrderHelper
+                var Orderlist = db.Order.Where(o=>o.User.Id == id);
+                if (Orderlist == null) {
+                    return null;
+                }
+                List<OrderHelper> AllOrderInfo = Orderlist.Select(k => new OrderHelper
                 {
                     Id = k.Id,
                     Date= k.Date,
@@ -75,30 +79,35 @@ namespace WebAppsProsjekt1.Models
 
         }
 
-        public List<OrderlineHelper> GetOrderInfo(int id)
+        public List<OrderlineHelper> GetOrderInfo(int id,int userid)
         {
-            using (var db = new DB()) {;
-                var oneOrder = db.Orderline.Where(k => k.Order.Id == id);
-                if (oneOrder == null)
-                {
-                    return null;
-                }
-                else
-                {
-                List<OrderlineHelper> OrderlineDetail=oneOrder.Select(k => new OrderlineHelper
-                {
-                    Id = k.Id,
-                    MovieId=k.Movie.Id,
-                    Title=k.Movie.Title,
-                    Category=k.Movie.Category,
-                    Cost=k.Movie.Cost,
-                    ImagePath=k.Movie.ImagePath
+            using (var db = new DB()) {
+                var UserOrder = db.Order.FirstOrDefault(o=>o.Id==id && o.User.Id==userid);
 
-                }).ToList();
+                if (UserOrder != null)
+                {
+
+                    var oneOrder = db.Orderline.Where(k => k.Order.Id == id);
+                    if (oneOrder == null)
+                    {
+                        return null;
+                    }
+
+                    List<OrderlineHelper> OrderlineDetail = oneOrder.Select(k => new OrderlineHelper
+                    {
+                        Id = k.Id,
+                        MovieId = k.Movie.Id,
+                        Title = k.Movie.Title,
+                        Category = k.Movie.Category,
+                        Cost = k.Movie.Cost,
+                        ImagePath = k.Movie.ImagePath
+
+                    }).ToList();
 
                     return OrderlineDetail;
 
                 }
+                return null;
             }
         }
     }
