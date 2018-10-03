@@ -13,7 +13,7 @@ namespace WebAppsProsjekt1.Models
             : base("name=MovieMonster")
         {
             Database.CreateIfNotExists();
-            //Database.SetInitializer(new DbInit());
+            Database.SetInitializer(new DbInit());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

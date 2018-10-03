@@ -10,6 +10,34 @@ namespace WebAppsProsjekt1.Models
     {
         protected override void Seed(DB context)
         {
+            List<Movie> testMovieList = new List<Movie>
+                {
+                    new Movie
+                    {
+                        Title = "The Matrix",
+                        Category = "Sci-Fi",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/matrixImage.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Bright",
+                        Category = "Sci-Fi",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/brightImage.jpg"
+                    }
+                };
+        
+
+            //var movie3 = new Movie
+            //{
+            //    Title = "The Matrix",
+            //    Category = "Sci-Fi",
+            //    Cost = 90,
+            //    ImagePath = "/Content/images/movie/matrixImage.jpg"
+            //};
+
             var testUser = new User
             {
                 Userlvl = 1,
@@ -18,14 +46,6 @@ namespace WebAppsProsjekt1.Models
                 Surname = "testsurname",
                 Password = "testpassword",
                 Address = "testaddress",
-            };
-
-            var testMovie = new Movie
-            {
-                Title = "The Matrix",
-                Category = "Sci-Fi",
-                Cost = 90,
-                ImagePath = "~/Content/images/movie/matrixImage.jpg"
             };
 
             var testOrder = new Order
@@ -43,7 +63,7 @@ namespace WebAppsProsjekt1.Models
             var testOrderLine = new Orderline
             {
                 Order = testOrder,
-                Movie = testMovie
+                //Movie = testMovie
             };
 
             var testOrderlineList = new List<Orderline>();
@@ -54,10 +74,17 @@ namespace WebAppsProsjekt1.Models
             testOrderList.Add(testOrder);
             testUser.Order = testOrderList;
             testUser.Mail = testMail;
-            context.User.Add(testUser);
-            context.Movie.Add(testMovie);
-            context.SaveChanges();
 
+            context.User.Add(testUser);
+
+            // Legger inn init-filmer til databasen
+            foreach (var movie in testMovieList)
+            {
+                context.Movie.Add(movie);
+            }
+            //context.Movie.Add(movie3);
+
+            context.SaveChanges();
             base.Seed(context);
         }
     }
