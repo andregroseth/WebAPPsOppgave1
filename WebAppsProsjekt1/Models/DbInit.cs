@@ -6,7 +6,7 @@ using System.Web;
 
 namespace WebAppsProsjekt1.Models
 {
-    public class DbInit : CreateDatabaseIfNotExists<DB>
+    public class DbInit : DropCreateDatabaseAlways<DB> 
     {
         protected override void Seed(DB context)
         {
@@ -25,7 +25,7 @@ namespace WebAppsProsjekt1.Models
                 Title = "The Matrix",
                 Category = "Sci-Fi",
                 Cost = 90,
-                ImagePath = "~/Content/images/movie/matrix.jpg"
+                ImagePath = "~/Content/images/movie/matrixImage.jpg"
             };
 
             var testOrder = new Order
@@ -54,8 +54,10 @@ namespace WebAppsProsjekt1.Models
             testOrderList.Add(testOrder);
             testUser.Order = testOrderList;
             testUser.Mail = testMail;
-
             context.User.Add(testUser);
+            context.Movie.Add(testMovie);
+            context.SaveChanges();
+
             base.Seed(context);
         }
     }

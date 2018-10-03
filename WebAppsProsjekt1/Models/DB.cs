@@ -15,6 +15,12 @@ namespace WebAppsProsjekt1.Models
             Database.CreateIfNotExists();
             //Database.SetInitializer(new DbInit());
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
+
         public virtual DbSet<User> User { get; set; }
         
         public virtual DbSet<Movie> Movie { get; set; }
