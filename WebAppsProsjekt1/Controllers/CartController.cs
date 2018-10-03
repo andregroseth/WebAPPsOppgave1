@@ -12,7 +12,7 @@ namespace WebAppsProsjekt1.Controllers
         // GET: Cart
         public ActionResult CartList()
         {
-            DBMovie db = new DBMovie();
+            var db = new DBMovie();
             return View(db.MovieGet());
         }
 
@@ -34,6 +34,15 @@ namespace WebAppsProsjekt1.Controllers
             {
                 return RedirectToAction("UserLogin", "User");
             }
+        }
+
+        public ActionResult CartClear() {
+            HttpCookie cookie = Request.Cookies["cartCookie"];
+            if (cookie != null) {
+                var cookieHelper = new CookieHelper();
+                cookieHelper.CookieDelete(Request.Cookies["cartCookie"], Response);
+            }
+            return RedirectToAction("CartList");
         }
     }
 }
