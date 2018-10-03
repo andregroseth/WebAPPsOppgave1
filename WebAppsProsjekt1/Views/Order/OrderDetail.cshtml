@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebAppsProsjekt1.Models.OrderlineHelper>
+﻿@model List<WebAppsProsjekt1.Models.OrderlineHelper>
 
 @{
     ViewBag.Title = "OrderDetail";
@@ -7,9 +7,10 @@
 @if (Session["Login"] == null)
 {
 
-    Response.Redirect("UserLogin");
+    Response.Redirect("/User/UserLogin");
 
 }
+
 <!DOCTYPE html>
 
 <html>

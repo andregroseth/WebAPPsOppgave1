@@ -83,19 +83,20 @@ namespace WebAppsProsjekt1.Models
         {
             using (var db = new DB()) {
                 var UserOrder = db.Order.FirstOrDefault(o=>o.Id==id && o.User.Id==userid);
+                List<OrderlineHelper> OrderlineDetail;
 
                 if (UserOrder == null)
                 {
-                    return null;   
+                    return OrderlineDetail=null;
                 }
 
                 var oneOrder = db.Orderline.Where(k => k.Order.Id == id);
                 if (oneOrder == null)
                 {
-                    return null;
+                    return OrderlineDetail=null;
                 }
 
-                List<OrderlineHelper> OrderlineDetail = oneOrder.Select(k => new OrderlineHelper
+                OrderlineDetail = oneOrder.Select(k => new OrderlineHelper
                 {
                     Id = k.Id,
                     MovieId = k.Movie.Id,
