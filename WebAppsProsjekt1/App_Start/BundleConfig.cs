@@ -28,8 +28,8 @@ namespace WebAppsProsjekt1
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/css/cssGlobal.css",
-					  "~/Content/css/cssBackground.css"));
+                      "~/Content/cssGlobal.css",
+					  "~/Content/cssBackground.css"));
         }
     }
 }

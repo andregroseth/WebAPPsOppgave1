@@ -1,38 +1,35 @@
 ﻿@model List<WebAppsProsjekt1.Models.Movie>
 @{
-	ViewBag.Title = "MovieList";
-	Layout = "~/Views/Shared/Background.cshtml";
+    ViewBag.Title = "MovieList";
+    Layout = "~/Views/Shared/Background.cshtml";
 }
 
-@Styles.Render("~/Content/css/cssMovie/cssMovieList.css");
-
-@*FeedbackModal*@
-@if (Session["PurchaseSuccess"] != null)
-{
-	<script type="text/javascript">
-		$(window).on('load', function () {
-			showFeedbackModal("Order confirmed.", "green");
-		});
-	</script>
-	Session.Remove("PurchaseSuccess");
+<link rel="stylesheet" type="text/css" href="~/Content/cssMovieList.css" />
+      @*FeedbackModal*@
+      @if (Session["PurchaseSuccess"] != null) { <script type="text/javascript">
+        $(window).on('load', function () {
+            showFeedbackModal("Order confirmed.", "green");
+        });
+    </script>
+    Session.Remove("PurchaseSuccess");
 }
 else if (Session["PurchaseFailedEmpty"] != null)
 {
-	<script type="text/javascript">
-		$(window).on('load', function () {
-			showFeedbackModal("Empty order.", "red");
-		});
-	</script>
-	Session.Remove("PurchaseFailedEmpty");
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            showFeedbackModal("Empty order.", "red");
+        });
+    </script>
+    Session.Remove("PurchaseFailedEmpty");
 }
 else if (Session["LoginAlready"] != null)
 {
-	<script type="text/javascript">
-		$(window).on('load', function () {
-			showFeedbackModal("Already logged in.", "red");
-		});
-	</script>
-	Session.Remove("LoginAlready");
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            showFeedbackModal("Already logged in.", "red");
+        });
+    </script>
+    Session.Remove("LoginAlready");
 }
 
 @*Add to Cart*@
@@ -66,28 +63,31 @@ else if (Session["LoginAlready"] != null)
 		})
 	});
 </script>
-
-@Html.Partial("~/Views/Modal/feedbackModal.cshtml")
+<div id="feedback-modal" class="modal" role="dialog">
+    <div class="modal-body">
+        <p align="center"></p>
+    </div>
+</div>
 <div>
-	<h1 class="moviesList" style="color:white;">Movies</h1>
-	<div class="row">
-		<div class="row__inner">
-			@foreach (var movie in Model)
-			{
-				if (movie.ImagePath == null)
-				{
-				}
-				else
-				{
-					// Render film-objektene og displayer dem i viewet
-					@Html.Partial("~/Views/Movie/MovieListPartial.cshtml", movie)
-				}
-			}
-		</div>
-	</div>
+    <h1 class="moviesList" style="color:white;">Movies</h1>
+    <div class="row">
+        <div class="row__inner">
+            @foreach (var movie in Model)
+            {
+                if (movie.ImagePath == null)
+                {
+                }
+                else
+                {
+                    // Render film-objektene og displayer dem i viewet
+                    @Html.Partial("~/Views/Movie/MovieListPartial.cshtml", movie)
+                }
+            }
+        </div>
+    </div>
 
-	@*Pop-up modalen som viser når man velger en film*@
-	@Html.Partial("~/Views/Modal/movieDetailsModal.cshtml")
+    @*Pop-up modalen som viser når man velger en film*@
+    @Html.Partial("~/Views/Modal/movieDetailsModal.cshtml")
 </div>
 </body>
 </html>
