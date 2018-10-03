@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group 4 WebApps Project</title>
 
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/cssGlobal.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/cssBackground.css" />
@@ -21,7 +22,7 @@
     <script src="~/Scripts/bootstrap.js"></script>
 
     <script src="~/Scripts/feedback-modal.js"></script>
-    
+
 
 </head>
 
@@ -36,14 +37,14 @@
             </ul>
 			<ul class="nav navbar-nav navbar-right">
 				@if(Session["Login"] == null) {
-				<li><a href="/User/UserLogin">@*<span class="glyphicon glyphicon-log-in"></span>*@ Login</a></li>
-				<li><a href="/User/UserRegister">@*<span class="glyphicon glyphicon-user"></span>*@ Sign Up</a></li>}
+				<li><a href="/User/UserLogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<li><a href="/User/UserRegister"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>}
 				else if (Int32.TryParse(Session["Login"].ToString(), out _))
 				{
-					<li><a href="/User/UserLogout">@*<span class="glyphicon glyphicon-log-out"></span>*@ Logout</a></li>
-					<li><a href="/User/UserDetail">@*<span class="glyphicon glyphicon-user"></span>*@ Your Account</a></li>
+					<li><a href="/User/UserLogout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+					<li><a href="/User/UserDetail"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
 				}
-				<li><a href="/Cart/CartList" id="cartCount">@*<span class="glyphicon glyphicon-shopping-cart"></span>*@ Cart</a></li>
+				<li><a href="/Cart/CartList" id="cartCount"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
 			</ul>
         </div>
     </nav>
