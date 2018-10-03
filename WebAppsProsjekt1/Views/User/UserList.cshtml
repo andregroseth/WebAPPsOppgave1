@@ -1,10 +1,16 @@
-﻿@model IEnumerable<WebAppsProsjekt1.Models.HelperTable>
+﻿@model IEnumerable<WebAppsProsjekt1.Models.UserHelper>
+
 @{
 ViewBag.Title = "UserList";
 Layout = "~/Views/Shared/Background.cshtml";
 }
+@if (Session["Login"] == null)
+{
 
-<h1>UserList</h1>
+    Response.Redirect("UserLogin");
+
+}
+<h2>List of User</h2>
 
 <table class="table">
 <tr>
@@ -71,5 +77,4 @@ Layout = "~/Views/Shared/Background.cshtml";
 }
 
 </table>
-</body>
-</html>
+    

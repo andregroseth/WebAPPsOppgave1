@@ -13,6 +13,7 @@ namespace WebAppsProsjekt1.Controllers
         //private DB db = new Models.DB();
 
         //GET: User/Login
+
         public ActionResult UserLogin()
         {
             return View();
@@ -54,13 +55,17 @@ namespace WebAppsProsjekt1.Controllers
         //GET: User/UserList
         public ActionResult UserList()
         {
-            var db = new DBUser();
-            List<HelperTable> allUsers = db.AllUserInfo();
-            return View(allUsers);
+            if (checkIfAdmin() == true) {
+                var db = new DBUser();
+                List<UserHelper> allUsers = db.AllUserInfo();
+                return View(allUsers);
+            }
+            Session["AccessFailed"] = "true";
+            return RedirectToAction("UserLogin");
         }
 
         [HttpPost]
-        public ActionResult UserRegister(HelperTable inUser)
+        public ActionResult UserRegister(UserHelper inUser)
         {
             if (ModelState.IsValid)
             {
@@ -86,11 +91,37 @@ namespace WebAppsProsjekt1.Controllers
             return View();
         }
 
-        public ActionResult UserDetail(int id)
+
+        public ActionResult UserDetail()
         {
-            var db = new DBUser();
-            HelperTable oneUser = db.GetUserInfo(id);
-            return View(oneUser);
+            try
+            {
+                var db = new DBUser();
+                int.TryParse(Session["Login"].ToString(), out int userId);
+                UserHelper oneUser = db.GetUserInfo(userId);
+                return View(oneUser);
+            }
+            catch {
+                return RedirectToAction("UserLogin");
+            }
+        }
+
+        public bool checkIfAdmin()
+        {
+            try
+            {
+                var db = new DBUser();
+                int.TryParse(Session["Login"].ToString(), out int userId);
+                UserHelper oneUser = db.GetUserInfo(userId);
+                if (oneUser.Userlvl > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch {
+                return false;
+            }
         }
 
 
@@ -103,5 +134,7 @@ namespace WebAppsProsjekt1.Controllers
                 return Json(!db.User.Any(x => x.Email == Email), JsonRequestBehavior.AllowGet);
             }
         }
+
+
     }
 }

@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace WebAppsProsjekt1.Models
 {
-    public class HelperTable
+    public class UserHelper
     {
         //domain model and view model for the User and Zipcode table
 
