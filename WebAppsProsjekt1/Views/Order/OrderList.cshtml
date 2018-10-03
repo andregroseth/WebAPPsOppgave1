@@ -14,12 +14,13 @@
 @if (Session["UnauthorizedAccess"] != null)
 {
     <script type="text/javascript">
-            $(window).on('load', function () {
-                window.showModal("Error!! Unauthorized access", "red");
-            });
+        $(window).on('load', function () {
+            window.showModal("Error! Unauthorized access", "red");
+        });
     </script>
     Session.Remove("UnauthorizedAccess");
 }
+@Html.Partial("~/Views/Modal/validationModal.cshtml")
 <h2>List of Orders</h2>
 
 <table class="table">
