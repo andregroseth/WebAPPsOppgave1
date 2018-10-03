@@ -94,17 +94,17 @@ namespace WebAppsProsjekt1.Controllers
 
         public ActionResult UserDetail()
         {
-            try
-            {
-                var db = new DBUser();
-                int.TryParse(Session["Login"].ToString(), out int userId);
-                UserHelper oneUser = db.GetUserInfo(userId);
-                return View(oneUser);
-            }
-            catch {
-                Session["AccessFailed"]= true;
-                return RedirectToAction("UserLogin");
-            }
+            //try
+            //{
+                //var db = new DBUser();
+                //int.TryParse(Session["Login"].ToString(), out int userId);
+                //UserHelper oneUser = db.GetUserInfo(userId);
+                return View();
+            //}
+            //catch {
+            //    Session["AccessFailed"]= true;
+            //    return RedirectToAction("UserLogin");
+            //}
         }
 
         public bool checkIfAdmin()

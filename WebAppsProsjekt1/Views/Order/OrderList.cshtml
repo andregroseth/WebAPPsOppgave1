@@ -11,7 +11,7 @@
     Response.Redirect("/User/UserLogin");
 
 }
-@if (Session["UnauthorizedAccess"] != null)
+else if (Session["UnauthorizedAccess"] != null)
 {
     <script type="text/javascript">
         $(window).on('load', function () {
@@ -50,7 +50,7 @@
                 @Html.DisplayFor(modelItem => item.UserId)
             </td>
             <td>
-                @Html.ActionLink("Details", "OrderDetail", new { id = item.Id }) |
+                @Html.ActionLink("Details", "OrderDetail", new { id = item.Id }) 
                 @*@Html.ActionLink("Delete", "OrderDelete", new { id = item.Id })*@
             </td>
         </tr>

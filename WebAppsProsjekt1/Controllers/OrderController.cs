@@ -37,8 +37,8 @@ namespace WebAppsProsjekt1.Controllers
                 var db = new DBOrder();
                 int.TryParse(Session["Login"].ToString(), out int userId);
                 List<OrderlineHelper> ShowOrder = db.GetOrderInfo(id, userId);
-                if (ShowOrder==null) {
-                    Session["UnauthorizedAccess"]= "true";
+                if (ShowOrder == null) {
+                    Session["UnauthorizedAccess"] = "true";
                     return RedirectToAction("OrderList");
                 }
                 return View(ShowOrder);
