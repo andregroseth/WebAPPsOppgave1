@@ -31,8 +31,8 @@ else if (Session["PurchaseFailedLogin"] != null)
 else if (Session["AccessFailed"] != null)
 {
 <script type="text/javascript">
-            $(window).on('load', function () {
-                window.showModal("Restricted access, please log in.", "red");
+    $(window).on('load', function () {
+        showFeedbackModal("Restricted access, please log in.", "red");
             });
 </script>
         Session.Remove("AccessFailed");

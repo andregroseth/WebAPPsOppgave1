@@ -73,7 +73,7 @@ namespace WebAppsProsjekt1.Controllers
                 bool OK = db.SaveUserToDB(inUser);
                 if (OK)
                 {
-                    return RedirectToAction("UserList");
+                    return RedirectToAction("UserLogin");
                 }
             }
             return View();
@@ -102,6 +102,7 @@ namespace WebAppsProsjekt1.Controllers
                 return View(oneUser);
             }
             catch {
+                Session["AccessFailed"]= true;
                 return RedirectToAction("UserLogin");
             }
         }

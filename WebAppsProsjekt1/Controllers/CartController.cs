@@ -44,10 +44,10 @@ namespace WebAppsProsjekt1.Controllers
         }
 
         public ActionResult CartClear() {
-            HttpCookie cookie = Request.Cookies["cartCookie"];
+            HttpCookie cookie = Request.Cookies["Cart"];
             if (cookie != null) {
                 var cookieHelper = new CookieHelper();
-                cookieHelper.CookieDelete(Request.Cookies["cartCookie"], Response);
+                cookieHelper.CookieDelete(Request.Cookies["Cart"], Response);
             }
             return RedirectToAction("CartList");
         }
