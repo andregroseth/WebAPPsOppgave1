@@ -3,10 +3,11 @@
     ViewBag.Title = "MovieList";
     Layout = "~/Views/Shared/Background.cshtml";
 }
-
 <link rel="stylesheet" type="text/css" href="~/Content/cssMovieList.css" />
-      @*FeedbackModal*@
-      @if (Session["PurchaseSuccess"] != null) { <script type="text/javascript">
+@*FeedbackModal*@
+@if (Session["PurchaseSuccess"] != null)
+{
+    <script type="text/javascript">
         $(window).on('load', function () {
             showFeedbackModal("Order confirmed.", "green");
         });

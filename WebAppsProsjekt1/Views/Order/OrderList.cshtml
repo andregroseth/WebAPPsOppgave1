@@ -20,9 +20,7 @@ else if (Session["UnauthorizedAccess"] != null)
     </script>
     Session.Remove("UnauthorizedAccess");
 }
-
 <h2>List of Orders</h2>
-
 <table class="table">
     <tr>
         <th>
@@ -50,10 +48,12 @@ else if (Session["UnauthorizedAccess"] != null)
                 @Html.DisplayFor(modelItem => item.UserId)
             </td>
             <td>
-                @Html.ActionLink("Details", "OrderDetail", new { id = item.Id }) 
+                @Html.ActionLink("Details", "OrderDetail", new { id = item.Id })
                 @*@Html.ActionLink("Delete", "OrderDelete", new { id = item.Id })*@
             </td>
         </tr>
     }
 
 </table>
+</body>
+</html>
