@@ -6,7 +6,7 @@ using System.Web;
 
 namespace WebAppsProsjekt1.Models
 {
-    public class DbInit : DropCreateDatabaseAlways<DB>
+    public class DbInit : CreateDatabaseIfNotExists<DB>
     {
         protected override void Seed(DB context)
         {
