@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -48,7 +49,7 @@ namespace WebAppsProsjekt1.Models
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Fill in your address")]
-        //[RegularExpression(@"^[a-zA-Z0-9''-'", ErrorMessage = "Address is invalid")]
+        [RegularExpression(@"^[A-Za-z0-9]+(?:\s[A-Za-z0-9'_-]+)+$", ErrorMessage = "Invalid Address")]
         public string Address { get; set; }
 
         [Display(Name = "Zip Code")]
