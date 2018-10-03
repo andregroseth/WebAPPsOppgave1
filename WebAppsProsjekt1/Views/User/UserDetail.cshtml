@@ -4,11 +4,6 @@
     ViewBag.Title = "UserDetail";
     Layout = "~/Views/Shared/Background.cshtml";
 }
-<script type="text/javascript">
-    $(window).on('load', function () {
-        showFeedbackModal("Error! Unauthorized access", "red");
-    });
-</script>
 @if (Session["Login"] == null)
 {
 
@@ -19,7 +14,7 @@
 <div>
 
     <hr />
-    @*<dl class="dl-horizontal">
+    <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Userlvl)
         </dt>
@@ -68,9 +63,9 @@
         <dd>
             @Html.DisplayFor(model => model.Area)
         </dd>
-    </dl>*@
+    </dl>
 </div>
 <p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Show Order History", "OrderList","Order")*@
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Show Order History", "OrderList","Order")
 </p>
