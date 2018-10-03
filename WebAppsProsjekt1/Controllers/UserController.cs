@@ -99,13 +99,15 @@ namespace WebAppsProsjekt1.Controllers
         {
             try
             {
+                System.Diagnostics.Debug.Print(Session["Login"].ToString());
                 var db = new DBUser();
                 int.TryParse(Session["Login"].ToString(), out int userId);
                 UserHelper oneUser = db.GetUserInfo(userId);
                 return View(oneUser);
             }
-            catch {
-                Session["AccessFailedLogin"] = true;
+            catch
+            {
+                Session["AccessFailedLogin"] = "true";
                 return RedirectToAction("UserLogin");
             }
         }
