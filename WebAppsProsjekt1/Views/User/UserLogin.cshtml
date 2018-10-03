@@ -5,20 +5,29 @@
     @Styles.Render("~/Content/css/cssUser/UserLogin.css")
 }
 <head>
-	<script src="~/Scripts/scripts/show-modal.js"></script>
-	@if (Session["Login"] != null)
-	{
-		Response.Redirect("/Movie/MovieList");
-	}
-	@if (Session["LoginFailed"] != null)
-	{
-		<script type="text/javascript">
-			$(window).on('load', function () {
-				window.showModal("Login failed.", "red");
-			});
-		</script>
-		Session.Remove("LoginFailed");
-	}
+    <script src="~/Scripts/scripts/show-modal.js"></script>
+    @if (Session["Login"] != null)
+    {
+        Response.Redirect("/Movie/MovieList");
+    }
+    @if (Session["LoginFailed"] != null)
+    {
+        <script type="text/javascript">
+            $(window).on('load', function () {
+                window.showModal("Login failed.", "red");
+            });
+        </script>
+        Session.Remove("LoginFailed");
+    }
+    @if (Session["AccessFailed"] != null)
+    {
+        <script type="text/javascript">
+            $(window).on('load', function () {
+                window.showModal("Restricted access, please log in.", "red");
+            });
+        </script>
+        Session.Remove("AccessFailed");
+    }
 </head>
 
 @Html.Partial("~/Views/Modal/validationModal.cshtml")

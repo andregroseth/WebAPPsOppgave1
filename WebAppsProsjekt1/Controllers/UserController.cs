@@ -60,6 +60,7 @@ namespace WebAppsProsjekt1.Controllers
                 List<UserHelper> allUsers = db.AllUserInfo();
                 return View(allUsers);
             }
+            Session["AccessFailed"] = "true";
             return RedirectToAction("UserLogin");
         }
 

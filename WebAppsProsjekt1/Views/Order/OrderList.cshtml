@@ -11,6 +11,15 @@
     Response.Redirect("/User/UserLogin");
 
 }
+@if (Session["UnauthorizedAccess"] != null)
+{
+    <script type="text/javascript">
+            $(window).on('load', function () {
+                window.showModal("Error!! Unauthorized access", "red");
+            });
+    </script>
+    Session.Remove("UnauthorizedAccess");
+}
 <h2>List of Orders</h2>
 
 <table class="table">
