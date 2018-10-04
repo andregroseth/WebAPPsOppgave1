@@ -65,14 +65,12 @@ namespace WebAppsProsjekt1.Models
         {
             var NewUserRad = new User()
             {
-
                 Userlvl = InUser.Userlvl,
                 Email = InUser.Email,
                 Firstname = InUser.Firstname,
                 Surname = InUser.Surname,
                 Password = InUser.Password,
                 Address = InUser.Address
-
             };
             using (var db = new DB())
             {

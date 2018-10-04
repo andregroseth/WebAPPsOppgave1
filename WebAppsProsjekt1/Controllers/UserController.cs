@@ -72,6 +72,7 @@ namespace WebAppsProsjekt1.Controllers
         [HttpPost]
         public ActionResult UserRegister(UserHelper inUser)
         {
+			System.Diagnostics.Debug.Write("asdasd");
             if (ModelState.IsValid)
             {
                 var db = new DBUser();
