@@ -16,18 +16,20 @@ namespace WebAppsProsjekt1.Models
 		public List<int> CookieParse(HttpCookie cookie)
 		{
 			List<int> idList = new List<int>();
-			string cookieString = cookie.Value.ToString();
-			string[] number = Regex.Split(cookieString, @"\D+");
+            if (cookie != null) {
+                string cookieString = cookie.Value.ToString();
+                string[] number = Regex.Split(cookieString, @"\D+");
 
-			foreach (string value in number)
-			{
-				int parsedValue;
-				Int32.TryParse(value, out parsedValue);
-				if (parsedValue >= 1)
-				{
-					idList.Add(parsedValue);
-				}
-			}
+                foreach (string value in number)
+                {
+                    int parsedValue;
+                    Int32.TryParse(value, out parsedValue);
+                    if (parsedValue >= 1)
+                    {
+                        idList.Add(parsedValue);
+                    }
+                }
+            }
 			return idList;
 		}
 	}

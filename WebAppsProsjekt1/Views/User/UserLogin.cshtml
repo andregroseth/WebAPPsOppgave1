@@ -32,7 +32,7 @@ else if (Session["AccessFailed"] != null)
 {
 <script type="text/javascript">
     $(window).on('load', function () {
-        showFeedbackModal("Restricted access, please log in.", "red");
+        showFeedbackModal("Login session is required for access.", "red");
             });
 </script>
         Session.Remove("AccessFailed");

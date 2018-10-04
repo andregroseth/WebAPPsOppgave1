@@ -153,5 +153,24 @@ namespace WebAppsProsjekt1.Models
             }
         }
 
+        public bool checkIfAdmin()
+        {
+            try
+            {
+                var db = new DBUser();
+                int.TryParse(HttpContext.Current.Session["Login"].ToString(), out int userId);
+                UserHelper oneUser = db.GetUserInfo(userId);
+                if (oneUser.Userlvl > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

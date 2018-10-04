@@ -15,11 +15,16 @@ else if (Session["UnauthorizedAccess"] != null)
 {
     <script type="text/javascript">
         $(window).on('load', function () {
-            showFeedbackModal("Error! Unauthorized access", "red");
+            showFeedbackModal("You are not authorized to access this order.", "red");
         });
     </script>
     Session.Remove("UnauthorizedAccess");
 }
+    <div id="feedback-modal" class="modal" role="dialog">
+        <div class="modal-body">
+            <p align="center"></p>
+        </div>
+    </div>
 <h2>List of Orders</h2>
 <table class="table">
     <tr>

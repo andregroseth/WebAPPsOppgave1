@@ -55,8 +55,8 @@ namespace WebAppsProsjekt1.Controllers
         //GET: User/UserList
         public ActionResult UserList()
         {
-            if (checkIfAdmin() == true) {
-                var db = new DBUser();
+            var db = new DBUser();
+            if (db.checkIfAdmin() == true) {
                 List<UserHelper> allUsers = db.AllUserInfo();
                 return View(allUsers);
             }
@@ -104,24 +104,6 @@ namespace WebAppsProsjekt1.Controllers
             catch {
                 Session["AccessFailed"]= true;
                 return RedirectToAction("UserLogin");
-            }
-        }
-
-        public bool checkIfAdmin()
-        {
-            try
-            {
-                var db = new DBUser();
-                int.TryParse(Session["Login"].ToString(), out int userId);
-                UserHelper oneUser = db.GetUserInfo(userId);
-                if (oneUser.Userlvl > 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            catch {
-                return false;
             }
         }
 
