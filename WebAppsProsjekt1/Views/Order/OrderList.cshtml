@@ -1,0 +1,62 @@
+﻿@model IEnumerable<WebAppsProsjekt1.Models.OrderHelper>
+
+@{
+    ViewBag.Title = "OrderList";
+    Layout = "~/Views/Shared/Background.cshtml";
+
+}
+@if (Session["Login"] == null)
+{
+    Response.Redirect("/User/UserLogin");
+}
+else if (Session["AccessUnauthorized"] != null)
+{
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            showFeedbackModal("You are not authorized to access this order.", "red");
+        });
+    </script>
+    Session.Remove("AccessUnauthorized");
+}
+    <div id="feedback-modal" class="modal" role="dialog">
+        <div class="modal-body">
+            <p align="center"></p>
+        </div>
+    </div>
+<h2>List of Orders</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "OrderDetail", new { id = item.Id })
+                @*@Html.ActionLink("Delete", "OrderDelete", new { id = item.Id })*@
+            </td>
+        </tr>
+    }
+
+</table>
+</body>
+</html>

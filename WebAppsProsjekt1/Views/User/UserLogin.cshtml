@@ -12,67 +12,77 @@
 }
 else if (Session["LoginFailed"] != null)
 {
-    <script type="text/javascript">
+<script type="text/javascript">
         $(window).on('load', function () {
             showFeedbackModal("Login failed.", "red");
         });
-    </script>
+</script>
     Session.Remove("LoginFailed");
 }
 else if (Session["PurchaseFailedLogin"] != null)
 {
-    <script type="text/javascript">
+<script type="text/javascript">
         $(window).on('load', function () {
             showFeedbackModal("Login session is required for order.", "red");
         });
-    </script>
+</script>
     Session.Remove("PurchaseFailedLogin");
 }
-    <div id="feedback-modal" class="modal" role="dialog">
-        <div class="modal-body">
-            <p align="center"></p>
-        </div>
+else if (Session["AccessFailedLogin"] != null)
+{
+<script type="text/javascript">
+    $(window).on('load', function () {
+        showFeedbackModal("Login session is required for access.", "red");
+            });
+</script>
+        Session.Remove("AccessFailedLogin");
+    }
+
+<div id="feedback-modal" class="modal" role="dialog">
+    <div class="modal-body">
+        <p align="center"></p>
     </div>
+</div>
 @*<a href="~/Views/Modal/feedbackModal.cshtml"></a>
 <div v3-include-html="~/Views/Modal/feedbackModal.cshtml"></div>*@
 <div class="container">
     <div class="main-div">
         @if (Session["Login"] != null)
         {
-            <h2>@Session["Login"].ToString()</h2>
+        <h2>@Session["Login"].ToString()</h2>
         }
         @using (Html.BeginForm())
         {
-            try
-            {
-                @Html.AntiForgeryToken()
-                <div class="form-headers">
-                    <h1 class="login">Login</h1>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                </div>
+        try
+        {
+        @Html.AntiForgeryToken()
+        <div class="form-headers">
+            <h1 class="login">Login</h1>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
-                    </div>
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+            </div>
+        </div>
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" class="btn btn-success" id="login" />
-                    </div>
-                </div>
-            }
-            catch (System.Web.HttpException)
-            {
-                return;
-            }
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-success" id="login" />
+            </div>
+        </div>
+        }
+        catch (System.Web.HttpException)
+        {
+        return;
+        }
         }
         <div class="col-md-offset-2 col-md-10">
             <a href="/User/UserRegister">Sign up</a>

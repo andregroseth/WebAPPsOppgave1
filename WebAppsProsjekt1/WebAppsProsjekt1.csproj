@@ -158,6 +158,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\MoviemonsterController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
@@ -168,7 +169,8 @@
     <Compile Include="Models\DBMovie.cs" />
     <Compile Include="Models\DBOrder.cs" />
     <Compile Include="Models\DBUser.cs" />
-    <Compile Include="Models\HelperTable.cs" />
+    <Compile Include="Models\OrderHelper.cs" />
+    <Compile Include="Models\UserHelper.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\DB.cs" />
     <Compile Include="Models\DbInit.cs" />
@@ -218,7 +220,6 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\color-validation.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -282,6 +283,8 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Cart\CartList.cshtml" />
+    <Content Include="Views\Order\OrderList.cshtml" />
+    <Content Include="Views\Order\OrderDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -37,12 +37,12 @@ namespace WebAppsProsjekt1.Models
             }
         }
 
-        public List<HelperTable> AllUserInfo()
+        public List<UserHelper> AllUserInfo()
         {
             using (var db = new DB())
             {
 
-                List<HelperTable> AllUserInfo = db.User.Select(k => new HelperTable
+                List<UserHelper> AllUserInfo = db.User.Select(k => new UserHelper
                 {
 
                     Id = k.Id,
@@ -61,18 +61,16 @@ namespace WebAppsProsjekt1.Models
 
         }
 
-        public bool SaveUserToDB(HelperTable InUser)
+        public bool SaveUserToDB(UserHelper InUser)
         {
             var NewUserRad = new User()
             {
-
                 Userlvl = InUser.Userlvl,
                 Email = InUser.Email,
                 Firstname = InUser.Firstname,
                 Surname = InUser.Surname,
                 Password = InUser.Password,
                 Address = InUser.Address
-
             };
             using (var db = new DB())
             {
@@ -123,31 +121,52 @@ namespace WebAppsProsjekt1.Models
         }
 
 
-        public HelperTable GetUserInfo(int id)
+        public UserHelper GetUserInfo(int id)
         {
-            var db = new DB();
-            var oneUser = db.User.Find(id);
-            if (oneUser == null)
+            using (var db = new DB())
             {
-                return null;
-
-            }
-            else
-            {
-                var oneUserOuptput = new HelperTable()
+                var oneUser = db.User.Find(id);
+                if (oneUser == null)
                 {
-                    Id = oneUser.Id,
-                    Userlvl = oneUser.Userlvl,
-                    Email = oneUser.Email,
-                    Firstname = oneUser.Firstname,
-                    Surname = oneUser.Surname,
-                    Password = oneUser.Password,
-                    Address = oneUser.Address,
-                    ZipCode = oneUser.Mail.ZipCode,
-                    Area = oneUser.Mail.Area
+                    return null;
 
-                };
-                return oneUserOuptput;
+                }
+                else
+                {
+                    var oneUserOuptput = new UserHelper()
+                    {
+                        Id = oneUser.Id,
+                        Userlvl = oneUser.Userlvl,
+                        Email = oneUser.Email,
+                        Firstname = oneUser.Firstname,
+                        Surname = oneUser.Surname,
+                        Password = oneUser.Password,
+                        Address = oneUser.Address,
+                        ZipCode = oneUser.Mail.ZipCode,
+                        Area = oneUser.Mail.Area
+
+                    };
+                    return oneUserOuptput;
+                }
+            }
+        }
+
+        public bool checkIfAdmin()
+        {
+            try
+            {
+                var db = new DBUser();
+                int.TryParse(HttpContext.Current.Session["Login"].ToString(), out int userId);
+                UserHelper oneUser = db.GetUserInfo(userId);
+                if (oneUser.Userlvl > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
             }
         }
 

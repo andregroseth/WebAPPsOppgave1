@@ -12,8 +12,11 @@ namespace WebAppsProsjekt1.Controllers
         // GET: Cart
         public ActionResult CartList()
         {
-            DBMovie db = new DBMovie();
-            return View(db.MovieGet());
+            var db = new DBMovie();
+            CookieHelper cookieHelper = new CookieHelper();
+            HttpCookie cookie = Request.Cookies["Cart"];
+            List<int> cookieList = cookieHelper.CookieParse(cookie);
+            return View(db.MovieGet(cookieList));
         }
 
         [HttpPost]
@@ -41,6 +44,23 @@ namespace WebAppsProsjekt1.Controllers
 				Session["PurchaseFailedLogin"] = "true";
                 return RedirectToAction("UserLogin", "User");
             }
+        }
+
+        public ActionResult CartClear() {
+            HttpCookie cookie = Request.Cookies["Cart"];
+            if (cookie != null) {
+                var cookieHelper = new CookieHelper();
+                cookieHelper.CookieDelete(Request.Cookies["Cart"], Response);
+            }
+            return RedirectToAction("CartList");
+        }
+
+        public ActionResult CartDelete() {
+            HttpCookie cookie = Request.Cookies["Cart"];
+            CookieHelper cookieHelper = new CookieHelper();
+            cookieHelper.CookieParse(cookie);
+
+            return RedirectToAction("CartList");
         }
     }
 }

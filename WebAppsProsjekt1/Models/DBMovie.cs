@@ -7,16 +7,15 @@ namespace WebAppsProsjekt1.Models
 {
     public class DBMovie
     {
-        public List<Movie> MovieGet()
-        {
-            HttpCookie cookie = HttpContext.Current.Request.Cookies["Cart"];
+        public List<Movie> MovieGet(List<int> cookieList)
+        { 
             List<Movie> movieList = new List<Movie>();
-            if (cookie != null)
+            if (cookieList != null)
             {
 				CookieHelper cookieHelper = new CookieHelper();
 				using (var db = new DB())
                 {
-                    foreach (int id in cookieHelper.CookieParse(cookie))
+                    foreach (int id in cookieList)
                     {
                         movieList.Add(db.Movie.FirstOrDefault(b => b.Id == id));
                     }
