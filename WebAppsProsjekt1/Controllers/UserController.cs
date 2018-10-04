@@ -56,12 +56,17 @@ namespace WebAppsProsjekt1.Controllers
         public ActionResult UserList()
         {
             var db = new DBUser();
-            if (db.checkIfAdmin() == true) {
+			if(Session["Login"] == null) {
+				Session["AccessFailedLogin"] = "true";
+				return RedirectToAction("UserLogin");
+			}
+			if (db.checkIfAdmin() == true) {
                 List<UserHelper> allUsers = db.AllUserInfo();
                 return View(allUsers);
             }
-            Session["AccessFailed"] = "true";
-            return RedirectToAction("UserLogin");
+            Session["AccessFailedAdmin"] = "true";
+			return RedirectToAction("MovieList", "Movie");
+            
         }
 
         [HttpPost]
@@ -102,7 +107,7 @@ namespace WebAppsProsjekt1.Controllers
                 return View(oneUser);
             }
             catch {
-                Session["AccessFailed"]= true;
+                Session["AccessFailedLogin"] = true;
                 return RedirectToAction("UserLogin");
             }
         }

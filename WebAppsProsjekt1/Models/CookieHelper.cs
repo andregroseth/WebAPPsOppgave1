@@ -13,6 +13,7 @@ namespace WebAppsProsjekt1.Models
 			cookie.Expires = DateTime.Now.AddDays(-10);
 			response.SetCookie(cookie);
 		}
+
 		public List<int> CookieParse(HttpCookie cookie)
 		{
 			List<int> idList = new List<int>();

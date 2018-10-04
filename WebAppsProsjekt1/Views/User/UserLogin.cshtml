@@ -28,14 +28,14 @@ else if (Session["PurchaseFailedLogin"] != null)
 </script>
     Session.Remove("PurchaseFailedLogin");
 }
-else if (Session["AccessFailed"] != null)
+else if (Session["AccessFailedLogin"] != null)
 {
 <script type="text/javascript">
     $(window).on('load', function () {
         showFeedbackModal("Login session is required for access.", "red");
             });
 </script>
-        Session.Remove("AccessFailed");
+        Session.Remove("AccessFailedLogin");
     }
 
 <div id="feedback-modal" class="modal" role="dialog">

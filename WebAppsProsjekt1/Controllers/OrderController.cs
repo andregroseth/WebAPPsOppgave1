@@ -15,7 +15,7 @@ namespace WebAppsProsjekt1.Controllers
                 var allOrder = db.AllOrderInfo(userId);
                 return View(allOrder);
             }
-            Session["AccessFailed"] = "true";
+            Session["AccessFailedLogin"] = "true";
             return RedirectToAction("UserLogin","User");
         }
 
@@ -38,12 +38,12 @@ namespace WebAppsProsjekt1.Controllers
                 int.TryParse(Session["Login"].ToString(), out int userId);
                 List<OrderlineHelper> ShowOrder = db.GetOrderInfo(id, userId);
                 if (ShowOrder == null) {
-                    Session["UnauthorizedAccess"] = "true";
+                    Session["AccessUnauthorized"] = "true";
                     return RedirectToAction("OrderList");
                 }
                 return View(ShowOrder);
             }
-            Session["AccessFailed"] = "true";
+            Session["AccessFailedLogin"] = "true";
             return RedirectToAction("UserLogin","User");
         }
     }

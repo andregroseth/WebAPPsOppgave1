@@ -7,18 +7,16 @@
 }
 @if (Session["Login"] == null)
 {
-
     Response.Redirect("/User/UserLogin");
-
 }
-else if (Session["UnauthorizedAccess"] != null)
+else if (Session["AccessUnauthorized"] != null)
 {
     <script type="text/javascript">
         $(window).on('load', function () {
             showFeedbackModal("You are not authorized to access this order.", "red");
         });
     </script>
-    Session.Remove("UnauthorizedAccess");
+    Session.Remove("AccessUnauthorized");
 }
     <div id="feedback-modal" class="modal" role="dialog">
         <div class="modal-body">

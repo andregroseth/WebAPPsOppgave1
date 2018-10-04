@@ -56,7 +56,6 @@ namespace WebAppsProsjekt1.Controllers
         }
 
         public ActionResult CartDelete() {
-
             HttpCookie cookie = Request.Cookies["Cart"];
             CookieHelper cookieHelper = new CookieHelper();
             cookieHelper.CookieParse(cookie);
