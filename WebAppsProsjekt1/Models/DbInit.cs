@@ -255,15 +255,6 @@ namespace WebAppsProsjekt1.Models
                 context.Orderline.Add(orderline);
             }
 
-            //var testOrderlineList = new List<Orderline>();
-            //testOrderlineList.Add(testOrderLine);
-            //testOrder.Orderline = testOrderlineList;
-
-            //var testOrderList = new List<Order>();
-            //testOrderList.Add(testOrder);
-            //testUser.Order = testOrderList;
-            //testUser.Mail = testMail;
-
             context.SaveChanges();
             base.Seed(context);
         }
