@@ -13,7 +13,7 @@ namespace WebAppsProsjekt1.Models
             : base("name=MovieMonster")
         {
             Database.CreateIfNotExists();
-            //Database.SetInitializer(new DbInit());
+            Database.SetInitializer(new DbInit());
         }
         public virtual DbSet<User> User { get; set; }
         
