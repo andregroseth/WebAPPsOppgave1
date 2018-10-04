@@ -9,10 +9,10 @@ namespace WebAppsProsjekt1.Models
 {
     public class DB : DbContext
     {
-        public DB()
-            : base("name=MovieMonster")
+        public DB() : base("name=MovieMonster")
         {
             Database.CreateIfNotExists();
+
             Database.SetInitializer(new DbInit());
         }
 

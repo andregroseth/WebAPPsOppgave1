@@ -26,17 +26,16 @@ namespace WebAppsProsjekt1.Models
                         Category = "Sci-Fi",
                         Cost = 90,
                         ImagePath = "/Content/images/movie/brightImage.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Ant-Man",
+                        Category = "Sci-Fi",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/antmanImage.jpg"
                     }
                 };
-        
-
-            //var movie3 = new Movie
-            //{
-            //    Title = "The Matrix",
-            //    Category = "Sci-Fi",
-            //    Cost = 90,
-            //    ImagePath = "/Content/images/movie/matrixImage.jpg"
-            //};
 
             var testUser = new User
             {
@@ -82,7 +81,6 @@ namespace WebAppsProsjekt1.Models
             {
                 context.Movie.Add(movie);
             }
-            //context.Movie.Add(movie3);
 
             context.SaveChanges();
             base.Seed(context);
