@@ -53,8 +53,9 @@ else if (Session["UnauthorizedAccess"] != null)
                 @Html.DisplayFor(modelItem => item.UserId)
             </td>
             <td>
-                @Html.ActionLink("Details", "OrderDetail", new { id = item.Id })
-                @*@Html.ActionLink("Delete", "OrderDelete", new { id = item.Id })*@
+                @*<div class="btn btn-success">@Html.ActionLink("Details", "OrderDetail", new { id = item.Id, @class = "btn btn-success" })</div>*@
+                <div style="width:auto"><a href="/Order/OrderDetail?id=@item.Id" class="btn btn-success" >Details</a></div>
+                    @*@Html.ActionLink("Delete", "OrderDelete", new { id = item.Id })*@
             </td>
         </tr>
     }
