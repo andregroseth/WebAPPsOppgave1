@@ -15,14 +15,10 @@ namespace WebAppsProsjekt1.Models
 			Database.CreateIfNotExists();
 			Database.SetInitializer(new DbInit());
 		}
-        public virtual DbSet<User> User { get; set; }
-        
+		public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Movie> Movie { get; set; }
-
         public virtual  DbSet<Order> Order { get; set; }
-
         public virtual DbSet<Orderline> Orderline { get; set; }
-
         public virtual DbSet<Mail> Mail { get; set; }
     }
 }

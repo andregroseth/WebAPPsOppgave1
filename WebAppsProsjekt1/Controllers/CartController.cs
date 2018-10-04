@@ -13,10 +13,7 @@ namespace WebAppsProsjekt1.Controllers
         public ActionResult CartList()
         {
             var db = new DBMovie();
-            CookieHelper cookieHelper = new CookieHelper();
-            HttpCookie cookie = Request.Cookies["Cart"];
-            List<int> cookieList = cookieHelper.CookieParse(cookie);
-            return View(db.MovieGet(cookieList));
+            return View(db.MovieGet());
         }
 
         [HttpPost]
