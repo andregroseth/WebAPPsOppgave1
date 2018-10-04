@@ -80,18 +80,22 @@ else if (Session["RegistrationSuccess"] != null)
 			</div>
 		</div>
 
-		<div class="form-group">
-			<div class="col-md-offset-2 col-md-10">
-				<input type="submit" class="btn btn-success" id="login" value="Log in" />
-			</div>
-		</div>
-		}
-		catch (System.Web.HttpException)
-		{
-		return;
-		}
-		}
-	</div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-success" id="login" value="Login"/>
+            </div>
+        </div>
+        }
+        catch (System.Web.HttpException)
+        {
+        return;
+        }
+        }
+
+        <div class="col-md-offset-2 col-md-10">
+            <a href="/User/UserRegister" class="btn btn-success">Register</a>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -52,11 +52,10 @@ namespace WebAppsProsjekt1.Controllers
             return RedirectToAction("CartList");
         }
 
-        public ActionResult CartDelete() {
-            HttpCookie cookie = Request.Cookies["Cart"];
-            CookieHelper cookieHelper = new CookieHelper();
-            cookieHelper.CookieParse(cookie);
+        public ActionResult CartDelete(int id) {
 
+            var cookieHelper = new CookieHelper();
+            cookieHelper.CookieCartDelete(id, Response);
             return RedirectToAction("CartList");
         }
     }
