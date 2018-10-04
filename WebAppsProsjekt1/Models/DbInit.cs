@@ -175,55 +175,91 @@ namespace WebAppsProsjekt1.Models
 
                 };
 
-            List<Movie> UserList = new List<Movie>
+            List<User> UserList = new List<User>
                 {
-                    
+                    new User
+                    {
+                        Userlvl = 1,
+                        Email = "test@test.test",
+                        Firstname = "testname",
+                        Surname = "testsurname",
+                        Password = "testpassword",
+                        Address = "testaddress",
+                    },
+
+                    new User
+                    {
+                        Userlvl = 1,
+                        Email = "ola@gmail.com",
+                        Firstname = "Ola",
+                        Surname = "Nordmann",
+                        Password = "hallo123",
+                        Address = "Sinsenveien 14",
+                    },
+
+                    new User
+                    {
+                        Userlvl = 1,
+                        Email = "trude@oslomet.no",
+                        Firstname = "Trude",
+                        Surname = "Solberg",
+                        Password = "prinsesse123",
+                        Address = "Frognerveien 24B",
+                    },
+
                 };
-
-            var testUser = new User
-            {
-                Userlvl = 1,
-                Email = "test@test.test",
-                Firstname = "testname",
-                Surname = "testsurname",
-                Password = "testpassword",
-                Address = "testaddress",
-            };
-
-            var testOrder = new Order
-            {
-                User = testUser,
-                Date = "13.33.37"
-            };
 
             var testMail = new Mail
             {
                 ZipCode = "9999",
-                Area = "bever"
+                Area = "test"
             };
-
-            var testOrderLine = new Orderline
-            {
-                Order = testOrder,
-                //Movie = testMovie
-            };
-
-            var testOrderlineList = new List<Orderline>();
-            testOrderlineList.Add(testOrderLine);
-            testOrder.Orderline = testOrderlineList;
-
-            var testOrderList = new List<Order>();
-            testOrderList.Add(testOrder);
-            testUser.Order = testOrderList;
-            testUser.Mail = testMail;
-
-            context.User.Add(testUser);
 
             // Legger inn init-filmer til databasen
             foreach (var movie in MovieList)
             {
                 context.Movie.Add(movie);
             }
+            context.SaveChanges();
+
+            // Legger inn init-brukere til databasen
+            foreach (var user in UserList)
+            {
+                context.User.Add(user);
+            }
+            context.SaveChanges();
+
+            // Legger inn init-ordrer til databasen
+            List<Order> OrderList = new List<Order>{};
+            foreach (var user in UserList)
+            {
+                new Order { User = user, Date = "13.33.37" };
+            }
+
+            // Legger inn init-ordrelinjer til databasen
+            List<Orderline> OrderlineList = new List<Orderline> { };
+            foreach (var order in OrderList)
+            {
+                foreach (var movie in MovieList)
+                {
+                    new Orderline { Order = order, Movie =  movie};
+                }
+                context.Order.Add(order);
+            }
+
+            foreach (var orderline in OrderlineList)
+            {
+                context.Orderline.Add(orderline);
+            }
+
+            //var testOrderlineList = new List<Orderline>();
+            //testOrderlineList.Add(testOrderLine);
+            //testOrder.Orderline = testOrderlineList;
+
+            //var testOrderList = new List<Order>();
+            //testOrderList.Add(testOrder);
+            //testUser.Order = testOrderList;
+            //testUser.Mail = testMail;
 
             context.SaveChanges();
             base.Seed(context);
