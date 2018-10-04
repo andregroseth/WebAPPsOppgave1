@@ -23,6 +23,15 @@ else if (Session["PurchaseFailedEmpty"] != null)
 	</script>
 	Session.Remove("PurchaseFailedEmpty");
 }
+else if (Session["LoginSuccess"] != null)
+{
+	<script type="text/javascript">
+		$(window).on('load', function () {
+			showFeedbackModal("Login successful.", "green");
+		});
+	</script>
+	Session.Remove("LoginSuccess");
+}
 else if (Session["LoginAlready"] != null)
 {
 	<script type="text/javascript">

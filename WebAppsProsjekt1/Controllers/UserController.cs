@@ -26,6 +26,7 @@ namespace WebAppsProsjekt1.Controllers
             if(db.UserFind(user))
             {
                 Session["Login"] = db.GetSession(user).ToString();
+				Session["LoginSuccess"] = "true";
                 Session.Remove("LoginFailed");
                 return RedirectToAction("Movielist", "Movie");
             }
@@ -49,7 +50,6 @@ namespace WebAppsProsjekt1.Controllers
         public ActionResult UserRegister()
         {
             return View();
-            
         }
 
         //GET: User/UserList
@@ -66,25 +66,23 @@ namespace WebAppsProsjekt1.Controllers
             }
             Session["AccessFailedAdmin"] = "true";
 			return RedirectToAction("MovieList", "Movie");
-            
         }
 
         [HttpPost]
         public ActionResult UserRegister(UserHelper inUser)
         {
-			System.Diagnostics.Debug.Write("asdasd");
             if (ModelState.IsValid)
             {
                 var db = new DBUser();
                 bool OK = db.SaveUserToDB(inUser);
                 if (OK)
                 {
+					Session["RegistrationSuccess"] = true;
                     return RedirectToAction("UserLogin");
                 }
             }
             return View();
         }
-      
 
         public ActionResult UserDelete(int Id)
         {
@@ -96,7 +94,6 @@ namespace WebAppsProsjekt1.Controllers
             }
             return View();
         }
-
 
         public ActionResult UserDetail()
         {
@@ -113,7 +110,6 @@ namespace WebAppsProsjekt1.Controllers
             }
         }
 
-
         //Sjekker om Email eksistere fra før.
         public JsonResult CheckEmail(string Email)
         {
@@ -123,7 +119,6 @@ namespace WebAppsProsjekt1.Controllers
                 return Json(!db.User.Any(x => x.Email == Email), JsonRequestBehavior.AllowGet);
             }
         }
-
 
     }
 }
