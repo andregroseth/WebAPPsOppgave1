@@ -12,9 +12,9 @@ namespace WebAppsProsjekt1.Controllers
         // GET: Movie/MovieList
         public ActionResult MovieList()
         {
-            using (var db = new Models.DB())
+            using (var db = new DB())
             {
-                List<Models.Movie> allMovies = db.Movie.ToList();
+                List<Movie> allMovies = db.Movie.ToList();
                 return View(allMovies);
             }
         }
