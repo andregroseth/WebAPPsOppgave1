@@ -13,10 +13,7 @@ namespace WebAppsProsjekt1.Controllers
         public ActionResult CartList()
         {
             var db = new DBMovie();
-            CookieHelper cookieHelper = new CookieHelper();
-            HttpCookie cookie = Request.Cookies["Cart"];
-            List<int> cookieList = cookieHelper.CookieParse(cookie);
-            return View(db.MovieGet(cookieList));
+            return View(db.MovieGet());
         }
 
         [HttpPost]
@@ -55,12 +52,10 @@ namespace WebAppsProsjekt1.Controllers
             return RedirectToAction("CartList");
         }
 
-        public ActionResult CartDelete() {
+        public ActionResult CartDelete(int id) {
 
-            HttpCookie cookie = Request.Cookies["Cart"];
-            CookieHelper cookieHelper = new CookieHelper();
-            cookieHelper.CookieParse(cookie);
-
+            var cookieHelper = new CookieHelper();
+            cookieHelper.CookieCartDelete(id, Response);
             return RedirectToAction("CartList");
         }
     }

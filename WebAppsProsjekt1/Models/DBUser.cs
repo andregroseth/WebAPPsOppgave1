@@ -157,13 +157,14 @@ namespace WebAppsProsjekt1.Models
         {
             try
             {
-                var db = new DBUser();
+               
                 int.TryParse(HttpContext.Current.Session["Login"].ToString(), out int userId);
-                UserHelper oneUser = db.GetUserInfo(userId);
+                UserHelper oneUser = GetUserInfo(userId);
                 if (oneUser.Userlvl > 0)
                 {
                     return true;
                 }
+
                 return false;
             }
             catch

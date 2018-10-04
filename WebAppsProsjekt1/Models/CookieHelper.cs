@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace WebAppsProsjekt1.Models
@@ -32,5 +32,19 @@ namespace WebAppsProsjekt1.Models
             }
 			return idList;
 		}
+
+        public void CookieCartDelete(int id, HttpResponseBase response) {
+
+            HttpCookie cookie = HttpContext.Current.Request.Cookies["Cart"];
+            List<int> idList = CookieParse(cookie);
+            idList.Remove(id);           
+            StringBuilder newCookie = new StringBuilder();
+            foreach (var item in idList) {
+                newCookie.Append(item.ToString());
+                newCookie.Append("=&");
+            }
+            cookie.Value = newCookie.ToString();
+            response.Cookies.Add(cookie);
+        }
 	}
 }
