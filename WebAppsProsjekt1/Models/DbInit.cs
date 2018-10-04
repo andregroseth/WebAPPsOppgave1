@@ -216,6 +216,17 @@ namespace WebAppsProsjekt1.Models
                         Mail = testMail,
                     },
 
+                    new User
+                    {
+                        Userlvl = 2,
+                        Email = "admin@oslomet.no",
+                        Firstname = "Admin",
+                        Surname = "Admin",
+                        Password = "admin123",
+                        Address = "Pilestredet 35",
+                        Mail = testMail,
+                    },
+
                 };
 
             // Legger inn init-filmer til databasen
@@ -233,29 +244,20 @@ namespace WebAppsProsjekt1.Models
             context.SaveChanges();
 
             // Legger inn init-ordrer til databasen
-            List<Order> OrderList = new List<Order> { };
-            foreach (var user in UserList)
+            foreach (var user in context.User)
             {
-                new Order { User = user, Date = "13.33.37" };
+                context.Order.Add(new Order { User = user, Date = "12/10/2018" });
             }
+            context.SaveChanges();
 
             // Legger inn init-ordrelinjer til databasen
-            List<Orderline> OrderlineList = new List<Orderline> { };
-            foreach (var order in OrderList)
-            {
-                foreach (var movie in MovieList)
-                {
-                    new Orderline { Order = order, Movie = movie };
-                }
-                context.Order.Add(order);
+            foreach (var order in context.Order)
+            {    
+                context.Orderline.Add(new Orderline { Order = order, Movie = MovieList.ElementAt(5) });
+                
             }
-
-            foreach (var orderline in OrderlineList)
-            {
-                context.Orderline.Add(orderline);
-            }
-
             context.SaveChanges();
+
             base.Seed(context);
         }
     }
