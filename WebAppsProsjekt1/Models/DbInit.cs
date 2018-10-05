@@ -171,6 +171,246 @@ namespace WebAppsProsjekt1.Models
                         Category = "Sci-Fi",
                         Cost = 90,
                         ImagePath = "/Content/images/movie/tronlegacy.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Kingsman: The Secret Service",
+                        Category = "Comedy",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/kingsman.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "The Wolf of Wall Street",
+                        Category = "Comedy",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/thewolfofwallstreet.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Holmes and Watson",
+                        Category = "Comedy",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/holmesandwatson.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "The Naked Gun",
+                        Category = "Comedy",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/thenakedgun.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Sausage Party",
+                        Category = "Comedy",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/sausageparty.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Kick-Ass",
+                        Category = "Comedy",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/kickass.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "The Mask",
+                        Category = "Comedy",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/themask.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Cars",
+                        Category = "Comedy",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/cars.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Shrek",
+                        Category = "Comedy",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/shrek.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Home Alone",
+                        Category = "Comedy",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/homealone.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "The Dark Knight",
+                        Category = "Crime",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/thedarkknight.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "The God Father",
+                        Category = "Crime",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/thegodfather.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Pulp Fiction",
+                        Category = "Crime",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/pulpfiction.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "The Girl wit the Dragon Tattoo",
+                        Category = "Crime",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/thegirlwiththedragontattoo.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Inferno",
+                        Category = "Crime",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/inferno.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Sherlock Holmes",
+                        Category = "Crime",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/sherlockholmes.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Shooter",
+                        Category = "Crime",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/shooter.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Fast & Furious 7",
+                        Category = "Crime",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/furious7.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Taken",
+                        Category = "Crime",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/taken.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "The Punisher",
+                        Category = "Crime",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/punisher.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "From Dusk Till Dawn",
+                        Category = "Horror",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/fromdusktilldawn.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Halloween",
+                        Category = "Horror",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/halloween.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "The Purge",
+                        Category = "Horror",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/thepurge.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "The Babysitter",
+                        Category = "Horror",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/thebabysitter.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Dracula",
+                        Category = "Horror",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/dracula.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Legion",
+                        Category = "Horror",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/legion.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Sleepy Hollow",
+                        Category = "Horror",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/sleepyhollow.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Friday the 13th",
+                        Category = "Horror",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/friday13th.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Resident Evil",
+                        Category = "Horror",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/residentevil.jpg"
+                    },
+
+                    new Movie
+                    {
+                        Title = "Dawn of the Dead",
+                        Category = "Horror",
+                        Cost = 90,
+                        ImagePath = "/Content/images/movie/dawnofthedead.jpg"
                     }
 
 
@@ -217,6 +457,17 @@ namespace WebAppsProsjekt1.Models
                         Mail = testMail,
                     },
 
+                    new User
+                    {
+                        Userlvl = 2,
+                        Email = "admin@oslomet.no",
+                        Firstname = "Admin",
+                        Surname = "Admin",
+                        Password = "admin123",
+                        Address = "Pilestredet 35",
+                        Mail = testMail,
+                    },
+
                 };
 
             // Legger inn init-filmer til databasen
@@ -234,29 +485,20 @@ namespace WebAppsProsjekt1.Models
             context.SaveChanges();
 
             // Legger inn init-ordrer til databasen
-            List<Order> OrderList = new List<Order> { };
-            foreach (var user in UserList)
+            foreach (var user in context.User)
             {
-                new Order { User = user, Date = "13.33.37" };
+                context.Order.Add(new Order { User = user, Date = "12/10/2018" });
             }
+            context.SaveChanges();
 
             // Legger inn init-ordrelinjer til databasen
-            List<Orderline> OrderlineList = new List<Orderline> { };
-            foreach (var order in OrderList)
-            {
-                foreach (var movie in MovieList)
-                {
-                    new Orderline { Order = order, Movie = movie };
-                }
-                context.Order.Add(order);
+            foreach (var order in context.Order)
+            {    
+                context.Orderline.Add(new Orderline { Order = order, Movie = MovieList.ElementAt(5) });
+                
             }
-
-            foreach (var orderline in OrderlineList)
-            {
-                context.Orderline.Add(orderline);
-            }
-
             context.SaveChanges();
+
             base.Seed(context);
         }
     }
