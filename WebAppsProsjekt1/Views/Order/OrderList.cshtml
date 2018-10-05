@@ -18,46 +18,41 @@ else if (Session["AccessUnauthorized"] != null)
     </script>
     Session.Remove("AccessUnauthorized");
 }
-    <div id="feedback-modal" class="modal" role="dialog">
-        <div class="modal-body">
-            <p align="center"></p>
-        </div>
+<link href="~/Content/List.css" rel="stylesheet" />
+<div id="feedback-modal" class="modal" role="dialog">
+    <div class="modal-body">
+        <p align="center"></p>
     </div>
+</div>
+
 <h2>List of Orders</h2>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @*<div class="btn btn-success">@Html.ActionLink("Details", "OrderDetail", new { id = item.Id, @class = "btn btn-success" })</div>*@
-                <div style="width:auto"><a href="/Order/OrderDetail?id=@item.Id" class="btn btn-success" >Details</a></div>
-                    @*@Html.ActionLink("Delete", "OrderDelete", new { id = item.Id })*@
-            </td>
+<table class="table table-striped">
+    <thead>
+        <tr class="row-name">
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <th>@Html.DisplayNameFor(model => model.Date)</th>
+            <th>@Html.DisplayNameFor(model => model.UserId)</th>
+            <th>Detail</th>
         </tr>
-    }
-
+    </thead>
+    <tbody>
+        <tr class="row-content">
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                <td>@Html.DisplayFor(modelItem => item.UserId)</td>
+                <td class="td-actions text-right">
+                    @*<div class="btn btn-success">@Html.ActionLink("Details", "OrderDetail", new { id = item.Id, @class = "btn btn-success" })</div>*@
+                    <div style="width:auto"><a href="/Order/OrderDetail?id=@item.Id" class="btn btn-success">Details</a></div>
+                    @*@Html.ActionLink("Delete", "OrderDelete", new { id = item.Id })*@
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
 </body>
 </html>

@@ -195,6 +195,9 @@
     <Content Include="Content\cssIndex.css" />
     <Content Include="Content\cssMovieList.css" />
     <Content Include="Content\cssBackground.css" />
+    <Content Include="Content\images\avatar.png" />
+    <Content Include="Content\List.css" />
+    <Content Include="Content\UserDetail.css" />
     <Content Include="Content\UserRegister.css" />
     <Content Include="Content\images\movie\antmanImage.jpg" />
     <Content Include="Content\images\movie\backtothefuture.jpg" />
@@ -259,6 +262,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <None Include="Views\Modal\feedbackModal.cshtml" />
+    <Content Include="Scripts\UserRegister.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

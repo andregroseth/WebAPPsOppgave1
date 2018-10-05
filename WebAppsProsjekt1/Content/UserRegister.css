@@ -1,5 +1,14 @@
-﻿.form-group{
-    font-size: 2vh;
+﻿.UserRegister {
+    background: rgb(255, 255, 255, 0.3);
+    box-shadow: 0 2vh 3vh rgba(0, 0, 0, 0.5);
+    align-content: center;
+    width: 80%;
+    border-radius: 0.4vh;
+}
+.text-danger {
+    font-size: 1.5vh;
+    color: #ff1a1a;
+    text-shadow: 0.2vh 0.2vh 0.3vh #000000;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-  
