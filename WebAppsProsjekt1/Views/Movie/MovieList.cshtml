@@ -89,8 +89,8 @@ else if (Session["AccessFailedAdmin"] != null)
 <div>
     <h1 class="moviesList" style="color:white;">Movies</h1>
     <div class="row">
+        <h2>Sci-Fi</h2>
         <div class="row__inner">
-            <h2>Sci-Fi</h2>
             @foreach (var movie in Model)
             {
                 if (movie.Category == "Sci-Fi")
@@ -106,8 +106,8 @@ else if (Session["AccessFailedAdmin"] != null)
         </div>
     </div>
     <div class="row">
+        <h2>Comedy</h2>
         <div class="row__inner">
-            <h2>Comedy</h2>
             @foreach (var movie in Model)
             {
                 if (movie.Category == "Comedy")
@@ -123,8 +123,8 @@ else if (Session["AccessFailedAdmin"] != null)
         </div>
     </div>
     <div class="row">
+        <h2>Crime</h2>
         <div class="row__inner">
-            <h2>Crime</h2>
             @foreach (var movie in Model)
             {
                 if (movie.Category == "Crime")
@@ -140,8 +140,8 @@ else if (Session["AccessFailedAdmin"] != null)
         </div>
     </div>
     <div class="row">
+        <h2>Horror</h2>
         <div class="row__inner">
-            <h2>Horror</h2>
             @foreach (var movie in Model)
             {
                 if (movie.Category == "Horror")
