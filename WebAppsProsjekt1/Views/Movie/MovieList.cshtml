@@ -90,15 +90,68 @@ else if (Session["AccessFailedAdmin"] != null)
     <h1 class="moviesList" style="color:white;">Movies</h1>
     <div class="row">
         <div class="row__inner">
+            <h2>Sci-Fi</h2>
             @foreach (var movie in Model)
             {
-                if (movie.ImagePath == null)
-                {
-                }
-                else
+                if (movie.Category == "Sci-Fi")
                 {
                     // Render film-objektene og displayer dem i viewet
                     @Html.Partial("~/Views/Movie/MovieListPartial.cshtml", movie)
+                }
+                else
+                {
+
+                }
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="row__inner">
+            <h2>Comedy</h2>
+            @foreach (var movie in Model)
+            {
+                if (movie.Category == "Comedy")
+                {
+                    // Render film-objektene og displayer dem i viewet
+                    @Html.Partial("~/Views/Movie/MovieListPartial.cshtml", movie)
+                }
+                else
+                {
+
+                }
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="row__inner">
+            <h2>Crime</h2>
+            @foreach (var movie in Model)
+            {
+                if (movie.Category == "Crime")
+                {
+                    // Render film-objektene og displayer dem i viewet
+                    @Html.Partial("~/Views/Movie/MovieListPartial.cshtml", movie)
+                }
+                else
+                {
+
+                }
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="row__inner">
+            <h2>Horror</h2>
+            @foreach (var movie in Model)
+            {
+                if (movie.Category == "Horror")
+                {
+                    // Render film-objektene og displayer dem i viewet
+                    @Html.Partial("~/Views/Movie/MovieListPartial.cshtml", movie)
+                }
+                else
+                {
+
                 }
             }
         </div>
