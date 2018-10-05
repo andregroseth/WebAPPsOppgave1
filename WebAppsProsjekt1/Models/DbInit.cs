@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 
 namespace WebAppsProsjekt1.Models
-{
+{     //bruk CreateDatabaseIfNotExists lokalt og CreateDatabaseIfNotExists ved publish til Azure.
     //public class DbInit : DropCreateDatabaseAlways<DB>
         public class DbInit : CreateDatabaseIfNotExists<DB>
     {
