@@ -1,11 +1,19 @@
 ﻿.backgroundBody {
-    background-image: url('http://cdn.strategyonline.ca/wp/wp-content/uploads/2017/05/Big-Purple-Monster_Full-Size1.jpg?w=640');
-    background-repeat: no-repeat;
+    /*background-image: url('http://cdn.strategyonline.ca/wp/wp-content/uploads/2017/05/Big-Purple-Monster_Full-Size1.jpg?w=640');*/
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
     background-position: -3vh 0vh;
-    z-index:1;
+    z-index: 1;
+}
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
 }
 
 .footer {
@@ -16,17 +24,24 @@
     padding: 0rem;
     background-color: transparent;
     text-align: center;
-    color: white;
     text-shadow: -0.2vh 0 black, 0 0.2vh black, 0.2vh 0 black, 0 -0.2vh black;
 }
 
 .nav {
-    color: #FFF;
     background-color: transparent;
     text-decoration: none;
     border-bottom: transparent solid 0.2vh;
     min-height: 6vh;
     z-index:10;
+}
+
+    .nav a {
+        color: #95a5a6;
+    }
+
+.navbar-fixed-top.scrolled {
+    background-color: #000;
+    transition: background-color 200ms linear;
 }
 
     .nav :hover {

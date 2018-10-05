@@ -20,17 +20,27 @@
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 
     <script src="~/Scripts/bootstrap.js"></script>
+    <script scr="~/Scripts/bootstrap.min.js"></script>
 
     <script src="~/Scripts/feedback-modal.js"></script>
 
+    @* Manipulerer navbar-opacity når man scroller nedover*@
+    <script>
+        $(function () {
+            $(document).scroll(function () {
+                var $nav = $(".navbar-fixed-top");
+                $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+            });
+        });
+    </script>
 
 </head>
 
 <body class="backgroundBody" >
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-nav navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/Moviemonster/Index">MovieMonster</a>
+                <a class="navbar-brand" style="color:#95a5a6" href="/Moviemonster/Index">MovieMonster</a>
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="/Movie/MovieList">Movies</a></li>
@@ -49,6 +59,10 @@
         </div>
     </nav>
     <div class="container body-content">
+        <video class="video-fluid" autoplay loop muted id="myVideo">
+            <source src="https://mdbootstrap.com/img/video/Lines.mp4" type="video/mp4" />
+        </video>
+
         @RenderBody()
         <hr />
     </div>
