@@ -4,7 +4,7 @@
 	Layout = "~/Views/Shared/Background.cshtml";
 }
 <link rel="stylesheet" type="text/css" href="~/Content/cssCartList.css"/>
-<h1>CartList</h1>
+<h1>Cart</h1>
 <div class="container-fluid" id="cart_container">
 	@using (Html.BeginForm())
 	{
@@ -34,7 +34,6 @@
         <div class="form-group">
             <div class="col-lg-8">
                 <div style="float:inherit"><a href="/Cart/CartDelete?id=@Model[i].Id" class="btn btn-danger">Remove</a></div>
-                @*@Html.ActionLink("Remove", "CartDelete", new { id = Model[i].Id, @class = "btn btn-success" });*@
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 ﻿.backgroundBody {
-    background-image: url('http://cdn.strategyonline.ca/wp/wp-content/uploads/2017/05/Big-Purple-Monster_Full-Size1.jpg?w=640');
+    /*background-image: url('http://cdn.strategyonline.ca/wp/wp-content/uploads/2017/05/Big-Purple-Monster_Full-Size1.jpg?w=640');*/
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -8,6 +8,14 @@
     z-index: 1;
 }
 
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+}
 
 
 .nav {
