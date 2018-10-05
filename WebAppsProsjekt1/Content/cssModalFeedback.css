@@ -1,0 +1,7 @@
+﻿#feedback-modal {
+	margin-top: 6vh;
+	background: green;
+	height: 5vh;
+	z-index: 5;
+	text-align:center;
+}
