@@ -14,7 +14,7 @@ namespace WebAppsProsjekt1.Models
 
                 var order = new Order()
                 {
-                    Date = DateTime.Today.ToString(),
+                    Date = DateTime.Now.Date.ToShortDateString(),
                     User = user
                 };
 

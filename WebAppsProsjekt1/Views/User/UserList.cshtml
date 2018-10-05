@@ -6,13 +6,12 @@
 }
 @if (Session["Login"] == null)
 {
-
     Response.Redirect("UserLogin");
-
 }
+<link href="~/Content/List.css" rel="stylesheet" />
 <h2>List of User</h2>
 
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Userlvl)
