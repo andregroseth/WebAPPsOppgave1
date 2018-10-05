@@ -4,14 +4,13 @@
 	ViewBag.Title = "UserDetail";
 	Layout = "~/Views/Shared/Background.cshtml";
 }
-<link href="~/Content/UserDetail.css" rel="stylesheet" />
+<link href="~/Content/cssUserDetail.css" rel="stylesheet" />
 @if (Session["Login"] == null)
 {
 
 	Response.Redirect("UserLogin");
 
 }
-
 <div>
 	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
 		<div class="panel panel-info">
@@ -52,13 +51,13 @@
 
 							</tbody>
 						</table>
-
-						<div style="float:left;width:auto;padding-left:10vh;padding-right:1vh"><a href="./UserEdit" class="btn btn-success">Edit</a></div>
-						<div style="float:left;width:auto"><a href="/Order/OrderList" class="btn btn-success">Show Order History</a></div>
+						<div style="padding-left:1em;float:right;width:auto"><a href="/Order/OrderList" class="btn btn-success">Show Order History</a></div>
+						<div style="float:right;width:auto;"><a href="./UserEdit" class="btn btn-success">Edit</a></div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+</div><!--IKKE FJERN-->
 @Html.Partial("~/Views/Shared/Footer.cshtml")

@@ -46,7 +46,7 @@ h1 {
 	opacity: 0.75;
 }
 
-p, h1, h2, .control-label {
+p, h1, h2, .control-label, th, td {
 	color: white;
 	text-shadow: 0.2vh 0.2vh 0.6vh #000000;
 	font-weight: bold;

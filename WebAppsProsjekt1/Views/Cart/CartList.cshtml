@@ -8,49 +8,53 @@
 <div class="container-fluid" id="cart_container">
 	@using (Html.BeginForm())
 	{
-		@Html.AntiForgeryToken()
-		for (int i = 0; i < Model.Count; i++)
-		{
-			<div class="row">
-				@Html.HiddenFor(model => Model[i].Id, new { htmlAttributes = new { @class = "form-control", id = "movieId" } })
-				<div class="form-group">
-					<div class="col-lg-1">
-						<div class="img-container">
-							<img src="@Model[i].ImagePath" style="width:6vh; height:8vh;" />
+	<table class="table table-hover">
+		<thead>
+		<tr>
+			<th style="width:50%">Movie</th>
+			<th style="width:10%">Price</th>
+			<th style="width:20%"></th>
+			<th style="width:10%"></th>
+			<th style="width:10%"></th>
+		</tr>
+		</thead>
+		<tbody>
+			@Html.AntiForgeryToken()
+			@for (int i = 0; i < Model.Count; i++)
+			{
+				<tr>
+					@Html.HiddenFor(model => Model[i].Id, new { htmlAttributes = new { @class = "form-control", id = "movieId" } })
+					<td data-th="Movie">
+						<div class="row">
+							<div class="col-sm-2 hidden-xs"><img src="@Model[i].ImagePath" style="width:7vh; height:10vh;" /></div>
+							<div class="col-sm-10">
+								<h2>@Model[i].Title</h2>
+								<p>@Model[i].Category</p>
+							</div>
 						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-lg-3">
-						<h2>@Model[i].Title</h2>
-						<p>@Model[i].Category</p>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-lg-8">
-						<h2>@Model[i].Cost Kroner</h2>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-lg-8">
-						<div><a href="/Cart/CartDelete?id=@Model[i].Id" class="btn btn-danger">Remove</a></div>
-					</div>
-				</div>
-			</div>
-		}
-		<div class="form-group">
-			<div class="row">
-				<h2 style="padding-left:10vh">Total: @Model.Count <div style="float:right;padding-right:48vh">@(Model.Sum(i => i.Cost))Kroner</div></h2>
-				<div class="col-lg-4">
-				</div>
-				<div class="col-lg-4">
-					<div style="float:left">@Html.ActionLink("Clear Cart", "CartClear", "Cart", new { @class = "btn btn-danger" })</div>
-					<div style="float:right"><input type="submit" class="btn btn-success" value="Check out" /></div>
-				</div>
-				<div class="col-lg-4">
-				</div>
-			</div>
-		</div>
+					</td>
+					<td data-th="Price">@Model[i].Cost Kroner</td>
+					<td><div class="col-sm-2 hidden-xs"></div></td>
+					<td><div class="col-sm-2 hidden-xs"></div></td>
+					<td class="actions" data-th="">
+						<a href="/Cart/CartDelete?id=@Model[i].Id" class="btn btn-danger">Remove</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+		<tfoot>
+			<tr class="visible-xs">
+				<td class="text-center"><strong></strong></td>
+			</tr>
+			<tr>
+				<td><div class="col-sm-2 hidden-xs"></div></td>
+				<td class="hidden-xs text-center"><strong>@(Model.Sum(i => i.Cost)) Kroner</strong></td>
+				<td class="hidden-xs text-center"><strong>Movies: @Model.Count</strong></td>
+				<td>@Html.ActionLink("Clear Cart", "CartClear", "Cart", new { @class = "btn btn-danger" })</td>
+				<td><input type="submit" class="btn btn-success" value="Checkout" /></td>
+			</tr>
+		</tfoot>
+	</table>
 	}
 </div>
 @Html.Partial("~/Views/Shared/Footer.cshtml")
