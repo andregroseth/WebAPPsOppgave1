@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    min-height: 100%;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -38,4 +39,10 @@ p, h1, h2, .control-label {
 	text-shadow: 0.2vh 0.2vh 0.6vh #000000;
 	font-weight: bold;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+@media screen and (max-width:767px) {
+    h1 {
+        font-size: 3em;
+    }
 }
