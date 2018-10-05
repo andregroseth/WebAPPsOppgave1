@@ -1,7 +1,5 @@
 ﻿#cart_container {
     background: rgb(255, 255, 255, 0.3);
     box-shadow: 0 2vh 3vh rgba(0, 0, 0, 0.5);
-    align-content:center;
-    width: 80%;
     border-radius: 0.4vh;
 }

@@ -49,48 +49,40 @@ else if (Session["RegistrationSuccess"] != null)
 
 <div id="feedback-modal" class="modal" role="dialog">
 	<div class="modal-body">
-		<p align="center"></p>
+		<p></p>
 	</div>
 </div>
-<div class="container">
-	<div class="main-div">
-		@if (Session["Login"] != null)
+<h1 class="login">Login</h1>
+<div class="login-box-body" id="main-div">
+	@using (Html.BeginForm())
+	{
+		try
 		{
-			<h2>@Session["Login"].ToString()</h2>
-		}
-		@using (Html.BeginForm())
-		{
-			try
-			{
-				@Html.AntiForgeryToken()
-				<div class="form-headers">
-					<h1 class="login">Login</h1>
-				</div>
-				<div class="form-group">
-					@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-					<div class="col-md-10">
-						@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.AntiForgeryToken()
+		<div class="row">
+			<div class="col-lg-4 form-wrapper">
+			</div>
+			<div class="col-lg-4" id="form">
+				<center>
+					<div class="form-group">
+						@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
 					</div>
-				</div>
-
-				<div class="form-group">
-					@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-					<div class="col-md-10">
-						@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+					<div class="form-group">
+						@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @type = "password" } })
 					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-10">
+					<div class="form-group">
 						<input type="submit" class="btn btn-success" id="login" value="Login" />
 					</div>
+				</center>
+				<div class="col-lg-4 form-wrapper">
 				</div>
-			}
-			catch (System.Web.HttpException)
-			{
+			</div>
+		</div>
+				}
+				catch (System.Web.HttpException)
+				{
 				return;
-			}
-		}
-	</div>
-</div>
+				}
+				}
+			</div>
 @Html.Partial("~/Views/Shared/Footer.cshtml")
