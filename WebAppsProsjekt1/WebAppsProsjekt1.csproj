@@ -188,6 +188,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cssCartList.css" />
+    <Content Include="Content\cssFooter.css" />
     <Content Include="Content\cssGlobal.css" />
     <Content Include="Content\cssModal.css" />
     <Content Include="Content\cssIndex.css" />
@@ -223,7 +224,7 @@
     <Content Include="Content\images\movie\thenakedgun.jpg" />
     <Content Include="Content\images\movie\thepurge.jpg" />
     <Content Include="Content\images\movie\thewolfofwallstreet.jpg" />
-    <Content Include="Content\UserRegister.css" />
+    <Content Include="Content\cssUserRegister.css" />
     <Content Include="Content\images\movie\antmanImage.jpg" />
     <Content Include="Content\images\movie\backtothefuture.jpg" />
     <Content Include="Content\images\movie\blackpanther.jpg" />
@@ -276,7 +277,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Content\UserLogin.css" />
+    <Content Include="Content\cssUserLogin.css" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -288,6 +289,7 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <None Include="Views\Modal\feedbackModal.cshtml" />
     <Content Include="Scripts\UserRegister.js" />
+    <None Include="Views\Shared\Footer.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

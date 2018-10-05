@@ -1,144 +1,124 @@
 ﻿@model WebAppsProsjekt1.Models.UserHelper
 @{
-    ViewBag.Title = "UserRegister";
-    Layout = "~/Views/Shared/Background.cshtml";
+	ViewBag.Title = "UserRegister";
+	Layout = "~/Views/Shared/Background.cshtml";
 }
-<link href="~/Content/UserRegister.css" rel="stylesheet" />
+<link href="~/Content/cssUserRegister.css" rel="stylesheet" />
 <script src="~/Scripts/UserRegister.js"></script>
 
 <h1>Register User</h1>
 <div class="UserRegister">
 
-<div class="row">
-    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
+	<div class="row">
+		<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+			@using (Html.BeginForm())
+			{
+				@Html.AntiForgeryToken()
 
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.Firstname, new { @id = "first_name", htmlAttributes = new { @class = "form-control input-lg",@placeholder="First Name", @tabindex="1" } })
-                            @Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.Surname, new { @id = "last_name", htmlAttributes = new { @class = "form-control",@placeholder="Surname" ,@tabindex="2" } })
-                            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control",@placeholder="Address",@tabindex="3" } })
-                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control",@placeholder="Zip Code",@tabindex="4" } })
-                            @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-lg", @id = "email", @placeholder = "Email", @tabindex = "5" } })
-                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.ConfirmEmail, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Confirm Email", @tabindex = "6" } })
-                            @Html.ValidationMessageFor(model => model.ConfirmEmail, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control input-lg", @type = "password", @placeholder="Password", @tabindex="7"} })
-                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control input-lg", @type = "password",@placeholder="Confirm Password",@tabindex="8" } })
-                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							@Html.EditorFor(model => model.Firstname, new { @id = "first_name", htmlAttributes = new { @class = "form-control input-lg", @placeholder = "First Name", @tabindex = "1" } })
+							@Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							@Html.EditorFor(model => model.Surname, new { @id = "last_name", htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Surname", @tabindex = "2" } })
+							@Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							@Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Address", @tabindex = "3" } })
+							@Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							@Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Zip Code", @tabindex = "4" } })
+							@Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-lg", @id = "email", @placeholder = "Email", @tabindex = "5" } })
+							@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							@Html.EditorFor(model => model.ConfirmEmail, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Confirm Email", @tabindex = "6" } })
+							@Html.ValidationMessageFor(model => model.ConfirmEmail, "", new { @class = "text-danger" })
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control input-lg", @type = "password", @placeholder = "Password", @tabindex = "7" } })
+							@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							@Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control input-lg", @type = "password", @placeholder = "Confirm Password", @tabindex = "8" } })
+							@Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+						</div>
+					</div>
+				</div>
+				<center>
+					<div class="row">
+						@*<div class="col-xs-4 col-sm-3 col-md-3">
+								<span class="button-checkbox">
+									<button type="button" class="btn" data-color="info" tabindex="7">I Agree</button>
+									<input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
+								</span>
+							</div>*@
+						<p>By clicking <strong class="label label-success">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.</p>
 
-                <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-3">
-                        <span class="button-checkbox">
-                            <button type="button" class="btn" data-color="info" tabindex="7">I Agree</button>
-                            <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
-                        </span>
-                    </div>
-                    <div class="col-xs-8 col-sm-9 col-md-9">
-                        <p>By clicking <strong class="label label-success">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-success btn-block btn-lg" tabindex="7"></div>
-                </div>
-
-            }
+					</div>
+					<div class="row">
+						<input type="submit" value="Register" class="btn btn-success btn-block btn-lg" tabindex="7">
+					</div>
+				</center>
+			}
+		</div>
 	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
+				</div>
+				<div class="modal-body">
+					<p>
+
+						Never gonna give you up
+					</p>
+					<p>Never gonna let you down</p>
+					<p>Never gonna run around and desert you</p>
+					<p> gonna make you cry</p>
+					<p>Never gonna say goodbye</p>
+					<p>Never gonna tell a lie and hurt you</p>
+					<p>Never gonna give you up</p>
+					<p>Never gonna let you down</p>
+					<p>Never gonna run around and desert you</p>
+					<p>Never gonna make you cry</p>
+					<p>Never gonna say goodbye</p>
+					<p>Never gonna tell a lie and hurt you</p>
+					<p>Never gonna give, never gonna give</p>
+
+
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
-			</div>
-            <div class="modal-body">
-                <p>
-
-                    Never gonna give you up
-                </p>
-                <p>Never gonna let you down</p>
-                <p>Never gonna run around and desert you</p>                
-                <p> gonna make you cry</p>
-                <p>Never gonna say goodbye</p>
-                <p>Never gonna tell a lie and hurt you</p>
-                <p>Never gonna give you up</p>
-                <p>Never gonna let you down</p>
-                <p>Never gonna run around and desert you</p>
-                <p>Never gonna make you cry</p>
-                <p>Never gonna say goodbye</p>
-                <p>Never gonna tell a lie and hurt you</p>
-                <p>Never gonna give, never gonna give</p>
-
-
-            </div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
-
-        @*
-            <div class="form-group">
-                @Html.LabelFor(model => model.Area, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Area, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        *@
-       
-</body>
-</html>
+@Html.Partial("~/Views/Shared/Footer.cshtml")

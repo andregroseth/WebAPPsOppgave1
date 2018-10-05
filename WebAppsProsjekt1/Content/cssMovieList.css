@@ -95,5 +95,9 @@ a:hover {
 }
 
 .btn {
-    width:20%;
+    width:initial;
+}
+
+h2 {
+	text-align:center;
 }

@@ -1,77 +1,64 @@
 ﻿@model WebAppsProsjekt1.Models.UserHelper
 
 @{
-    ViewBag.Title = "UserDetail";
-    Layout = "~/Views/Shared/Background.cshtml";
+	ViewBag.Title = "UserDetail";
+	Layout = "~/Views/Shared/Background.cshtml";
 }
 <link href="~/Content/UserDetail.css" rel="stylesheet" />
 @if (Session["Login"] == null)
 {
 
-    Response.Redirect("UserLogin");
+	Response.Redirect("UserLogin");
 
 }
 
 <div>
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">@Html.DisplayFor(model => model.Firstname) @Html.DisplayFor(model => model.Surname)</h3>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="~/Content/images/avatar.png" class="img-circle img-responsive"> </div>
 
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+					<div class=" col-md-9 col-lg-9 ">
+						<table class="table table-user-information">
+							<tbody>
+								<tr>
+									<td>@Html.DisplayNameFor(model => model.Userlvl)</td>
+									<td>@Html.DisplayFor(model => model.Userlvl)</td>
+								</tr>
+								<tr>
+									<td>@Html.DisplayNameFor(model => model.Email)</td>
+									<td>@Html.DisplayFor(model => model.Email)</td>
+								</tr>
+								<tr>
+									<td>@Html.DisplayNameFor(model => model.Password)</td>
+									<td>@Html.DisplayFor(model => model.Password)</td>
+								</tr>
+								<tr>
+									<td>@Html.DisplayNameFor(model => model.Address)</td>
+									<td>@Html.DisplayFor(model => model.Address)</td>
+								</tr>
+								<tr>
+									<td>@Html.DisplayNameFor(model => model.ZipCode)</td>
+									<td>@Html.DisplayFor(model => model.ZipCode)</td>
+								</tr>
+								<tr>
+									<td>@Html.DisplayNameFor(model => model.Area)</td>
+									<td>@Html.DisplayFor(model => model.Area)</td>
+								</tr>
 
+							</tbody>
+						</table>
 
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">@Html.DisplayFor(model => model.Firstname) @Html.DisplayFor(model => model.Surname)</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="~/Content/images/avatar.png" class="img-circle img-responsive"> </div>
-
-                    <div class=" col-md-9 col-lg-9 ">
-                        <table class="table table-user-information">
-                            <tbody>
-                                <tr>
-                                    <td>@Html.DisplayNameFor(model => model.Userlvl)</td>
-                                    <td>@Html.DisplayFor(model => model.Userlvl)</td>
-                                </tr>
-                                <tr>
-                                    <td>@Html.DisplayNameFor(model => model.Email)</td>
-                                    <td>@Html.DisplayFor(model => model.Email)</td>
-                                </tr>
-                                <tr>
-                                    <td>@Html.DisplayNameFor(model => model.Password)</td>
-                                    <td>@Html.DisplayFor(model => model.Password)</td>
-                                </tr>
-
-                                <tr>
-                                <tr>
-                                    <td>@Html.DisplayNameFor(model => model.Password)</td>
-                                    <td>@Html.DisplayFor(model => model.Password)</td>
-                                </tr>
-                                <tr>
-                                    <td>@Html.DisplayNameFor(model => model.Address)</td>
-                                    <td>@Html.DisplayFor(model => model.Address)</td>
-                                </tr>
-                                <tr>
-                                    <td>@Html.DisplayNameFor(model => model.ZipCode)</td>
-                                    <td>@Html.DisplayFor(model => model.ZipCode)</td>
-                                </tr>
-                                <tr>
-                                    <td>@Html.DisplayNameFor(model => model.Area)</td>
-                                    <td>@Html.DisplayFor(model => model.Area)</td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-
-                        <div style="float:left;width:auto;padding-left:10vh;padding-right:1vh"><a href="./UserEdit" class="btn btn-success">Edit</a></div>
-                        <div style="float:left;width:auto"><a href="/Order/OrderList" class="btn btn-success">Show Order History</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-footer">
-                
-            </div>
-
-        
-    </div>
-</body>
-</html>
+						<div style="float:left;width:auto;padding-left:10vh;padding-right:1vh"><a href="./UserEdit" class="btn btn-success">Edit</a></div>
+						<div style="float:left;width:auto"><a href="/Order/OrderList" class="btn btn-success">Show Order History</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@Html.Partial("~/Views/Shared/Footer.cshtml")

@@ -1,70 +1,67 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Group 4 WebApps Project</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Group 4 WebApps Project</title>
 
 
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/cssGlobal.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/cssBackground.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/cssModal.css" />
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="~/Content/cssGlobal.css" />
+	<link rel="stylesheet" type="text/css" href="~/Content/cssBackground.css" />
+	<link rel="stylesheet" type="text/css" href="~/Content/cssFooter.css"/>
+	<link rel="stylesheet" type="text/css" href="~/Content/cssModal.css" />
 
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+	<script src="~/Scripts/jquery-3.3.1.js"></script>
+	<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
-    <script src="~/Scripts/jquery.validate.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+	<script src="~/Scripts/jquery.validate.js"></script>
+	<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
-    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+	<script src="~/Scripts/modernizr-2.8.3.js"></script>
 
-    <script src="~/Scripts/bootstrap.js"></script>
+	<script src="~/Scripts/bootstrap.js"></script>
 
-    <script src="~/Scripts/feedback-modal.js"></script>
+	<script src="~/Scripts/feedback-modal.js"></script>
 
 
 </head>
 
-<body class="backgroundBody" >
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/Moviemonster/Index">MovieMonster</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                <li><a href="/Movie/MovieList">Movies</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-               
-                    @if (Session["Login"] == null)
-                    {
-                        <li><a href="/User/UserLogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                        <li><a href="/User/UserRegister"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>}
-                    else if (Int32.TryParse(Session["Login"].ToString(), out _))
-                    {
-                        <li><a href="/User/UserLogout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                        <li><a href="/User/UserDetail"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-                    }
-                    <li><a href="/Cart/CartList" id="cartCount"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-                </ul>
-            </div>
-</nav>
-    <div class="container body-content">
-        <video class="video-fluid" autoplay loop muted id="myVideo">
-            <source src="https://mdbootstrap.com/img/video/Lines.mp4" type="video/mp4" />
-        </video>
-        @RenderBody()
-        <hr />
-    </div>
-    <div class="footer">
-            <center><p>&copy; @DateTime.Now.Year Group 4 Production</p></center>
-    </div>
+<body class="backgroundBody">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/Moviemonster/Index">MovieMonster</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="/Movie/MovieList">Movies</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+
+					@if (Session["Login"] == null)
+					{
+						<li><a href="/User/UserLogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						<li><a href="/User/UserRegister"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>}
+					else if (Int32.TryParse(Session["Login"].ToString(), out _))
+					{
+						<li><a href="/User/UserLogout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+						<li><a href="/User/UserDetail"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+					}
+					<li><a href="/Cart/CartList" id="cartCount"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+				</ul>
+			</div>
+	</nav>
+	<div class="container body-content">
+		<video class="video-fluid" autoplay loop muted id="myVideo">
+			<source src="https://mdbootstrap.com/img/video/Lines.mp4" type="video/mp4" />
+		</video>
+		@RenderBody()
+	</div>
