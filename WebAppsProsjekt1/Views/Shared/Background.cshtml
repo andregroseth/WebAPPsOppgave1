@@ -29,7 +29,20 @@
 <script type="text/javascript">
 	$(window).on('load', function () {
 		$('a[data-loginModal=true]').click(function () {
-            
+
+            // Login backend-funksjon som kjøres når login-knapp i modalen trykkes
+            $("#loginModalBtn").click(function () {
+                var email = $('#email').val();
+				$.ajax({
+					url: '@Url.Action("UserLogin", "User")',
+					data: { id: email },
+					success: function () {
+					},
+					error: function () {
+						alert(email);
+					}
+				});
+			})
 		})
 	});
 </script>
