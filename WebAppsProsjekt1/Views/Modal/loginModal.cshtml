@@ -1,0 +1,56 @@
+﻿
+<div id="loginModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="loginContentDiv">
+                    <div class="main-div">
+                        @if (Session["Login"] != null)
+                        {
+                            <h2>@Session["Login"].ToString()</h2>
+                        }
+                        @using (Html.BeginForm())
+                        {
+                            try
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="form-headers">
+                                    <h1 class="login">Login</h1>
+                                </div>
+                                @*<div class="form-group">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                                    </div>*@
+                                @*</div>*@
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" class="btn btn-success" id="login" value="Login" />
+                                    </div>
+                                </div>
+                            }
+                            catch (System.Web.HttpException)
+                            {
+                                return;
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button><a href="/User/UserLogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></button>
+            </div>
+        </div>
+    </div>
+</div>

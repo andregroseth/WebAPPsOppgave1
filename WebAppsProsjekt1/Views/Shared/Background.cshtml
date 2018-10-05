@@ -26,6 +26,14 @@
 
 </head>
 
+<script type="text/javascript">
+	$(window).on('load', function () {
+		$('a[data-loginModal=true]').click(function () {
+            
+		})
+	});
+</script>
+
 <body class="backgroundBody" >
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -37,7 +45,7 @@
             </ul>
 			<ul class="nav navbar-nav navbar-right">
 				@if(Session["Login"] == null) {
-				<li><a href="/User/UserLogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<li><a href="#loginModal" data-toggle="modal" data-loginModal="true"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 				<li><a href="/User/UserRegister"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>}
 				else if (Int32.TryParse(Session["Login"].ToString(), out _))
 				{
@@ -50,6 +58,9 @@
     </nav>
     <div class="container body-content">
         @RenderBody()
+
+        @*Pop-up modalen som viser når man velger en film*@
+        @Html.Partial("~/Views/Modal/loginModal.cshtml")
         <hr />
     </div>
     <div class="footer">
