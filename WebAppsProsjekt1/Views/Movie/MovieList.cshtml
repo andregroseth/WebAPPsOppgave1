@@ -68,6 +68,11 @@ else if (Session["AccessFailedAdmin"] != null)
 			$('#movieCost').html(data_cost);
 			$('#movieId').html(data_id);
 
+            // Stopper trailer i å spille videre når modalen lukkes
+            $("#movieDetailsModal").on('hidden.bs.modal', function (e) {
+                $("#movieDetailsModal iframe").attr("src", $("#movieDetailsModal iframe").attr("src"));
+            });
+
 			// Legge film til shopping cart
 			$("#addToCartBtn").click(function () {
 				$.ajax({
