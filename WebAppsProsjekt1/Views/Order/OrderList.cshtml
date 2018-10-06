@@ -30,11 +30,11 @@ else if (Session["AccessUnauthorized"] != null)
 <table class="table table-striped">
     <thead>
         <tr class="row-name">
-			<th style="width:5%"></th>
+            <th style="width:5%"></th>
             <th>@Html.DisplayNameFor(model => model.Id)</th>
             <th>@Html.DisplayNameFor(model => model.Date)</th>
             <th>@Html.DisplayNameFor(model => model.UserId)</th>
-			<th style="width:20%"></th>
+            <th style="width:20%"></th>
             <th style="width:12%"></th>
         </tr>
     </thead>
@@ -43,16 +43,21 @@ else if (Session["AccessUnauthorized"] != null)
             @foreach (var item in Model)
             {
             <tr>
-				<td><div class="col-sm-2 hidden-xs"></div></td>
+                <td><div class="col-sm-2 hidden-xs"></div></td>
                 <td>@Html.DisplayFor(modelItem => item.Id)</td>
                 <td>@Html.DisplayFor(modelItem => item.Date)</td>
                 <td>@Html.DisplayFor(modelItem => item.UserId)</td>
-				<td><div class="col-sm-2 hidden-xs"></div></td>
+                <td><div class="col-sm-2 hidden-xs"></div></td>
                 <td class="td-actions">
                     <div style="max-width:5em;"><a href="/Order/OrderDetail?id=@item.Id" class="btn btn-success">Details</a></div>
                 </td>
             </tr>
         }
-    </tbody>
-</table>
-@Html.Partial("~/Views/Shared/Footer.cshtml")
+        </tbody>
+    </table>
+    <div class="footer">
+        <hr />
+        <center><p>&copy; @DateTime.Now.Year Group 4 Production</p></center>
+    </div>
+    </body>
+    </html>

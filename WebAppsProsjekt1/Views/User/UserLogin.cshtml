@@ -1,88 +1,93 @@
 ﻿@model WebAppsProsjekt1.Models.User
 @{
-	ViewBag.Title = "UserLogin";
-	Layout = "~/Views/Shared/Background.cshtml";
+    ViewBag.Title = "UserLogin";
+    Layout = "~/Views/Shared/Background.cshtml";
 }
 <link href="~/Content/cssUserLogin.css" rel="stylesheet" />
 
 @if (Session["Login"] != null)
 {
-	Session["LoginAlready"] = "true";
-	Response.Redirect("/Movie/MovieList");
+    Session["LoginAlready"] = "true";
+    Response.Redirect("/Movie/MovieList");
 }
 else if (Session["LoginFailed"] != null)
 {
-	<script type="text/javascript">
-		$(window).on('load', function () {
-			showFeedbackModal("Login failed.", "red", 2000);
-		});
-	</script>
-	Session.Remove("LoginFailed");
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            showFeedbackModal("Login failed.", "red", 2000);
+        });
+    </script>
+    Session.Remove("LoginFailed");
 }
 else if (Session["PurchaseFailedLogin"] != null)
 {
-	<script type="text/javascript">
-		$(window).on('load', function () {
-			showFeedbackModal("Login session is required for order.", "red", 4000);
-		});
-	</script>
-	Session.Remove("PurchaseFailedLogin");
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            showFeedbackModal("Login session is required for order.", "red", 4000);
+        });
+    </script>
+    Session.Remove("PurchaseFailedLogin");
 }
 else if (Session["AccessFailedLogin"] != null)
 {
-	<script type="text/javascript">
-		$(window).on('load', function () {
-			showFeedbackModal("Login session is required for access.", "red", 4000);
-		});
-	</script>
-	Session.Remove("AccessFailedLogin");
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            showFeedbackModal("Login session is required for access.", "red", 4000);
+        });
+    </script>
+    Session.Remove("AccessFailedLogin");
 }
 else if (Session["RegistrationSuccess"] != null)
 {
-	<script type="text/javascript">
-		$(window).on('load', function () {
-			showFeedbackModal("User registration successful.", "green", 4000);
-		});
-	</script>
-	Session.Remove("RegistrationSuccess");
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            showFeedbackModal("User registration successful.", "green", 4000);
+        });
+    </script>
+    Session.Remove("RegistrationSuccess");
 }
 
 <div id="feedback-modal" class="modal" role="dialog">
-	<div class="modal-body">
-		<p></p>
-	</div>
+    <div class="modal-body">
+        <p></p>
+    </div>
 </div>
 <h1 class="login">Login</h1>
 <div class="login-box-body" id="main-div">
-	@using (Html.BeginForm())
-	{
-		try
-		{
-		@Html.AntiForgeryToken()
-		<div class="row">
-			<div class="col-lg-4 form-wrapper">
-			</div>
-			<div class="col-lg-4" id="form">
-				<center>
-					<div class="form-group">
-						@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
-					</div>
-					<div class="form-group">
-						@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @type = "password" } })
-					</div>
-					<div class="form-group">
-						<input type="submit" class="btn btn-success btn-lg" id="login" value="Login" />
-					</div>
-				</center>
-				<div class="col-lg-4 form-wrapper">
-				</div>
-			</div>
-		</div>
-				}
-				catch (System.Web.HttpException)
-				{
-				return;
-				}
-				}
-			</div>
-@Html.Partial("~/Views/Shared/Footer.cshtml")
+    @using (Html.BeginForm())
+    {
+        try
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col-lg-4 form-wrapper">
+                </div>
+                <div class="col-lg-4" id="form">
+                    <center>
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                        </div>
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @type = "password" } })
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success btn-lg" id="login" value="Login" />
+                        </div>
+                    </center>
+                    <div class="col-lg-4 form-wrapper">
+                    </div>
+                </div>
+            </div>
+        }
+        catch (System.Web.HttpException)
+        {
+            return;
+        }
+    }
+</div>
+<div class="footer">
+    <hr />
+    <center><p>&copy; @DateTime.Now.Year Group 4 Production</p></center>
+</div>
+</body>
+</html>

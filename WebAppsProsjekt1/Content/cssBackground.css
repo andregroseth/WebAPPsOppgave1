@@ -52,7 +52,11 @@
     border-bottom: transparent solid 0.2vh;
 }
 
-.navbar-header :hover {
+.navbar-header :hover {p
     background-color: transparent;
     border-bottom: black solid 0.4vh;
+}
+
+#menuButton .icon-bar {
+    background: #95a5a6;
 }

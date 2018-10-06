@@ -1,7 +1,12 @@
 ﻿<link rel="stylesheet" type="text/css" href="~/Content/cssIndex.css" />
 @{
-	ViewBag.Title = "Index";
-	Layout = "~/Views/Shared/Background.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Background.cshtml";
 }
 <h1 class="movieMonster">MovieMonster</h1>
-@Html.Partial("~/Views/Shared/Footer.cshtml")
+<div class="footer">
+    <hr />
+    <center><p>&copy; @DateTime.Now.Year Group 4 Production</p></center>
+</div>
+</body>
+</html>
