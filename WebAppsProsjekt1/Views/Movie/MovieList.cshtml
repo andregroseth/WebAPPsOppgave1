@@ -58,13 +58,20 @@ else if (Session["AccessFailedAdmin"] != null)
 			var data_title = $(this).data('title');
 			var data_cost = $(this).data('cost');
 			var data_image = $(this).data('image');
-			var data_id = $(this).data('id');
+            var data_id = $(this).data('id');
+            var data_trailer = $(this).data('trailer');
 
 			// Legge data inn i div'en i modal-viewet
 			$('#movieTitle').html(data_title);
-			$('#movieImage').attr("src", data_image);
+            $('#movieImage').attr("src", data_image);
+            $('#movieTrailer').attr("src", data_trailer);
 			$('#movieCost').html(data_cost);
 			$('#movieId').html(data_id);
+
+            // Stopper trailer i å spille videre når modalen lukkes
+            $("#movieDetailsModal").on('hidden.bs.modal', function (e) {
+                $("#movieDetailsModal iframe").attr("src", $("#movieDetailsModal iframe").attr("src"));
+            });
 
 			// Legge film til shopping cart
 			$("#addToCartBtn").click(function () {

@@ -10,5 +10,6 @@ namespace WebAppsProsjekt1.Models
         public String Category { get; set; }
         public int Cost { get; set; }
         public string ImagePath { get; set; }
+        public string MovieSrc { get; set; }
     }
 }
