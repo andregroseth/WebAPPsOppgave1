@@ -33,7 +33,14 @@
     z-index: 10;
 }
 
+    .nav a {
+        color: #95a5a6;
+    }
 
+.navbar-fixed-top.scrolled {
+    background-color: #000;
+    transition: background-color 200ms linear;
+}
 
     .nav :hover {
         background-color: transparent;
