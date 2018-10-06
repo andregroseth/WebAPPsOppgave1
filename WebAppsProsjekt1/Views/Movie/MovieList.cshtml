@@ -79,6 +79,7 @@ else if (Session["AccessFailedAdmin"] != null)
 					url: '@Url.Action("AddMovieToCart", "Movie")',
 					data: { id: document.getElementById("movieId").innerHTML },
 					success: function () {
+						showFeedbackModal(document.getElementById("movieTitle").innerHTML + " was added to cart.", "green");
 					},
 					error: function () {
 						alert("Feil");
