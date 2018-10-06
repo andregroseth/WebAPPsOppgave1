@@ -72,9 +72,9 @@ a:hover {
 }
 
 .tile__title {
-    position: absolute;
-    bottom: 0;
-    padding: 1vh;
+	position: absolute;
+	bottom: 0;
+	padding: 1vh;
 }
 
 .row__inner:hover {

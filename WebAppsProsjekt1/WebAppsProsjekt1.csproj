@@ -194,6 +194,7 @@
     <Content Include="Content\cssIndex.css" />
     <Content Include="Content\cssMovieList.css" />
     <Content Include="Content\cssBackground.css" />
+    <Content Include="Content\images\icon\favicon.ico" />
     <Content Include="Content\images\movie\cars.jpg" />
     <Content Include="Content\images\movie\dawnofthedead.jpg" />
     <Content Include="Content\images\movie\dracula.jpg" />

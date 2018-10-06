@@ -14,7 +14,7 @@
 <h1>Order Detail</h1>
 <div class="container-fluid" id="cart_container">
 
-        <table class="table table-hover">
+        <table class="table">
             <thead>
                 <tr>
                     <th style="width:50%">Movie</th>
@@ -53,6 +53,7 @@
                     <td><div class="col-sm-2 hidden-xs"></div></td>
                     <td class="hidden-xs text-center"><strong>@(Model.Sum(i => i.Cost)) Kroner</strong></td>
                     <td class="hidden-xs text-center"><strong>Movies: @Model.Count()</strong></td>
+					<td><div class="col-sm-2 hidden-xs"></div></td>
                     <td>@Html.ActionLink("Back", "OrderList", "Order", new { @class = "btn btn-success" })</td>
                 </tr>
             </tfoot>
