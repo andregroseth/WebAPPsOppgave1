@@ -3,13 +3,10 @@
 @{
     ViewBag.Title = "OrderList";
     Layout = "~/Views/Shared/Background.cshtml";
-
 }
 @if (Session["Login"] == null)
 {
-
     Response.Redirect("/User/UserLogin");
-
 }
 else if (Session["UnauthorizedAccess"] != null)
 {
@@ -58,7 +55,6 @@ else if (Session["UnauthorizedAccess"] != null)
             </td>
         </tr>
     }
-
 </table>
 </body>
 </html>

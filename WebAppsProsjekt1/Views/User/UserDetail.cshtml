@@ -4,20 +4,15 @@
     ViewBag.Title = "UserDetail";
     Layout = "~/Views/Shared/Background.cshtml";
 }
+<link href="~/Content/cssUserDetail.css" rel="stylesheet" />
 @if (Session["Login"] == null)
 {
-<<<<<<< Updated upstream
 
-    Response.Redirect("UserLogin");
-
-=======
 	Response.Redirect("UserLogin");
->>>>>>> Stashed changes
-}
-<h2>User Detail</h2>
-<div>
-<<<<<<< Updated upstream
 
+}
+<h1>User Detail</h1>
+<div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -69,7 +64,6 @@
             @Html.DisplayFor(model => model.Area)
         </dd>
     </dl>
-=======
 	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
 		<div class="panel panel-info">
 			<div class="panel-heading">
@@ -115,10 +109,9 @@
 			</div>
 		</div>
 	</div>
->>>>>>> Stashed changes
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
     @Html.ActionLink("Show Order History", "OrderList", "Order")
 </p>
 </body>
