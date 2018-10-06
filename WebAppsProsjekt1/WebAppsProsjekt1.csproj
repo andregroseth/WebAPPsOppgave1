@@ -192,7 +192,7 @@
     <Content Include="Content\cssCartList.css" />
     <Content Include="Content\cssFooter.css" />
     <Content Include="Content\cssGlobal.css" />
-    <Content Include="Content\cssModalFeedback.css" />
+    <Content Include="Content\cssFeedbackModal.css" />
     <Content Include="Content\cssIndex.css" />
     <Content Include="Content\cssMovieList.css" />
     <Content Include="Content\cssBackground.css" />

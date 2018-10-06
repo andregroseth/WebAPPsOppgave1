@@ -13,7 +13,7 @@ else if (Session["AccessUnauthorized"] != null)
 {
     <script type="text/javascript">
         $(window).on('load', function () {
-            showFeedbackModal("You are not authorized to access this order.", "red");
+            showFeedbackModal("You are not authorized to access this order.", "red", 4000);
         });
     </script>
     Session.Remove("AccessUnauthorized");

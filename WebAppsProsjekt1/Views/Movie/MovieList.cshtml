@@ -9,7 +9,7 @@
 {
 	<script type="text/javascript">
 		$(window).on('load', function () {
-			showFeedbackModal("Order confirmed.", "green");
+			showFeedbackModal("Order confirmed.", "green", 4000);
 		});
 	</script>
 	Session.Remove("PurchaseSuccess");
@@ -18,7 +18,7 @@ else if (Session["PurchaseFailedEmpty"] != null)
 {
 	<script type="text/javascript">
 		$(window).on('load', function () {
-			showFeedbackModal("Empty order.", "red");
+			showFeedbackModal("Empty order.", "red", 4000);
 		});
 	</script>
 	Session.Remove("PurchaseFailedEmpty");
@@ -27,7 +27,7 @@ else if (Session["LoginSuccess"] != null)
 {
 	<script type="text/javascript">
 		$(window).on('load', function () {
-			showFeedbackModal("Login successful.", "green");
+			showFeedbackModal("Login successful.", "green", 2000);
 		});
 	</script>
 	Session.Remove("LoginSuccess");
@@ -36,7 +36,7 @@ else if (Session["LoginAlready"] != null)
 {
 	<script type="text/javascript">
 		$(window).on('load', function () {
-			showFeedbackModal("Already logged in.", "red");
+			showFeedbackModal("Already logged in.", "red", 4000);
 		});
 	</script>
 	Session.Remove("LoginAlready");
@@ -45,7 +45,7 @@ else if (Session["AccessFailedAdmin"] != null)
 {
 	<script type="text/javascript">
 		$(window).on('load', function () {
-			showFeedbackModal("Admin session is required for access.", "red");
+			showFeedbackModal("Admin session is required for access.", "red", 4000);
 		});
 	</script>
 	Session.Remove("AccessFailedAdmin");
@@ -79,7 +79,8 @@ else if (Session["AccessFailedAdmin"] != null)
 					url: '@Url.Action("AddMovieToCart", "Movie")',
 					data: { id: document.getElementById("movieId").innerHTML },
 					success: function () {
-						showFeedbackModal(document.getElementById("movieTitle").innerHTML + " was added to cart.", "green");
+						showFeedbackModal(document.getElementById("movieTitle").innerHTML + " was added to cart.", "green", 2000);
+						$('#addToCartBtn').off('click');
 					},
 					error: function () {
 						alert("Feil");

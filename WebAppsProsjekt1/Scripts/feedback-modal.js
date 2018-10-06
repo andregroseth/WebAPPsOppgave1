@@ -1,6 +1,6 @@
-﻿function showFeedbackModal(inputString, color) {
+﻿function showFeedbackModal(inputString, color, delay) {
 	$("#feedback-modal").find('p').html(inputString);
 	$("#feedback-modal").css('background-color', color);
 	$("#feedback-modal").slideToggle().slideDown();
-	$("#feedback-modal").delay(4000).slideToggle().slideUp();
+	$("#feedback-modal").delay(delay).slideToggle().slideUp();
 }

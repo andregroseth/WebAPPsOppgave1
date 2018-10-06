@@ -14,7 +14,7 @@ else if (Session["LoginFailed"] != null)
 {
 	<script type="text/javascript">
 		$(window).on('load', function () {
-			showFeedbackModal("Login failed.", "red");
+			showFeedbackModal("Login failed.", "red", 2000);
 		});
 	</script>
 	Session.Remove("LoginFailed");
@@ -23,7 +23,7 @@ else if (Session["PurchaseFailedLogin"] != null)
 {
 	<script type="text/javascript">
 		$(window).on('load', function () {
-			showFeedbackModal("Login session is required for order.", "red");
+			showFeedbackModal("Login session is required for order.", "red", 4000);
 		});
 	</script>
 	Session.Remove("PurchaseFailedLogin");
@@ -32,7 +32,7 @@ else if (Session["AccessFailedLogin"] != null)
 {
 	<script type="text/javascript">
 		$(window).on('load', function () {
-			showFeedbackModal("Login session is required for access.", "red");
+			showFeedbackModal("Login session is required for access.", "red", 4000);
 		});
 	</script>
 	Session.Remove("AccessFailedLogin");
@@ -41,7 +41,7 @@ else if (Session["RegistrationSuccess"] != null)
 {
 	<script type="text/javascript">
 		$(window).on('load', function () {
-			showFeedbackModal("User registration successful.", "green");
+			showFeedbackModal("User registration successful.", "green", 4000);
 		});
 	</script>
 	Session.Remove("RegistrationSuccess");
