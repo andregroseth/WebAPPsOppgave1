@@ -19,8 +19,9 @@ namespace WebAppsProsjekt1.Models
 						Title = "The Matrix",
 						Category = "Sci-Fi",
 						Cost = 90,
-						ImagePath = "/Content/images/movie/matrixImage.jpg"
-					},
+						ImagePath = "/Content/images/movie/matrixImage.jpg",
+                        MovieSrc = "https://www.youtube.com/embed/m8e-FF8MsqU"
+                    },
 
 					new Movie
 					{
