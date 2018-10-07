@@ -28,6 +28,10 @@ namespace WebAppsProsjekt1.Controllers
                 Session["Login"] = db.GetSession(user).ToString();
 				Session["LoginSuccess"] = "true";
                 Session.Remove("LoginFailed");
+                if (db.checkIfAdmin() == true) {
+                    Session["IfAdmin"] = "true";
+                    return RedirectToAction("Movielist", "Movie");
+                }
                 return RedirectToAction("Movielist", "Movie");
             }
             Session["LoginFailed"] = "true";
@@ -87,12 +91,17 @@ namespace WebAppsProsjekt1.Controllers
         public ActionResult UserDelete(int Id)
         {
             var db = new DBUser();
-            bool OK = db.DeleteUser(Id);
-            if (OK)
+            if (db.checkIfAdmin() == true)
             {
-                return RedirectToAction("UserList");
+                bool OK = db.DeleteUser(Id);
+                if (OK)
+                {
+                    return RedirectToAction("UserList");
+                }
+                return View();
             }
-            return View();
+            Session["AccessFailedAdmin"] = "true";
+            return RedirectToAction("MovieList", "Movie");
         }
 
         public ActionResult UserDetail()
@@ -111,14 +120,30 @@ namespace WebAppsProsjekt1.Controllers
                 return RedirectToAction("UserLogin");
             }
         }
+        public ActionResult UserDetailAdminView(int id) {
+            var db = new DBUser();
+            try
+            {
+                if (db.checkIfAdmin() == true)
+                {          
+                    var oneUser = db.GetUserInfo(id);
+                    return View(oneUser);
+                }
+                Session["AccessFailedAdmin"] = "true";
+                return RedirectToAction("MovieList", "Movie");
+            }
+            catch {
+                Session["AccessFailedLogin"] = "true";
+                return RedirectToAction("UserLogin");
+            }
+        }
 
         //Sjekker om Email eksistere fra før.
         public JsonResult CheckEmail(string Email)
         {
             using (var db = new DB())
             {
-                  
-                return Json(!db.User.Any(x => x.Email == Email), JsonRequestBehavior.AllowGet);
+               return Json(!db.User.Any(x => x.Email == Email), JsonRequestBehavior.AllowGet);
             }
         }
 

@@ -129,7 +129,6 @@ namespace WebAppsProsjekt1.Models
                 if (oneUser == null)
                 {
                     return null;
-
                 }
                 else
                 {
@@ -155,14 +154,12 @@ namespace WebAppsProsjekt1.Models
         {
             try
             {
-               
                 int.TryParse(HttpContext.Current.Session["Login"].ToString(), out int userId);
                 UserHelper oneUser = GetUserInfo(userId);
                 if (oneUser.Userlvl > 0)
                 {
                     return true;
                 }
-
                 return false;
             }
             catch
@@ -170,6 +167,5 @@ namespace WebAppsProsjekt1.Models
                 return false;
             }
         }
-
     }
 }
