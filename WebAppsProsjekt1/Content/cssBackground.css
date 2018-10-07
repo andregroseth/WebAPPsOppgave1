@@ -52,9 +52,19 @@
     border-bottom: transparent solid 0.2vh;
 }
 
-.navbar-header :hover {p
+.navbar-header :hover {
     background-color: transparent;
     border-bottom: black solid 0.4vh;
+}
+
+@media only screen and (max-width: 766px) {
+    .collapsing, .in {
+        background-color: #000;
+    }
+
+    .collapsing ul li a:hover, .in ul li a:hover {
+        color: #000 !important;
+    }
 }
 
 #menuButton .icon-bar {
