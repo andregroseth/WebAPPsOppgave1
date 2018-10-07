@@ -102,13 +102,29 @@ namespace WebAppsProsjekt1.Models
 
         }
 
-        public bool DeleteUser(int Id)
+        public bool DeleteUser(int id)
         {
             using (var db = new DB())
             {
                 try
                 {
-                    var DeleteUserRad = db.User.FirstOrDefault(u => u.Id == Id);
+                    var DeleteUserRad = db.User.FirstOrDefault(u => u.Id == id);
+                    var DeleteOrderRad = db.Order.Where(x => x.User.Id == DeleteUserRad.Id).ToList();
+                    if (DeleteOrderRad != null)
+                    {
+                        System.Diagnostics.Debug.Write("AIHODASHDFNADK" + DeleteOrderRad);
+                        foreach (var item in DeleteOrderRad)
+                        {
+                           
+                            var DeleteOrderlineRad = db.Orderline.Where(a => a.Order.Id == item.Id);
+                            foreach (var itemline in DeleteOrderlineRad)
+                            {
+                                db.Orderline.Remove(itemline);
+                            }
+                            db.Order.Remove(item);
+                        }
+
+                    }
                     db.User.Remove(DeleteUserRad);
                     db.SaveChanges();
                     return true;

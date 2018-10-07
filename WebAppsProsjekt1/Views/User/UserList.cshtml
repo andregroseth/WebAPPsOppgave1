@@ -76,8 +76,7 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Details", "UserDetailAdminView", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "UserDelete", new { id = item.Id })
-        </td>
+            @Html.ActionLink("Delete","UserDelete",new { id = item.Id})
     </tr>
     }
 </table>

@@ -88,12 +88,12 @@ namespace WebAppsProsjekt1.Controllers
             return View();
         }
 
-        public ActionResult UserDelete(int Id)
+        public ActionResult UserDelete(int id)
         {
             var db = new DBUser();
             if (db.checkIfAdmin() == true)
             {
-                bool OK = db.DeleteUser(Id);
+                bool OK = db.DeleteUser(id);
                 if (OK)
                 {
                     return RedirectToAction("UserList");
