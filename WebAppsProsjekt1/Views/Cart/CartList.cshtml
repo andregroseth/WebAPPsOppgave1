@@ -11,10 +11,8 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th style="width:50%">Movie</th>
-                    <th style="width:10%">Price</th>
-                    <th style="width:20%"></th>
-                    <th style="width:10%"></th>
+                    <th style="width:20%">Movie</th>
+                    <th class="hidden-xs" style="width:10%">Price</th>
                     <th style="width:10%"></th>
                 </tr>
             </thead>
@@ -26,16 +24,15 @@
                         @Html.HiddenFor(model => Model[i].Id, new { htmlAttributes = new { @class = "form-control", id = "movieId" } })
                         <td data-th="Movie">
                             <div class="row">
-                                <div class="col-sm-2 hidden-xs"><img src="@Model[i].ImagePath" style="width:7vh; height:10vh;" /></div>
-                                <div class="col-sm-10">
+                                <div class="col-sm-5"><img src="@Model[i].ImagePath" style="width:7em; height:10em;" /></div>
+                                <div class="col-sm-5">
                                     <h2>@Model[i].Title</h2>
                                     <p>@Model[i].Category</p>
+									<p class="hidden-lg hidden-md hidden-sm">@Model[i].Cost Kr</p>
                                 </div>
                             </div>
                         </td>
-                        <td data-th="Price">@Model[i].Cost Kr</td>
-                        <td><div class="col-sm-2 hidden-xs"></div></td>
-                        <td><div class="col-sm-2 hidden-xs"></div></td>
+                        <td data-th="Price" class="hidden-xs">@Model[i].Cost Kr</td>
                         <td class="actions" data-th="">
                             <a href="/Cart/CartDelete?id=@Model[i].Id" class="btn btn-danger">Remove</a>
                         </td>
@@ -43,15 +40,15 @@
                 }
             </tbody>
             <tfoot>
-                <tr class="visible-xs">
-                    <td class="text-center"><strong></strong></td>
-                </tr>
+				<tr>
+					<td class="hidden-xs"></td>
+					<td><strong>Total: @(Model.Sum(i => i.Cost)) Kr</strong></td>
+					<td><strong>Movies: @Model.Count</strong></td>
+				</tr>
                 <tr>
-                    <td><div class="col-sm-2 hidden-xs"></div></td>
-                    <td class="hidden-xs text-center"><strong>@(Model.Sum(i => i.Cost)) Kr</strong></td>
-                    <td class="hidden-xs text-center"><strong>Movies: @Model.Count</strong></td>
+					<td class="hidden-xs"></td>
                     <td>@Html.ActionLink("Clear Cart", "CartClear", "Cart", new { @class = "btn btn-danger" })</td>
-                    <td><input type="submit" class="btn btn-success" value="Checkout" /></td>
+                    <td><input type="submit" class="btn btn-success" value="Checkout"/></td>
                 </tr>
             </tfoot>
         </table>
