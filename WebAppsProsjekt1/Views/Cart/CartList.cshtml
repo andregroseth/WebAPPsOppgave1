@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td data-th="Price">@Model[i].Cost Kroner</td>
+                        <td data-th="Price">@Model[i].Cost Kr</td>
                         <td><div class="col-sm-2 hidden-xs"></div></td>
                         <td><div class="col-sm-2 hidden-xs"></div></td>
                         <td class="actions" data-th="">
@@ -48,7 +48,7 @@
                 </tr>
                 <tr>
                     <td><div class="col-sm-2 hidden-xs"></div></td>
-                    <td class="hidden-xs text-center"><strong>@(Model.Sum(i => i.Cost)) Kroner</strong></td>
+                    <td class="hidden-xs text-center"><strong>@(Model.Sum(i => i.Cost)) Kr</strong></td>
                     <td class="hidden-xs text-center"><strong>Movies: @Model.Count</strong></td>
                     <td>@Html.ActionLink("Clear Cart", "CartClear", "Cart", new { @class = "btn btn-danger" })</td>
                     <td><input type="submit" class="btn btn-success" value="Checkout" /></td>
