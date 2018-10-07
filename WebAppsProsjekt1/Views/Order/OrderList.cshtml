@@ -38,26 +38,22 @@ else if (Session["AccessUnauthorized"] != null)
             <th style="width:12%"></th>
         </tr>
     </thead>
-    <tbody>
-        <tr class="row-content">
-            @foreach (var item in Model)
-            {
-            <tr>
-                <td><div class="col-sm-2 hidden-xs"></div></td>
-                <td>@Html.DisplayFor(modelItem => item.Id)</td>
-                <td>@Html.DisplayFor(modelItem => item.Date)</td>
-                <td>@Html.DisplayFor(modelItem => item.UserId)</td>
-                <td><div class="col-sm-2 hidden-xs"></div></td>
-                <td class="td-actions">
-                    <div style="max-width:5em;"><a href="/Order/OrderDetail?id=@item.Id" class="btn btn-success">Details</a></div>
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
-    <div class="footer">
-        <hr />
-        <center><p>&copy; @DateTime.Now.Year Group 4 Production</p></center>
-    </div>
-    </body>
-    </html>
+	<tbody>
+		<tr class="row-content">
+			@foreach (var item in Model)
+			{
+			<tr>
+				<td><div class="col-sm-2 hidden-xs"></div></td>
+				<td>@Html.DisplayFor(modelItem => item.Id)</td>
+				<td>@Html.DisplayFor(modelItem => item.Date)</td>
+				<td>@Html.DisplayFor(modelItem => item.UserId)</td>
+				<td><div class="col-sm-2 hidden-xs"></div></td>
+				<td class="td-actions">
+					<div style="max-width:5em;"><a href="/Order/OrderDetail?id=@item.Id" class="btn btn-success">Details</a></div>
+				</td>
+			</tr>
+			}
+	</tbody>
+</table>
+</body>
+</html>

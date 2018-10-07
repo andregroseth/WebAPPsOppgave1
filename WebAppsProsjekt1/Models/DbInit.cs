@@ -6,10 +6,9 @@ using System.Web;
 
 namespace WebAppsProsjekt1.Models
 {       //bruk DropCreateDatabaseAlways lokalt og CreateDatabaseIfNotExists ved publish til Azure.Ved endringer i database struktur må sql server i Azure cloud slettes og det må opprettes en ny.
-        public class DbInit : CreateDatabaseIfNotExists<DB>
-
-        // public class DbInit : DropCreateDatabaseAlways<DB>
-		{
+		//public class DbInit : CreateDatabaseIfNotExists<DB>
+		public class DbInit : DropCreateDatabaseAlways<DB>
+	{
 			protected override void Seed(DB context)
 			{
 				List<Movie> MovieList = new List<Movie>
@@ -471,6 +470,7 @@ namespace WebAppsProsjekt1.Models
 					Area = "test"
 				};
 
+				DBUser dbUser = new DBUser();
 				List<User> UserList = new List<User>
 					{
 						new User
@@ -479,7 +479,7 @@ namespace WebAppsProsjekt1.Models
 							Email = "test@test.test",
 							Firstname = "testname",
 							Surname = "testsurname",
-							Password = "testpassword",
+							Password = dbUser.getHash("testpassword"),
 							Address = "testaddress",
 							Mail = testMail,
 						},
@@ -490,7 +490,7 @@ namespace WebAppsProsjekt1.Models
 							Email = "ola@gmail.com",
 							Firstname = "Ola",
 							Surname = "Nordmann",
-							Password = "hallo123",
+							Password = dbUser.getHash("hallo123"),
 							Address = "Sinsenveien 14",
 							Mail = testMail,
 						},
@@ -501,7 +501,7 @@ namespace WebAppsProsjekt1.Models
 							Email = "trude@oslomet.no",
 							Firstname = "Trude",
 							Surname = "Solberg",
-							Password = "prinsesse123",
+							Password = dbUser.getHash("prinsesse123"),
 							Address = "Frognerveien 24B",
 							Mail = testMail,
 						},
@@ -512,7 +512,7 @@ namespace WebAppsProsjekt1.Models
 							Email = "admin@oslomet.no",
 							Firstname = "Admin",
 							Surname = "Admin",
-							Password = "admin123",
+							Password = dbUser.getHash("admin123"),
 							Address = "Pilestredet 35",
 							Mail = testMail,
 						},

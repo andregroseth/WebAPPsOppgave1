@@ -11,7 +11,7 @@ namespace WebAppsProsjekt1.Models
         {
             int loginSession;
             using (var db = new DB()) {
-                var verifiedUser= db.User.FirstOrDefault(u =>u.Email == user.Email);
+                var verifiedUser = db.User.FirstOrDefault(u => u.Email == user.Email);
                 loginSession = verifiedUser.Id;
             }
             return loginSession;
@@ -21,9 +21,9 @@ namespace WebAppsProsjekt1.Models
             using (var db = new DB())
             {
                 User verifiedUser = db.User.FirstOrDefault(b => b.Email == user.Email);
-                if (verifiedUser != null)
+				if (verifiedUser != null)
                 {
-                    string password = user.Password;
+					string password = getHash(user.Password);
                     if (password != null)
                     {
                         bool verifiedPassword = verifiedUser.Password.SequenceEqual(password);
@@ -41,10 +41,8 @@ namespace WebAppsProsjekt1.Models
         {
             using (var db = new DB())
             {
-
                 List<UserHelper> AllUserInfo = db.User.Select(k => new UserHelper
                 {
-
                     Id = k.Id,
                     Userlvl = k.Userlvl,
                     Email = k.Email,
@@ -69,7 +67,7 @@ namespace WebAppsProsjekt1.Models
                 Email = InUser.Email,
                 Firstname = InUser.Firstname,
                 Surname = InUser.Surname,
-                Password = InUser.Password,
+                Password = getHash(InUser.Password),
                 Address = InUser.Address
             };
             using (var db = new DB())
@@ -132,7 +130,7 @@ namespace WebAppsProsjekt1.Models
                 }
                 else
                 {
-                    var oneUserOuptput = new UserHelper()
+                    var oneUserOutput = new UserHelper()
                     {
                         Id = oneUser.Id,
                         Userlvl = oneUser.Userlvl,
@@ -143,9 +141,8 @@ namespace WebAppsProsjekt1.Models
                         Address = oneUser.Address,
                         ZipCode = oneUser.Mail.ZipCode,
                         Area = oneUser.Mail.Area
-
                     };
-                    return oneUserOuptput;
+                    return oneUserOutput;
                 }
             }
         }
@@ -167,5 +164,14 @@ namespace WebAppsProsjekt1.Models
                 return false;
             }
         }
+
+		public string getHash(string password) {
+			byte[] unhashed, hashed;
+			var algorithm = System.Security.Cryptography.SHA256.Create();
+			unhashed = System.Text.Encoding.ASCII.GetBytes(password);
+			hashed = algorithm.ComputeHash(unhashed);
+			return System.Text.Encoding.UTF8.GetString(hashed);
+		}
+
     }
 }
