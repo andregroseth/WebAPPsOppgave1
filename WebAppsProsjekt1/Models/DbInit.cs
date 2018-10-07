@@ -8,7 +8,7 @@ namespace WebAppsProsjekt1.Models
 {       //bruk DropCreateDatabaseAlways lokalt og CreateDatabaseIfNotExists ved publish til Azure.Ved endringer i database struktur må sql server i Azure cloud slettes og det må opprettes en ny.
 		//public class DbInit : CreateDatabaseIfNotExists<DB>
 		public class DbInit : DropCreateDatabaseAlways<DB>
-		{
+	{
 			protected override void Seed(DB context)
 			{
 				List<Movie> MovieList = new List<Movie>
