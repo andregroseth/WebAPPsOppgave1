@@ -160,7 +160,7 @@ namespace WebAppsProsjekt1.Models
 
 					new Movie
 					{
-						Title = "Stars Wars Solo",
+						Title = "Solo: A Star Wars Story",
 						Category = "Sci-Fi",
 						Cost = 129,
 						ImagePath = "/Content/images/movie/solo.jpg",
@@ -209,7 +209,7 @@ namespace WebAppsProsjekt1.Models
 						Category = "Comedy",
 						Cost = 129,
 						ImagePath = "/Content/images/movie/thewolfofwallstreet.jpg",
-                        MovieSrc = "https://www.youtube.com/embed/m4NCribDx4U"
+                        MovieSrc = "https://www.youtube.com/embed/iszwuX1AK6A"
                     },
 
 					new Movie

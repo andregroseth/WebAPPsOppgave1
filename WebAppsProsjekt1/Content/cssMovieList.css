@@ -117,6 +117,22 @@ h2 {
 	text-align:center;
 }
 
+/* CSS for movieDetailsModal */
 .modal-content {
     background-color:rgba(6, 46, 71, 0.95);
 }
+
+#movieTrailerDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cart_container {
+    background: rgb(255, 255, 255, 0.1);
+    border-radius: 0.4vh;
+}
+
+    #cart_container thead {
+        
+    }

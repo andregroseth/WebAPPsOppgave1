@@ -60,13 +60,15 @@ else if (Session["AccessFailedAdmin"] != null)
 			var data_image = $(this).data('image');
             var data_id = $(this).data('id');
             var data_trailer = $(this).data('trailer');
+            var data_category = $(this).data('category');
 
 			// Legge data inn i div'en i modal-viewet
 			$('#movieTitle').html(data_title);
             $('#movieImage').attr("src", data_image);
             $('#movieTrailer').attr("src", data_trailer);
-			$('#movieCost').html(data_cost);
-			$('#movieId').html(data_id);
+			$('#movieCost').html(data_cost + " kr");
+            $('#movieId').html(data_id);
+            $('#movieCategory').html(data_category);
 
             // Stopper trailer i å spille videre når modalen lukkes
             $("#movieDetailsModal").on('hidden.bs.modal', function (e) {
