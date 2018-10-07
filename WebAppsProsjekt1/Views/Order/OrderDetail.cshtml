@@ -14,48 +14,46 @@
 <h1>Order Detail</h1>
 <div class="container-fluid" id="cart_container">
     <table class="table">
-        <thead>
-            <tr>
-                <th style="width:50%">Movie</th>
-                <th style="width:10%">Price</th>
-                <th style="width:20%"></th>
-                <th style="width:10%"></th>
-                <th style="width:10%"></th>
-            </tr>
-        </thead>
+		<thead>
+			<tr>
+				<th style="width:20%">Movie</th>
+				<th class="hidden-xs" style="width:10%">Price</th>
+				<th style="width:10%"></th>
+			</tr>
+		</thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    @Html.HiddenFor(model => item.Id, new { htmlAttributes = new { @class = "form-control", id = "movieId" } })
-                    <td data-th="Movie">
-                        <div class="row">
-                            <div class="col-sm-2 hidden-xs"><img src="@item.ImagePath" style="width:7vh; height:10vh;" /></div>
-                            <div class="col-sm-10">
-                                <h2>@item.Title</h2>
-                                <p>@item.Category</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td data-th="Price">@item.Cost Kr</td>
-                    <td><div class="col-sm-2 hidden-xs"></div></td>
-                    <td><div class="col-sm-2 hidden-xs"></div></td>
-
-                </tr>
+			<tr>
+				@Html.HiddenFor(model => item.Id, new { htmlAttributes = new { @class = "form-control", id = "movieId" } })
+				<td data-th="Movie">
+					<div class="row">
+						<div class="col-sm-5"><img src="@item.ImagePath" style="width:7em; height:10em;" /></div>
+						<div class="col-sm-5">
+							<h2>@item.Title</h2>
+							<p>@item.Category</p>
+							<p class="hidden-lg hidden-md hidden-sm">@item.Cost Kr</p>
+						</div>
+					</div>
+				</td>
+				<td data-th="Price" class="hidden-xs">@item.Cost Kr</td>
+				<td class="actions" data-th="">
+				</td>
+			</tr>
             }
         </tbody>
-        <tfoot>
-            <tr class="visible-xs">
-                <td class="text-center"><strong></strong></td>
-            </tr>
-            <tr>
-                <td><div class="col-sm-2 hidden-xs"></div></td>
-                <td class="hidden-xs text-center"><strong>@(Model.Sum(i => i.Cost)) Kr</strong></td>
-                <td class="hidden-xs text-center"><strong>Movies: @Model.Count()</strong></td>
-                <td><div class="col-sm-2 hidden-xs"></div></td>
-                <td>@Html.ActionLink("Back", "OrderList", "Order", new { @class = "btn btn-success" })</td>
-            </tr>
-        </tfoot>
+		<tfoot>
+			<tr>
+				<td class="hidden-xs"></td>
+				<td><strong>Total: @(Model.Sum(i => i.Cost)) Kr</strong></td>
+				<td><strong>Movies: @Model.Count()</strong></td>
+			</tr>
+			<tr>
+				<td class="hidden-xs"></td>
+				<td><div class="col-sm-2"></div></td>
+				<td>@Html.ActionLink("Back", "OrderList", "Order", new { @class = "btn btn-success" })</td>
+			</tr>
+		</tfoot>
     </table>
 </div>
 </body>
