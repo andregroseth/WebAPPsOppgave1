@@ -21,13 +21,13 @@ namespace WebAppsProsjekt1.Models
             using (var db = new DB())
             {
                 User verifiedUser = db.User.FirstOrDefault(b => b.Email == user.Email);
-				if (verifiedUser != null)
+                if (verifiedUser != null)
                 {
-					string password = getHash(user.Password);
+                    string password = getHash(user.Password);
                     if (password != null)
                     {
                         bool verifiedPassword = verifiedUser.Password.SequenceEqual(password);
-                        if(verifiedPassword)
+                        if (verifiedPassword)
                         {
                             return true;
                         }
@@ -115,7 +115,7 @@ namespace WebAppsProsjekt1.Models
                         System.Diagnostics.Debug.Write("AIHODASHDFNADK" + DeleteOrderRad);
                         foreach (var item in DeleteOrderRad)
                         {
-                           
+
                             var DeleteOrderlineRad = db.Orderline.Where(a => a.Order.Id == item.Id);
                             foreach (var itemline in DeleteOrderlineRad)
                             {
@@ -160,6 +160,54 @@ namespace WebAppsProsjekt1.Models
                     };
                     return oneUserOutput;
                 }
+            }
+        }
+        public UserHelperAdmin GetUserInfoEdit(UserHelper Helper){
+            UserHelperAdmin editInfo = new UserHelperAdmin()
+            {
+                Id=Helper.Id,
+                Userlvl = Helper.Userlvl,
+                Email = Helper.Email,
+                Firstname = Helper.Firstname,
+                Surname = Helper.Surname,
+                Password = Helper.Password,
+                ConfirmEmail=Helper.Email,
+                Address = Helper.Address,
+                ZipCode = Helper.ZipCode,
+                Area = Helper.Area
+            };
+            return editInfo;
+        }
+
+        public bool EditUser(int id, UserHelperAdmin inUser) {
+            var db = new DB();
+            try {
+                User find = db.User.Find(id);
+                find.Userlvl = inUser.Userlvl;
+                find.Email = inUser.Email;
+                find.Firstname = inUser.Firstname;
+                find.Surname = inUser.Surname;
+                find.Password = inUser.Password;
+                find.Address = inUser.Address;
+                Mail inUserMail = db.Mail.Find(inUser.ZipCode);
+                if (inUserMail != null)
+                {
+                    if (find.Mail != inUserMail)
+                    {
+                        find.Mail = inUserMail;
+                    }
+                }
+                else {
+                    var newMail = new Mail() {
+                        ZipCode = inUser.ZipCode,
+                        Area = inUser.Area
+                    };
+                }
+                db.SaveChanges();
+                return true;
+            }
+            catch {
+                return false;
             }
         }
 

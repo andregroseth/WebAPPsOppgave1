@@ -1,0 +1,86 @@
+﻿@model WebAppsProsjekt1.Models.UserHelperAdmin
+@{
+    ViewBag.Title = "UserEdit";
+    Layout = "~/Views/Shared/Background.cshtml";
+}
+<link href="~/Content/cssUserRegister.css" rel="stylesheet" />
+<script src="~/Scripts/UserRegister.js"></script>
+
+<h1>Register User</h1>
+<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 form-container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    <center>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.Firstname)
+                    @Html.EditorFor(model => model.Firstname, new { @id = "first_name", htmlAttributes = new { @class = "form-control input-lg", @tabindex = "1" } })
+                    @Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.Surname)
+                    @Html.EditorFor(model => model.Surname, new { @id = "last_name", htmlAttributes = new { @class = "form-control input-lg", @tabindex = "2" } })
+                    @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.Address)
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control input-lg", @tabindex = "3" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.ZipCode)
+                    @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control input-lg", @tabindex = "4" } })
+                    @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.Email)
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-lg", @id = "email", @tabindex = "5" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.ConfirmEmail)
+                    @Html.EditorFor(model => model.ConfirmEmail, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Confirm Email", @tabindex = "6" } })
+                    @Html.ValidationMessageFor(model => model.ConfirmEmail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.Password, new { htmlAttributes = new { @class = "form-control input-lg", @tabindex = "7" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.Userlvl)
+                    @Html.EditorFor(model => model.Userlvl, new { htmlAttributes = new { @class = "form-control input-lg", @tabindex = "9" } })
+                    @Html.ValidationMessageFor(model => model.Userlvl, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="Save" class="btn btn-success btn-lg" tabindex="10">
+        @Html.ActionLink("Back", "UserList", new { tom = "" }, new { @class = "btn btn-primary btn-lg" , @tabindex="11"})
+    </center>
+    }
+</div>
+</body>
+</html>

@@ -137,7 +137,34 @@ namespace WebAppsProsjekt1.Controllers
                 return RedirectToAction("UserLogin");
             }
         }
-
+        public ActionResult UserEdit(int id)
+        {
+            var db = new DBUser();
+            if (Session["Login"] == null)
+            {
+                Session["AccessFailedLogin"] = "true";
+                return RedirectToAction("UserLogin");
+            }
+            if (db.checkIfAdmin() == true)
+            {
+                UserHelper oneUser= db.GetUserInfo(id);
+                UserHelperAdmin newOneUser = db.GetUserInfoEdit(oneUser);
+                return View(newOneUser);
+            }
+            Session["AccessFailedAdmin"] = "true";
+            return RedirectToAction("MovieList", "Movie");
+        }
+        [HttpPost]
+        public ActionResult UserEdit(int id, UserHelperAdmin edituser) {
+            if (ModelState.IsValid) {
+                var db = new DBUser();
+                bool EditOk = db.EditUser(id,edituser);
+                if (EditOk) {
+                    return RedirectToAction("UserList");
+                }
+            }
+            return View();
+        }
         //Sjekker om Email eksistere fra før.
         public JsonResult CheckEmail(string Email)
         {
