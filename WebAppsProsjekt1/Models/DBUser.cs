@@ -189,7 +189,7 @@ namespace WebAppsProsjekt1.Models
                 find.Surname = inUser.Surname;
                 find.Password = inUser.Password;
                 find.Address = inUser.Address;
-                Mail inUserMail = db.Mail.Find(inUser.ZipCode);
+                Mail inUserMail = db.Mail.FirstOrDefault(m => m.ZipCode == inUser.ZipCode);
                 if (inUserMail != null)
                 {
                     if (find.Mail != inUserMail)
@@ -202,6 +202,7 @@ namespace WebAppsProsjekt1.Models
                         ZipCode = inUser.ZipCode,
                         Area = inUser.Area
                     };
+                    find.Mail = newMail;
                 }
                 db.SaveChanges();
                 return true;
