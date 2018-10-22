@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WebAppsProsjekt1.Models;
 
-namespace WebAppsProsjekt1.Models
-{
+namespace WebAppsProsjekt1.DAL
+{ 
     public class DBOrder
     {
         public void AddOrder(List<Movie> inMovie, int id)

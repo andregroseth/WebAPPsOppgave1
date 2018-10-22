@@ -1,8 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
-namespace WebAppsProsjekt1.Models
-{
+namespace WebAppsProsjekt1.DAL
+{ 
     public class DB : DbContext
     {
         public DB() : base("name=MovieMonster")

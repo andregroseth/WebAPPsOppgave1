@@ -165,19 +165,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CookieHelper.cs" />
-    <Compile Include="Models\DBMovie.cs" />
-    <Compile Include="Models\DBOrder.cs" />
-    <Compile Include="Models\DBUser.cs" />
     <Compile Include="Models\VMOrder.cs" />
     <Compile Include="Models\VMUser.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\DB.cs" />
-    <Compile Include="Models\DbInit.cs" />
-    <Compile Include="Models\Mail.cs" />
-    <Compile Include="Models\Movie.cs" />
-    <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\Orderline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -336,6 +325,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{b726284b-4193-4e09-950c-c5bb4e1197c0}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{85c34581-3a54-4418-9bf7-bfce0fd0bee5}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
