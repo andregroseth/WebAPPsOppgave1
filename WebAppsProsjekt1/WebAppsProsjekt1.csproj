@@ -169,8 +169,8 @@
     <Compile Include="Models\DBMovie.cs" />
     <Compile Include="Models\DBOrder.cs" />
     <Compile Include="Models\DBUser.cs" />
-    <Compile Include="Models\OrderHelper.cs" />
-    <Compile Include="Models\UserHelper.cs" />
+    <Compile Include="Models\VMOrder.cs" />
+    <Compile Include="Models\VMUser.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\DB.cs" />
     <Compile Include="Models\DbInit.cs" />

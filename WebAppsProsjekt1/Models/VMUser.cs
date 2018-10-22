@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace WebAppsProsjekt1.Models
 {
-    public class UserHelper
+    public class VMUser
     {
         //domain model and view model for the User and Zipcode table
 
@@ -59,7 +59,7 @@ namespace WebAppsProsjekt1.Models
         public string Area { get; set; }
     }
 
-    public class UserHelperAdmin
+    public class VMAdmin
     {
         //domain model and view model for the User and Zipcode table
 

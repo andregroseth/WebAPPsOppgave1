@@ -65,7 +65,7 @@ namespace WebAppsProsjekt1.Controllers
 				return RedirectToAction("UserLogin");
 			}
 			if (db.checkIfAdmin() == true) {
-                List<UserHelper> allUsers = db.AllUserInfo();
+                List<VMUser> allUsers = db.AllUserInfo();
                 return View(allUsers);
             }
             Session["AccessFailedAdmin"] = "true";
@@ -73,7 +73,7 @@ namespace WebAppsProsjekt1.Controllers
         }
 
         [HttpPost]
-        public ActionResult UserRegister(UserHelper inUser)
+        public ActionResult UserRegister(VMUser inUser)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +111,7 @@ namespace WebAppsProsjekt1.Controllers
                 System.Diagnostics.Debug.Print(Session["Login"].ToString());
                 var db = new DBUser();
                 int.TryParse(Session["Login"].ToString(), out int userId);
-                UserHelper oneUser = db.GetUserInfo(userId);
+                VMUser oneUser = db.GetUserInfo(userId);
                 return View(oneUser);
             }
             catch
@@ -147,15 +147,15 @@ namespace WebAppsProsjekt1.Controllers
             }
             if (db.checkIfAdmin() == true)
             {
-                UserHelper oneUser= db.GetUserInfo(id);
-                UserHelperAdmin newOneUser = db.GetUserInfoEdit(oneUser);
+                VMUser oneUser= db.GetUserInfo(id);
+                VMAdmin newOneUser = db.GetUserInfoEdit(oneUser);
                 return View(newOneUser);
             }
             Session["AccessFailedAdmin"] = "true";
             return RedirectToAction("MovieList", "Movie");
         }
         [HttpPost]
-        public ActionResult UserEdit(int id, UserHelperAdmin edituser) {
+        public ActionResult UserEdit(int id, VMAdmin edituser) {
             if (ModelState.IsValid) {
                 var db = new DBUser();
                 bool EditOk = db.EditUser(id,edituser);
