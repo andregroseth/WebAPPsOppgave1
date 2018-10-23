@@ -7,7 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace WebAppsProsjekt1.Models
+namespace WebAppsProsjekt1.Model
 {
     public class VMUser
     {
@@ -17,7 +17,7 @@ namespace WebAppsProsjekt1.Models
         public int Userlvl { get; set; }
 
         [Required(ErrorMessage = "Fill in your E-mail address")]
-        [Remote("CheckEmail", "User", ErrorMessage = "Email Address already in use")]
+//        [Remote("CheckEmail", "User", ErrorMessage = "Email Address already in use")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 

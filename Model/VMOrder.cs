@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebAppsProsjekt1.Models
+namespace WebAppsProsjekt1.Model
 {
     public class VMOrder
     {

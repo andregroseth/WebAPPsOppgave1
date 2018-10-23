@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using WebAppsProsjekt1.Models;
+using WebAppsProsjekt1.Model;
 
 namespace WebAppsProsjekt1.DAL
 { 

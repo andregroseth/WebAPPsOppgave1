@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using WebAppsProsjekt1.Model;
 
 namespace WebAppsProsjekt1.DAL
 {       //bruk DropCreateDatabaseAlways lokalt og CreateDatabaseIfNotExists ved publish til Azure.Ved endringer i database struktur må sql server i Azure cloud slettes og det må opprettes en ny.

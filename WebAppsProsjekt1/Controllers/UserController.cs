@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using WebAppsProsjekt1.Models;
+using WebAppsProsjekt1.Model;
+using WebAppsProsjekt1.BLL;
 
 namespace WebAppsProsjekt1.Controllers
 {
@@ -22,7 +23,7 @@ namespace WebAppsProsjekt1.Controllers
         [HttpPost]
         public ActionResult UserLogin(User user)
         {
-            var db = new DBUser();
+            var db = new UserBLL();
             if(db.UserFind(user))
             {
                 Session["Login"] = db.GetSession(user).ToString();
@@ -59,7 +60,7 @@ namespace WebAppsProsjekt1.Controllers
         //GET: User/UserList
         public ActionResult UserList()
         {
-            var db = new DBUser();
+            var db = new UserBLL();
 			if(Session["Login"] == null) {
 				Session["AccessFailedLogin"] = "true";
 				return RedirectToAction("UserLogin");
@@ -77,7 +78,7 @@ namespace WebAppsProsjekt1.Controllers
         {
             if (ModelState.IsValid)
             {
-                var db = new DBUser();
+                var db = new UserBLL();
                 bool OK = db.SaveUserToDB(inUser);
                 if (OK)
                 {
@@ -90,7 +91,7 @@ namespace WebAppsProsjekt1.Controllers
 
         public ActionResult UserDelete(int id)
         {
-            var db = new DBUser();
+            var db = new UserBLL();
             if (db.checkIfAdmin() == true)
             {
                 bool OK = db.DeleteUser(id);
@@ -109,7 +110,7 @@ namespace WebAppsProsjekt1.Controllers
             try
             {
                 System.Diagnostics.Debug.Print(Session["Login"].ToString());
-                var db = new DBUser();
+                var db = new UserBLL();
                 int.TryParse(Session["Login"].ToString(), out int userId);
                 VMUser oneUser = db.GetUserInfo(userId);
                 return View(oneUser);
@@ -121,7 +122,7 @@ namespace WebAppsProsjekt1.Controllers
             }
         }
         public ActionResult UserDetailAdminView(int id) {
-            var db = new DBUser();
+            var db = new UserBLL();
             try
             {
                 if (db.checkIfAdmin() == true)
@@ -139,7 +140,7 @@ namespace WebAppsProsjekt1.Controllers
         }
         public ActionResult UserEdit(int id)
         {
-            var db = new DBUser();
+            var db = new UserBLL();
             if (Session["Login"] == null)
             {
                 Session["AccessFailedLogin"] = "true";
@@ -157,7 +158,7 @@ namespace WebAppsProsjekt1.Controllers
         [HttpPost]
         public ActionResult UserEdit(int id, VMAdmin edituser) {
             if (ModelState.IsValid) {
-                var db = new DBUser();
+                var db = new UserBLL();
                 bool EditOk = db.EditUser(id,edituser);
                 if (EditOk) {
                     return RedirectToAction("UserList");
@@ -168,10 +169,9 @@ namespace WebAppsProsjekt1.Controllers
         //Sjekker om Email eksistere fra før.
         public JsonResult CheckEmail(string Email)
         {
-            using (var db = new DB())
-            {
-               return Json(!db.User.Any(x => x.Email == Email), JsonRequestBehavior.AllowGet);
-            }
+            var db = new UserBLL();            
+               return Json(!db.CheckEmail(Email), JsonRequestBehavior.AllowGet);
+            
         }
 
     }

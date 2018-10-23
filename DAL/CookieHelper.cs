@@ -4,7 +4,7 @@ using System.Web;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace WebAppsProsjekt1.DAL
+namespace WebAppsProsjekt1.Models
 {
 	public class CookieHelper
 	{

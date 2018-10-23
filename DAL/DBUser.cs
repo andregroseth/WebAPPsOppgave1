@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using WebAppsProsjekt1.Models;
+using WebAppsProsjekt1.Model;
 
 namespace WebAppsProsjekt1.DAL
 {
@@ -238,6 +238,18 @@ namespace WebAppsProsjekt1.DAL
 			hashed = algorithm.ComputeHash(unhashed);
 			return System.Text.Encoding.UTF8.GetString(hashed);
 		}
+
+        public bool CheckEmail(string Email)
+        {
+            using (var db = new DB())
+            {
+                if (db.User.Any(x => x.Email == Email) ) {
+
+                    return true;
+                }
+                return false;
+            }
+        }
 
     }
 }
