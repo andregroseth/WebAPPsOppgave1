@@ -126,19 +126,19 @@ namespace WebAppsProsjekt1.Controllers
             }
         }
         public ActionResult UserDetailAdminView(int id) {
-            try
-            {
-                if (db.checkIfAdmin() == true)
-                {
+            //try
+            //{
+            //    if (db.checkIfAdmin() == true)
+            //    {
                     var oneUser = db.GetUserInfo(id);
                     return View(oneUser);
-                }
-                Session["AccessFailedAdmin"] = "true";
-                return RedirectToAction("MovieList", "Movie");
-            }catch {
-                Session["AccessFailedLogin"] = "true";
-                return RedirectToAction("UserLogin");
-            }
+            //    }
+            //    Session["AccessFailedAdmin"] = "true";
+            //    return RedirectToAction("MovieList", "Movie");
+            //}catch {
+            //    Session["AccessFailedLogin"] = "true";
+            //    return RedirectToAction("UserLogin");
+            //}
         }
         public ActionResult UserEdit(int id)
         {

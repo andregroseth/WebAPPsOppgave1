@@ -144,20 +144,22 @@ namespace WebAppsProsjekt1.DAL
                 user.Id = 0;
                 return user;
             }
-            var oneUserOutput = new VMUser()
+            else
             {
-                Id = 1,
-                Userlvl = 0,
-                Email = "trude@oslomet.no",
-                Firstname = "Trude",
-                Surname = "Solberg",
-                Password = "test",
-                Address = "Frognerveien 24B",
-                ZipCode = "9999",
-                Area = "test"
-            };
-
-            return oneUserOutput;
+                var user = new VMUser()
+                {
+                    Id = 1,
+                    Userlvl = 0,
+                    Email = "trude@oslomet.no",
+                    Firstname = "Trude",
+                    Surname = "Solberg",
+                    Password = "test",
+                    Address = "Frognerveien 24B",
+                    ZipCode = "9999",
+                    Area = "test"
+                };
+                return user;
+            }
         }
         public VMAdmin GetUserInfoEdit(VMUser Helper)
         {

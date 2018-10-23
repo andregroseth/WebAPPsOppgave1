@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WebAppsProsjekt1.BLL;
 using WebAppsProsjekt1.Controllers;
@@ -20,12 +15,12 @@ namespace UnitTestProject
         {
             // Arrange
             var controller = new UserController(new UserBLL(new DBUserStub()));
-            var testMail = new Mail
-            {
-                ZipCode = "9999",
-                Area = "test"
-            };
-            var expectedResult = new User()
+            //var testMail = new Mail
+            //{
+            //    ZipCode = "9999",
+            //    Area = "test"
+            //};
+            var expectedResult = new VMUser()
             {
                 Id = 1,
                 Userlvl = 0,
@@ -34,12 +29,13 @@ namespace UnitTestProject
                 Surname = "Solberg",
                 Password = "test",
                 Address = "Frognerveien 24B",
-                Mail = testMail,
+                ZipCode = "9999",
+                Area = "test",
             };
 
             // Act
             var actionResult = (ViewResult)controller.UserDetailAdminView(1);
-            var result = (User)actionResult.Model;
+            var result = (VMUser)actionResult.Model;
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
@@ -49,7 +45,8 @@ namespace UnitTestProject
             Assert.AreEqual(expectedResult.Surname, result.Surname);
             Assert.AreEqual(expectedResult.Password, result.Password);
             Assert.AreEqual(expectedResult.Address, result.Address);
-            Assert.AreEqual(expectedResult.Mail, result.Mail);
+            Assert.AreEqual(expectedResult.ZipCode, result.ZipCode);
+            Assert.AreEqual(expectedResult.Area, result.Area);
         }
     }
 }
