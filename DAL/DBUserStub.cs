@@ -6,12 +6,13 @@ using WebAppsProsjekt1.Model;
 
 namespace WebAppsProsjekt1.DAL
 {
-    public class DBUser : DAL.IDBUser
+    public class DBUserStub : DAL.IDBUser
     {
         public int GetSession(User user)
         {
             int loginSession;
-            using (var db = new DB()) {
+            using (var db = new DB())
+            {
                 var verifiedUser = db.User.FirstOrDefault(u => u.Email == user.Email);
                 loginSession = verifiedUser.Id;
             }
@@ -163,16 +164,17 @@ namespace WebAppsProsjekt1.DAL
                 }
             }
         }
-        public VMAdmin GetUserInfoEdit(VMUser Helper){
+        public VMAdmin GetUserInfoEdit(VMUser Helper)
+        {
             VMAdmin editInfo = new VMAdmin()
             {
-                Id=Helper.Id,
+                Id = Helper.Id,
                 Userlvl = Helper.Userlvl,
                 Email = Helper.Email,
                 Firstname = Helper.Firstname,
                 Surname = Helper.Surname,
                 Password = Helper.Password,
-                ConfirmEmail=Helper.Email,
+                ConfirmEmail = Helper.Email,
                 Address = Helper.Address,
                 ZipCode = Helper.ZipCode,
                 Area = Helper.Area
@@ -180,9 +182,11 @@ namespace WebAppsProsjekt1.DAL
             return editInfo;
         }
 
-        public bool EditUser(int id, VMAdmin inUser) {
+        public bool EditUser(int id, VMAdmin inUser)
+        {
             var db = new DB();
-            try {
+            try
+            {
                 User find = db.User.Find(id);
                 find.Userlvl = inUser.Userlvl;
                 find.Email = inUser.Email;
@@ -198,8 +202,10 @@ namespace WebAppsProsjekt1.DAL
                         find.Mail = inUserMail;
                     }
                 }
-                else {
-                    var newMail = new Mail() {
+                else
+                {
+                    var newMail = new Mail()
+                    {
                         ZipCode = inUser.ZipCode,
                         Area = inUser.Area
                     };
@@ -208,7 +214,8 @@ namespace WebAppsProsjekt1.DAL
                 db.SaveChanges();
                 return true;
             }
-            catch {
+            catch
+            {
                 return false;
             }
         }
@@ -231,19 +238,21 @@ namespace WebAppsProsjekt1.DAL
             }
         }
 
-		public string getHash(string password) {
-			byte[] unhashed, hashed;
-			var algorithm = System.Security.Cryptography.SHA256.Create();
-			unhashed = System.Text.Encoding.ASCII.GetBytes(password);
-			hashed = algorithm.ComputeHash(unhashed);
-			return System.Text.Encoding.UTF8.GetString(hashed);
-		}
+        public string getHash(string password)
+        {
+            byte[] unhashed, hashed;
+            var algorithm = System.Security.Cryptography.SHA256.Create();
+            unhashed = System.Text.Encoding.ASCII.GetBytes(password);
+            hashed = algorithm.ComputeHash(unhashed);
+            return System.Text.Encoding.UTF8.GetString(hashed);
+        }
 
         public bool CheckEmail(string Email)
         {
             using (var db = new DB())
             {
-                if (db.User.Any(x => x.Email == Email) ) {
+                if (db.User.Any(x => x.Email == Email))
+                {
 
                     return true;
                 }
