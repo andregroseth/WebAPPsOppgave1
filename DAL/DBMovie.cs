@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebAppsProsjekt1.Model;
+using WebAppsProsjekt1.Models;
 
-namespace WebAppsProsjekt1.Models
-{
+namespace WebAppsProsjekt1.DAL
+{ 
     public class DBMovie
     {
         public List<Movie> MovieGet()
@@ -23,6 +25,14 @@ namespace WebAppsProsjekt1.Models
                 }
             }
             return movieList;
+        }
+        public List<Movie> AllMovies() {
+            using (var db = new DB())
+            {
+                List<Movie> allMovies = db.Movie.ToList();
+                return allMovies;
+            }
+
         }
     }
 }

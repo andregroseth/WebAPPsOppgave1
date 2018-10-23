@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WebAppsProsjekt1.Models
+namespace WebAppsProsjekt1.Model
 {
     public class User
     {

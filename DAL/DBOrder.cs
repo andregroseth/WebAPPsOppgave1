@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WebAppsProsjekt1.Model;
 
-namespace WebAppsProsjekt1.Models
-{
+namespace WebAppsProsjekt1.DAL
+{ 
     public class DBOrder
     {
         public void AddOrder(List<Movie> inMovie, int id)
@@ -38,7 +39,7 @@ namespace WebAppsProsjekt1.Models
             }
         }
 
-        public List<OrderHelper> AllOrderInfo(int id)
+        public List<VMOrder> AllOrderInfo(int id)
         {
 
             using (var db = new DB())
@@ -47,7 +48,7 @@ namespace WebAppsProsjekt1.Models
                 if (Orderlist == null) {
                     return null;
                 }
-                List<OrderHelper> AllOrderInfo = Orderlist.Select(k => new OrderHelper
+                List<VMOrder> AllOrderInfo = Orderlist.Select(k => new VMOrder
                 {
                     Id = k.Id,
                     Date= k.Date,
@@ -78,11 +79,11 @@ namespace WebAppsProsjekt1.Models
 
         }
 
-        public List<OrderlineHelper> GetOrderInfo(int id,int userid)
+        public List<VMOrderline> GetOrderInfo(int id,int userid)
         {
             using (var db = new DB()) {
                 var UserOrder = db.Order.FirstOrDefault(o=>o.Id==id && o.User.Id==userid);
-                List<OrderlineHelper> OrderlineDetail;
+                List<VMOrderline> OrderlineDetail;
 
                 if (UserOrder == null)
                 {
@@ -95,7 +96,7 @@ namespace WebAppsProsjekt1.Models
                     return OrderlineDetail=null;
                 }
 
-                OrderlineDetail = oneOrder.Select(k => new OrderlineHelper
+                OrderlineDetail = oneOrder.Select(k => new VMOrderline
                 {
                     Id = k.Id,
                     MovieId = k.Movie.Id,

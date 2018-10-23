@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebAppsProsjekt1.Model;
 
-namespace WebAppsProsjekt1.Models
+namespace WebAppsProsjekt1.DAL
 {
     public class DBUser
     {
@@ -37,11 +38,11 @@ namespace WebAppsProsjekt1.Models
             }
         }
 
-        public List<UserHelper> AllUserInfo()
+        public List<VMUser> AllUserInfo()
         {
             using (var db = new DB())
             {
-                List<UserHelper> AllUserInfo = db.User.Select(k => new UserHelper
+                List<VMUser> AllUserInfo = db.User.Select(k => new VMUser
                 {
                     Id = k.Id,
                     Userlvl = k.Userlvl,
@@ -59,7 +60,7 @@ namespace WebAppsProsjekt1.Models
 
         }
 
-        public bool SaveUserToDB(UserHelper InUser)
+        public bool SaveUserToDB(VMUser InUser)
         {
             var NewUserRad = new User()
             {
@@ -135,7 +136,7 @@ namespace WebAppsProsjekt1.Models
         }
 
 
-        public UserHelper GetUserInfo(int id)
+        public VMUser GetUserInfo(int id)
         {
             using (var db = new DB())
             {
@@ -146,7 +147,7 @@ namespace WebAppsProsjekt1.Models
                 }
                 else
                 {
-                    var oneUserOutput = new UserHelper()
+                    var oneUserOutput = new VMUser()
                     {
                         Id = oneUser.Id,
                         Userlvl = oneUser.Userlvl,
@@ -162,8 +163,8 @@ namespace WebAppsProsjekt1.Models
                 }
             }
         }
-        public UserHelperAdmin GetUserInfoEdit(UserHelper Helper){
-            UserHelperAdmin editInfo = new UserHelperAdmin()
+        public VMAdmin GetUserInfoEdit(VMUser Helper){
+            VMAdmin editInfo = new VMAdmin()
             {
                 Id=Helper.Id,
                 Userlvl = Helper.Userlvl,
@@ -179,7 +180,7 @@ namespace WebAppsProsjekt1.Models
             return editInfo;
         }
 
-        public bool EditUser(int id, UserHelperAdmin inUser) {
+        public bool EditUser(int id, VMAdmin inUser) {
             var db = new DB();
             try {
                 User find = db.User.Find(id);
@@ -217,7 +218,7 @@ namespace WebAppsProsjekt1.Models
             try
             {
                 int.TryParse(HttpContext.Current.Session["Login"].ToString(), out int userId);
-                UserHelper oneUser = GetUserInfo(userId);
+                VMUser oneUser = GetUserInfo(userId);
                 if (oneUser.Userlvl > 0)
                 {
                     return true;
@@ -237,6 +238,18 @@ namespace WebAppsProsjekt1.Models
 			hashed = algorithm.ComputeHash(unhashed);
 			return System.Text.Encoding.UTF8.GetString(hashed);
 		}
+
+        public bool CheckEmail(string Email)
+        {
+            using (var db = new DB())
+            {
+                if (db.User.Any(x => x.Email == Email) ) {
+
+                    return true;
+                }
+                return false;
+            }
+        }
 
     }
 }

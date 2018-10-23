@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebAppsProsjekt1.Models
+namespace WebAppsProsjekt1.Model
 {
-    public class OrderHelper
+    public class VMOrder
     {
         public int Id { get; set; }
 
@@ -13,7 +13,7 @@ namespace WebAppsProsjekt1.Models
         public int UserId { get; set; }
     }
 
-    public class OrderlineHelper
+    public class VMOrderline
     {
         public int Id { get; set; }
 

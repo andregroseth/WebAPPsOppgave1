@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebAppsProsjekt1.Models
+namespace WebAppsProsjekt1.Model
 {
 
     public class Mail

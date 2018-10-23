@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebAppsProsjekt1.Models;
+using WebAppsProsjekt1.BLL;
+using WebAppsProsjekt1.Model;
 
 namespace WebAppsProsjekt1.Controllers
 {
@@ -12,7 +13,7 @@ namespace WebAppsProsjekt1.Controllers
         // GET: Cart
         public ActionResult CartList()
         {
-            var db = new DBMovie();
+            var db = new CartBLL();
             return View(db.MovieGet());
         }
 
@@ -21,18 +22,16 @@ namespace WebAppsProsjekt1.Controllers
         {
             if(Session["Login"] != null)
             {
-				CookieHelper cookieHelper = new CookieHelper();
-				HttpCookie cartCookie = Request.Cookies["Cart"];
-				if (cartCookie == null || cookieHelper.CookieParse(cartCookie).Count < 1)
+                var db = new CartBLL();
+                HttpCookie cartCookie = Request.Cookies["Cart"];
+				if (cartCookie == null || db.CookieParse(cartCookie).Count < 1)
 				{
 					Session["PurchaseFailedEmpty"] = "true";
 					return RedirectToAction("MovieList", "Movie");
 				}
-					
-				DBOrder db = new DBOrder();
 				int.TryParse(Session["Login"].ToString(), out int userId);
 				db.AddOrder(movieList, userId);
-				cookieHelper.CookieDelete(cartCookie, Response);
+				db.CookieDelete(cartCookie, Response);
 
 				Session["PurchaseSuccess"] = "true";
 				return RedirectToAction("MovieList", "Movie");
@@ -46,15 +45,15 @@ namespace WebAppsProsjekt1.Controllers
         public ActionResult CartClear() {
             HttpCookie cookie = Request.Cookies["Cart"];
             if (cookie != null) {
-                var cookieHelper = new CookieHelper();
-                cookieHelper.CookieDelete(Request.Cookies["Cart"], Response);
+                var db = new CartBLL();
+                db.CookieDelete(Request.Cookies["Cart"], Response);
             }
             return RedirectToAction("CartList");
         }
 
         public ActionResult CartDelete(int id) {
 
-            var cookieHelper = new CookieHelper();
+            var cookieHelper = new CartBLL();
             cookieHelper.CookieCartDelete(id, Response);
             return RedirectToAction("CartList");
         }

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebAppsProsjekt1.Models;
+using WebAppsProsjekt1.BLL;
+using WebAppsProsjekt1.Model;
 
 namespace WebAppsProsjekt1.Controllers
 {
@@ -12,11 +13,8 @@ namespace WebAppsProsjekt1.Controllers
         // GET: Movie/MovieList
         public ActionResult MovieList()
         {
-            using (var db = new DB())
-            {
-                List<Movie> allMovies = db.Movie.ToList();
-                return View(allMovies);
-            }
+            var db = new MovieBLL();
+            return View(db.AllMovies());
         }
 
         public void AddMovieToCart(int id)

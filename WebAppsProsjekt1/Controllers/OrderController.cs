@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using WebAppsProsjekt1.Models;
+using WebAppsProsjekt1.BLL;
+using WebAppsProsjekt1.Model;
+
 namespace WebAppsProsjekt1.Controllers
 {
     public class OrderController : Controller
@@ -10,7 +12,7 @@ namespace WebAppsProsjekt1.Controllers
         {
             if (Session["Login"] != null)
             {
-                var db = new DBOrder();
+                var db = new OrderBLL();
                 int.TryParse(Session["Login"].ToString(), out int userId);
                 var allOrder = db.AllOrderInfo(userId);
                 return View(allOrder);
@@ -21,7 +23,7 @@ namespace WebAppsProsjekt1.Controllers
 
         public ActionResult OrderDelete(int Id)
         {
-            var db = new DBOrder();
+            var db = new OrderBLL();
             bool OK = db.DeleteOrder(Id);
             if (OK)
             {
@@ -34,9 +36,9 @@ namespace WebAppsProsjekt1.Controllers
         {
             if (Session["Login"] != null)
             {
-                var db = new DBOrder();
+                var db = new OrderBLL();
                 int.TryParse(Session["Login"].ToString(), out int userId);
-                List<OrderlineHelper> ShowOrder = db.GetOrderInfo(id, userId);
+                List<VMOrderline> ShowOrder = db.GetOrderInfo(id, userId);
                 if (ShowOrder == null) {
                     Session["AccessUnauthorized"] = "true";
                     return RedirectToAction("OrderList");
