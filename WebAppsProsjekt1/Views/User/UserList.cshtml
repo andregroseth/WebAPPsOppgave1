@@ -73,11 +73,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.Area)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "UserEdit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "UserDetailAdminView", new { id = item.Id }) |
-            @Html.ActionLink("Delete","UserDelete",new { id = item.Id})
-    </tr>
+		<td>
+			@Html.ActionLink("Edit", "UserEdit", new { id = item.Id }) |
+			@Html.ActionLink("Details", "UserDetailAdminView", new { id = item.Id }) |
+			@Html.ActionLink("Delete", "UserDelete", new { id = item.Id })
+</tr>
     }
 </table>
 </body>
