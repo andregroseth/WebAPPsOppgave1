@@ -135,34 +135,29 @@ namespace WebAppsProsjekt1.DAL
             }
 
         }
-
-
+    
         public VMUser GetUserInfo(int id)
         {
-            using (var db = new DB())
+            if (id == 0)
             {
-                var oneUser = db.User.Find(id);
-                if (oneUser == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    var oneUserOutput = new VMUser()
-                    {
-                        Id = oneUser.Id,
-                        Userlvl = oneUser.Userlvl,
-                        Email = oneUser.Email,
-                        Firstname = oneUser.Firstname,
-                        Surname = oneUser.Surname,
-                        Password = oneUser.Password,
-                        Address = oneUser.Address,
-                        ZipCode = oneUser.Mail.ZipCode,
-                        Area = oneUser.Mail.Area
-                    };
-                    return oneUserOutput;
-                }
+                var user = new VMUser();
+                user.Id = 0;
+                return user;
             }
+            var oneUserOutput = new VMUser()
+            {
+                Id = 1,
+                Userlvl = 0,
+                Email = "trude@oslomet.no",
+                Firstname = "Trude",
+                Surname = "Solberg",
+                Password = "test",
+                Address = "Frognerveien 24B",
+                ZipCode = "9999",
+                Area = "test"
+            };
+
+            return oneUserOutput;
         }
         public VMAdmin GetUserInfoEdit(VMUser Helper)
         {

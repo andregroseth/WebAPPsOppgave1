@@ -129,14 +129,13 @@ namespace WebAppsProsjekt1.Controllers
             try
             {
                 if (db.checkIfAdmin() == true)
-                {          
+                {
                     var oneUser = db.GetUserInfo(id);
                     return View(oneUser);
                 }
                 Session["AccessFailedAdmin"] = "true";
                 return RedirectToAction("MovieList", "Movie");
-            }
-            catch {
+            }catch {
                 Session["AccessFailedLogin"] = "true";
                 return RedirectToAction("UserLogin");
             }

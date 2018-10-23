@@ -55,6 +55,8 @@
     <Compile Include="DBMovie.cs" />
     <Compile Include="DBOrder.cs" />
     <Compile Include="DBUser.cs" />
+    <Compile Include="DBUserStub.cs" />
+    <Compile Include="IDBUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
