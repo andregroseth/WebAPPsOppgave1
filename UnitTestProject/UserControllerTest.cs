@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MvcContrib.TestHelper;
 using WebAppsProsjekt1.BLL;
 using WebAppsProsjekt1.Controllers;
 using WebAppsProsjekt1.DAL;
@@ -14,12 +15,10 @@ namespace UnitTestProject
         public void UserDetailAdminView()
         {
             // Arrange
+            var SessionMock = new TestControllerBuilder();
             var controller = new UserController(new UserBLL(new DBUserStub()));
-            //var testMail = new Mail
-            //{
-            //    ZipCode = "9999",
-            //    Area = "test"
-            //};
+            SessionMock.InitializeController(controller);
+            controller.Session["IfAdmin"] = "true";
             var expectedResult = new VMUser()
             {
                 Id = 1,
