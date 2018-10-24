@@ -125,6 +125,7 @@ namespace WebAppsProsjekt1.Controllers
                 return RedirectToAction("UserLogin");
             }
         }
+
         public ActionResult UserDetailAdminView(int id) {
             try
             {
@@ -140,6 +141,7 @@ namespace WebAppsProsjekt1.Controllers
                 return RedirectToAction("UserLogin");
             }
         }
+
         public ActionResult UserEdit(int id)
         {
             if (Session["Login"] == null)
@@ -156,6 +158,7 @@ namespace WebAppsProsjekt1.Controllers
             Session["AccessFailedAdmin"] = "true";
             return RedirectToAction("MovieList", "Movie");
         }
+
         [HttpPost]
         public ActionResult UserEdit(int id, VMAdmin edituser) {
             if (ModelState.IsValid) {
@@ -166,6 +169,7 @@ namespace WebAppsProsjekt1.Controllers
             }
             return View();
         }
+
         //Sjekker om Email eksistere fra før.
         public JsonResult CheckEmail(string Email)
         {
