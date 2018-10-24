@@ -108,13 +108,41 @@ namespace UnitTestProject
         }
 
         [TestMethod]
-        public void UserEdit()
+        public void UserEdit_NotLoggedIn()
         {
             // Arrange
             var SessionMock = new TestControllerBuilder();
             var controller = new UserController(new UserBLL(new DBUserStub()));
             SessionMock.InitializeController(controller);
             controller.Session["Login"] = null;
+            var expectedResult = new VMUser()
+            {
+                Id = 1,
+                Userlvl = 0,
+                Email = "trude@oslomet.no",
+                Firstname = "Trude",
+                Surname = "Solberg",
+                Password = "test",
+                Address = "Frognerveien 24B",
+                ZipCode = "9999",
+                Area = "test",
+            };
+
+            // Act
+            var result = (RedirectToRouteResult)controller.UserEdit(1);
+
+            // Assert
+            Assert.AreEqual(result.RouteName, "");
+        }
+
+        [TestMethod]
+        public void UserEdit_LoggedIn_Admin()
+        {
+            // Arrange
+            var SessionMock = new TestControllerBuilder();
+            var controller = new UserController(new UserBLL(new DBUserStub()));
+            SessionMock.InitializeController(controller);
+            controller.Session["IfAdmin"] = "true";
             var expectedResult = new VMUser()
             {
                 Id = 1,

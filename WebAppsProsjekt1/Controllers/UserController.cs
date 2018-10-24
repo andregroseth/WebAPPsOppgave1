@@ -149,7 +149,7 @@ namespace WebAppsProsjekt1.Controllers
                 Session["AccessFailedLogin"] = "true";
                 return RedirectToAction("UserLogin");
             }
-            if (db.checkIfAdmin() == true)
+            if (Session["IfAdmin"] != null)
             {
                 VMUser oneUser= db.GetUserInfo(id);
                 VMAdmin newOneUser = db.GetUserInfoEdit(oneUser);
