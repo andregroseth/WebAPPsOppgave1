@@ -41,23 +41,19 @@ namespace WebAppsProsjekt1.BLL
             return db.DeleteUser(id);
         }
 
-        public VMUser GetUserInfo(int id)
+        public VMUser GetVMUserInfo(int id)
         {
-            return db.GetUserInfo(id);
-        }
-        public VMAdmin GetUserInfoEdit(VMUser Helper)
-        {
-            return db.GetUserInfoEdit(Helper);
+            return db.GetVMUserInfo(id);
         }
 
-        public bool EditUser(int id, VMAdmin inUser)
+        public User GetUserInfo(string email)
+        {
+            return db.GetUserInfo(email);
+        }
+
+        public bool EditUser(int id, VMUser inUser)
         {
             return db.EditUser(id,inUser);
-        }
-
-        public bool checkIfAdmin()
-        {
-            return db.checkIfAdmin();
         }
 
         public string getHash(string password)

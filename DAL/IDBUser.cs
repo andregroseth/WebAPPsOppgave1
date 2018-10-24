@@ -7,13 +7,12 @@ namespace WebAppsProsjekt1.DAL
     {
         List<VMUser> AllUserInfo();
         bool CheckEmail(string Email);
-        bool checkIfAdmin();
         bool DeleteUser(int id);
-        bool EditUser(int id, VMAdmin inUser);
+        bool EditUser(int id, VMUser inUser);
         string getHash(string password);
         int GetSession(User user);
-        VMUser GetUserInfo(int id);
-        VMAdmin GetUserInfoEdit(VMUser Helper);
+        VMUser GetVMUserInfo(int id);
+        User GetUserInfo(string email);
         bool SaveUserToDB(VMUser InUser);
         bool UserFind(User user);
     }

@@ -45,7 +45,7 @@ namespace WebAppsProsjekt1.DAL
                 List<VMUser> AllUserInfo = db.User.Select(k => new VMUser
                 {
                     Id = k.Id,
-                    Userlvl = k.Userlvl,
+                    Userlevel = k.Userlevel,
                     Email = k.Email,
                     Firstname = k.Firstname,
                     Surname = k.Surname,
@@ -54,7 +54,6 @@ namespace WebAppsProsjekt1.DAL
                     ZipCode = k.Mail.ZipCode,
                     Area = k.Mail.Area
                 }).ToList();
-
                 return AllUserInfo;
             }
 
@@ -64,7 +63,7 @@ namespace WebAppsProsjekt1.DAL
         {
             var NewUserRad = new User()
             {
-                Userlvl = InUser.Userlvl,
+                Userlevel = InUser.Userlevel,
                 Email = InUser.Email,
                 Firstname = InUser.Firstname,
                 Surname = InUser.Surname,
@@ -136,7 +135,7 @@ namespace WebAppsProsjekt1.DAL
         }
 
 
-        public VMUser GetUserInfo(int id)
+        public VMUser GetVMUserInfo(int id)
         {
             using (var db = new DB())
             {
@@ -150,7 +149,7 @@ namespace WebAppsProsjekt1.DAL
                     var oneUserOutput = new VMUser()
                     {
                         Id = oneUser.Id,
-                        Userlvl = oneUser.Userlvl,
+                        Userlevel = oneUser.Userlevel,
                         Email = oneUser.Email,
                         Firstname = oneUser.Firstname,
                         Surname = oneUser.Surname,
@@ -163,28 +162,39 @@ namespace WebAppsProsjekt1.DAL
                 }
             }
         }
-        public VMAdmin GetUserInfoEdit(VMUser Helper){
-            VMAdmin editInfo = new VMAdmin()
+
+        public User GetUserInfo(string email)
+        {
+            using (var db = new DB())
             {
-                Id=Helper.Id,
-                Userlvl = Helper.Userlvl,
-                Email = Helper.Email,
-                Firstname = Helper.Firstname,
-                Surname = Helper.Surname,
-                Password = Helper.Password,
-                ConfirmEmail=Helper.Email,
-                Address = Helper.Address,
-                ZipCode = Helper.ZipCode,
-                Area = Helper.Area
-            };
-            return editInfo;
+                var user = db.User.FirstOrDefault(u => u.Email == email);
+                if (user == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    var userOutput = new User()
+                    {
+                        Id = user.Id,
+                        Userlevel = user.Userlevel,
+                        Email = user.Email,
+                        Firstname = user.Firstname,
+                        Surname = user.Surname,
+                        Password = user.Password,
+                        Address = user.Address,
+                        Mail = user.Mail,
+                    };
+                    return userOutput;
+                }
+            }
         }
 
-        public bool EditUser(int id, VMAdmin inUser) {
+        public bool EditUser(int id, VMUser inUser) {
             var db = new DB();
             try {
                 User find = db.User.Find(id);
-                find.Userlvl = inUser.Userlvl;
+                find.Userlevel = inUser.Userlevel;
                 find.Email = inUser.Email;
                 find.Firstname = inUser.Firstname;
                 find.Surname = inUser.Surname;
@@ -209,24 +219,6 @@ namespace WebAppsProsjekt1.DAL
                 return true;
             }
             catch {
-                return false;
-            }
-        }
-
-        public bool checkIfAdmin()
-        {
-            try
-            {
-                int.TryParse(HttpContext.Current.Session["Login"].ToString(), out int userId);
-                VMUser oneUser = GetUserInfo(userId);
-                if (oneUser.Userlvl > 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            catch
-            {
                 return false;
             }
         }

@@ -19,11 +19,11 @@ namespace UnitTestProject
             var SessionMock = new TestControllerBuilder();
             var controller = new UserController(new UserBLL(new DBUserStub()));
             SessionMock.InitializeController(controller);
-            controller.Session["IfAdmin"] = "true";
+            controller.Session["Userlevel"] = "true";
             var expectedResult = new VMUser()
             {
                 Id = 1,
-                Userlvl = 0,
+                Userlevel = 0,
                 Email = "trude@oslomet.no",
                 Firstname = "Trude",
                 Surname = "Solberg",
@@ -39,7 +39,7 @@ namespace UnitTestProject
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
-            Assert.AreEqual(expectedResult.Userlvl, result.Userlvl);
+            Assert.AreEqual(expectedResult.Userlevel, result.Userlevel);
             Assert.AreEqual(expectedResult.Email, result.Email);
             Assert.AreEqual(expectedResult.Firstname, result.Firstname);
             Assert.AreEqual(expectedResult.Surname, result.Surname);
@@ -56,11 +56,11 @@ namespace UnitTestProject
             var SessionMock = new TestControllerBuilder();
             var controller = new UserController(new UserBLL(new DBUserStub()));
             SessionMock.InitializeController(controller);
-            controller.Session["IfAdmin"] = null;
+            controller.Session["Userlevel"] = null;
             var expectedResult = new VMUser()
             {
                 Id = 1,
-                Userlvl = 0,
+                Userlevel = 0,
                 Email = "trude@oslomet.no",
                 Firstname = "Trude",
                 Surname = "Solberg",
@@ -85,12 +85,12 @@ namespace UnitTestProject
             var SessionMock = new TestControllerBuilder();
             var controller = new UserController(new UserBLL(new DBUserStub()));
             SessionMock.InitializeController(controller);
-            controller.Session["IfAdmin"] = null;
+            controller.Session["Userlevel"] = null;
             controller.Session["AccessFailedLogin"] = true;
             var expectedResult = new VMUser()
             {
                 Id = 1,
-                Userlvl = 0,
+                Userlevel = 0,
                 Email = "trude@oslomet.no",
                 Firstname = "Trude",
                 Surname = "Solberg",
@@ -118,7 +118,7 @@ namespace UnitTestProject
             var expectedResult = new VMUser()
             {
                 Id = 1,
-                Userlvl = 0,
+                Userlevel = 0,
                 Email = "trude@oslomet.no",
                 Firstname = "Trude",
                 Surname = "Solberg",
@@ -142,11 +142,11 @@ namespace UnitTestProject
             var SessionMock = new TestControllerBuilder();
             var controller = new UserController(new UserBLL(new DBUserStub()));
             SessionMock.InitializeController(controller);
-            controller.Session["IfAdmin"] = "true";
-            var expectedResult = new VMUser()
+            controller.Session["Userlevel"] = "true";
+            var vmUser = new VMUser()
             {
                 Id = 1,
-                Userlvl = 0,
+                Userlevel = 0,
                 Email = "trude@oslomet.no",
                 Firstname = "Trude",
                 Surname = "Solberg",
@@ -155,6 +155,19 @@ namespace UnitTestProject
                 ZipCode = "9999",
                 Area = "test",
             };
+            var vmAdmin = new VMUser()
+            {
+                Id = 2,
+                Userlevel = 2,
+                Email = "admin@oslomet.no",
+                Firstname = "Admin",
+                Surname = "Admin",
+                Password = "admin123",
+                Address = "Pilestredet 35",
+                ZipCode = "9999",
+                Area = "test",
+            };
+
 
             // Act
             var result = (RedirectToRouteResult)controller.UserEdit(1);

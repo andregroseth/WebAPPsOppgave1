@@ -30,20 +30,20 @@ namespace WebAppsProsjekt1.Controllers
         }
 
         [HttpPost]
-        public ActionResult UserLogin(User user)
+        public ActionResult UserLogin(User partialUser)
         {
-            if(db.UserFind(user))
+            if(db.UserFind(partialUser))
             {
+                User user = db.GetUserInfo(partialUser.Email);
                 Session["Login"] = db.GetSession(user).ToString();
 				Session["LoginSuccess"] = "true";
                 Session.Remove("LoginFailed");
-                if (db.checkIfAdmin() == true) {
-                    Session["IfAdmin"] = "true";
-                    return RedirectToAction("Movielist", "Movie");
-                }
+                Session["Userlevel"] = user.Userlevel;
                 return RedirectToAction("Movielist", "Movie");
+            } else
+            {
+                Session["LoginFailed"] = "true";
             }
-            Session["LoginFailed"] = "true";
             return View();
         }
         
@@ -68,16 +68,16 @@ namespace WebAppsProsjekt1.Controllers
         //GET: User/UserList
         public ActionResult UserList()
         {
-			if(Session["Login"] == null) {
-				Session["AccessFailedLogin"] = "true";
-				return RedirectToAction("UserLogin");
-			}
-			if (db.checkIfAdmin() == true) {
+            int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
+            if (userlevel > 0) {
                 List<VMUser> allUsers = db.AllUserInfo();
                 return View(allUsers);
+            } else
+            {
+                Session["AccessFailedAdmin"] = "true";
+                return RedirectToAction("MovieList", "Movie");
             }
-            Session["AccessFailedAdmin"] = "true";
-			return RedirectToAction("MovieList", "Movie");
+ 
         }
 
         [HttpPost]
@@ -97,17 +97,16 @@ namespace WebAppsProsjekt1.Controllers
 
         public ActionResult UserDelete(int id)
         {
-            if (db.checkIfAdmin() == true)
+            int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
+            if (userlevel > 0)
             {
-                bool OK = db.DeleteUser(id);
-                if (OK)
-                {
-                    return RedirectToAction("UserList");
-                }
+                db.DeleteUser(id);
                 return View();
+            } else
+            {
+                Session["AccessFailedAdmin"] = "true";
+                return RedirectToAction("MovieList", "Movie");
             }
-            Session["AccessFailedAdmin"] = "true";
-            return RedirectToAction("MovieList", "Movie");
         }
 
         public ActionResult UserDetail()
@@ -116,7 +115,7 @@ namespace WebAppsProsjekt1.Controllers
             {
                 System.Diagnostics.Debug.Print(Session["Login"].ToString());
                 int.TryParse(Session["Login"].ToString(), out int userId);
-                VMUser oneUser = db.GetUserInfo(userId);
+                VMUser oneUser = db.GetVMUserInfo(userId);
                 return View(oneUser);
             }
             catch
@@ -129,13 +128,16 @@ namespace WebAppsProsjekt1.Controllers
         public ActionResult UserDetailAdminView(int id) {
             try
             {
-                if (Session["IfAdmin"] != null)
+                int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
+                if (userlevel > 0)
                 {
-                    var oneUser = db.GetUserInfo(id);
+                    var oneUser = db.GetVMUserInfo(id);
                     return View(oneUser);
-                }
+                } else
+                {
                     Session["AccessFailedAdmin"] = "true";
                     return RedirectToAction("MovieList", "Movie");
+                }
             }catch {
                 Session["AccessFailedLogin"] = "true";
                 return RedirectToAction("UserLogin");
@@ -144,29 +146,16 @@ namespace WebAppsProsjekt1.Controllers
 
         public ActionResult UserEdit(int id)
         {
-            if (Session["Login"] == null)
-            {
-                Session["AccessFailedLogin"] = "true";
-                return RedirectToAction("UserLogin");
-            }
-            if (Session["IfAdmin"] != null)
-            {
-                VMUser oneUser= db.GetUserInfo(id);
-                VMAdmin newOneUser = db.GetUserInfoEdit(oneUser);
-                return View(newOneUser);
-            }
-            Session["AccessFailedAdmin"] = "true";
-            return RedirectToAction("MovieList", "Movie");
+            VMUser oneUser = db.GetVMUserInfo(id);
+            return View(oneUser);
         }
 
         [HttpPost]
-        public ActionResult UserEdit(int id, VMAdmin edituser) {
-            if (ModelState.IsValid) {
+        public ActionResult UserEdit(int id, VMUser edituser) {
                 bool EditOk = db.EditUser(id,edituser);
                 if (EditOk) {
                     return RedirectToAction("UserList");
                 }
-            }
             return View();
         }
 

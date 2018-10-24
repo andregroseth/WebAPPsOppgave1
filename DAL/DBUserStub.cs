@@ -46,7 +46,7 @@ namespace WebAppsProsjekt1.DAL
                 List<VMUser> AllUserInfo = db.User.Select(k => new VMUser
                 {
                     Id = k.Id,
-                    Userlvl = k.Userlvl,
+                    Userlevel = k.Userlevel,
                     Email = k.Email,
                     Firstname = k.Firstname,
                     Surname = k.Surname,
@@ -65,7 +65,7 @@ namespace WebAppsProsjekt1.DAL
         {
             var NewUserRad = new User()
             {
-                Userlvl = InUser.Userlvl,
+                Userlevel = InUser.Userlevel,
                 Email = InUser.Email,
                 Firstname = InUser.Firstname,
                 Surname = InUser.Surname,
@@ -136,7 +136,7 @@ namespace WebAppsProsjekt1.DAL
 
         }
     
-        public VMUser GetUserInfo(int id)
+        public VMUser GetVMUserInfo(int id)
         {
             if (id == 0)
             {
@@ -149,7 +149,7 @@ namespace WebAppsProsjekt1.DAL
                 var user = new VMUser()
                 {
                     Id = 1,
-                    Userlvl = 0,
+                    Userlevel = 0,
                     Email = "trude@oslomet.no",
                     Firstname = "Trude",
                     Surname = "Solberg",
@@ -161,31 +161,41 @@ namespace WebAppsProsjekt1.DAL
                 return user;
             }
         }
-        public VMAdmin GetUserInfoEdit(VMUser Helper)
+
+        public User GetUserInfo(string email)
         {
-            VMAdmin editInfo = new VMAdmin()
+            using (var db = new DB())
             {
-                Id = Helper.Id,
-                Userlvl = Helper.Userlvl,
-                Email = Helper.Email,
-                Firstname = Helper.Firstname,
-                Surname = Helper.Surname,
-                Password = Helper.Password,
-                ConfirmEmail = Helper.Email,
-                Address = Helper.Address,
-                ZipCode = Helper.ZipCode,
-                Area = Helper.Area
-            };
-            return editInfo;
+                var oneUser = db.User.Find(email);
+                if (oneUser == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    var oneUserOutput = new User()
+                    {
+                        Id = oneUser.Id,
+                        Userlevel = oneUser.Userlevel,
+                        Email = oneUser.Email,
+                        Firstname = oneUser.Firstname,
+                        Surname = oneUser.Surname,
+                        Password = oneUser.Password,
+                        Address = oneUser.Address,
+                        Mail = oneUser.Mail,
+                    };
+                    return oneUserOutput;
+                }
+            }
         }
 
-        public bool EditUser(int id, VMAdmin inUser)
+        public bool EditUser(int id, VMUser inUser)
         {
             var db = new DB();
             try
             {
                 User find = db.User.Find(id);
-                find.Userlvl = inUser.Userlvl;
+                find.Userlevel = inUser.Userlevel;
                 find.Email = inUser.Email;
                 find.Firstname = inUser.Firstname;
                 find.Surname = inUser.Surname;
@@ -210,24 +220,6 @@ namespace WebAppsProsjekt1.DAL
                 }
                 db.SaveChanges();
                 return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool checkIfAdmin()
-        {
-            try
-            {
-                int.TryParse(HttpContext.Current.Session["Login"].ToString(), out int userId);
-                VMUser oneUser = GetUserInfo(userId);
-                if (oneUser.Userlvl > 0)
-                {
-                    return true;
-                }
-                return false;
             }
             catch
             {

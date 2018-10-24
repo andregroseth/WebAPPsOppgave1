@@ -5,7 +5,7 @@ namespace WebAppsProsjekt1.Model
     public class User
     {
         public int Id { get; set; }
-        public int Userlvl { get; set; }
+        public int Userlevel { get; set; }
         public string Email { get; set; }
         public string Firstname { get; set; }
         public string Surname { get; set; }
