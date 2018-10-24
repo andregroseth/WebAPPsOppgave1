@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcContrib.TestHelper;
 using WebAppsProsjekt1.BLL;
@@ -12,7 +13,7 @@ namespace UnitTestProject
     public class UserControllerTest
     {
         [TestMethod]
-        public void UserDetailAdminView()
+        public void UserDetailAdminView_Session_True()
         {
             // Arrange
             var SessionMock = new TestControllerBuilder();
@@ -47,5 +48,64 @@ namespace UnitTestProject
             Assert.AreEqual(expectedResult.ZipCode, result.ZipCode);
             Assert.AreEqual(expectedResult.Area, result.Area);
         }
+
+        [TestMethod]
+        public void UserDetailAdminView_Session_Null()
+        {
+            // Arrange
+            var SessionMock = new TestControllerBuilder();
+            var controller = new UserController(new UserBLL(new DBUserStub()));
+            SessionMock.InitializeController(controller);
+            controller.Session["IfAdmin"] = null;
+            var expectedResult = new VMUser()
+            {
+                Id = 1,
+                Userlvl = 0,
+                Email = "trude@oslomet.no",
+                Firstname = "Trude",
+                Surname = "Solberg",
+                Password = "test",
+                Address = "Frognerveien 24B",
+                ZipCode = "9999",
+                Area = "test",
+            };
+
+            // Act
+            var result = (RedirectToRouteResult)controller.UserDetailAdminView(1);
+
+            // Assert
+            Assert.AreEqual(result.RouteName, "");
+            Assert.AreEqual(result.RouteValues.Values.First(), "MovieList");
+        }
+
+        [TestMethod]
+        public void UserDetailAdminView_Not_Logged_In()
+        {
+            // Arrange
+            var SessionMock = new TestControllerBuilder();
+            var controller = new UserController(new UserBLL(new DBUserStub()));
+            SessionMock.InitializeController(controller);
+            controller.Session["IfAdmin"] = null;
+            controller.Session["AccessFailedLogin"] = true;
+            var expectedResult = new VMUser()
+            {
+                Id = 1,
+                Userlvl = 0,
+                Email = "trude@oslomet.no",
+                Firstname = "Trude",
+                Surname = "Solberg",
+                Password = "test",
+                Address = "Frognerveien 24B",
+                ZipCode = "9999",
+                Area = "test",
+            };
+
+            // Act
+            var result = (RedirectToRouteResult)controller.UserDetailAdminView(1);
+
+            // Assert
+            Assert.AreEqual(result.RouteName, "");
+        }
     }
+
 }
