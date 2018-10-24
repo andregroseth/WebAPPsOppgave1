@@ -50,5 +50,16 @@ namespace WebAppsProsjekt1.Controllers
             Session["AccessFailedLogin"] = "true";
             return RedirectToAction("UserLogin","User");
         }
+        public ActionResult OrderListAdminView(int userId) {
+                var db = new OrderBLL();
+                var allOrder = db.AllOrderInfo(userId);
+                return View(allOrder);
+        }
+        public ActionResult OrderDetailAdminView(int id,int userId) {
+                var db = new OrderBLL();
+                List<VMOrderline> ShowOrder = db.GetOrderInfo(id, userId);
+                return View(ShowOrder);
+
+        }
     }
 }

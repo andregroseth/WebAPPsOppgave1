@@ -98,6 +98,7 @@ namespace WebAppsProsjekt1.DAL
 
                 OrderlineDetail = oneOrder.Select(k => new VMOrderline
                 {
+                    UserId = userid,
                     Id = k.Id,
                     MovieId = k.Movie.Id,
                     Title = k.Movie.Title,

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WebAppsProsjekt1.Model.VMOrder>
+
+@{
+    ViewBag.Title = "OrderList";
+    Layout = "~/Views/Shared/Background.cshtml";
+
+}
+@if (Session["Login"] == null)
+{
+    Session["AccessFailedLogin"] = "true";
+    Response.Redirect("/User/UserLogin");
+}
+else
+{
+    int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
+    if (userlevel < 1)
+    {
+        Session["AccessFailedAdmin"] = "true";
+        Response.Redirect("/Movie/MovieList");
+    }
+}
+<link href="~/Content/cssList.css" rel="stylesheet" />
+<div id="feedback-modal" class="modal" role="dialog">
+    <div class="modal-body">
+        <p align="center"></p>
+    </div>
+</div>
+
+<h1>List of Orders</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr class="row-name">
+            <th style="width:5%"></th>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <th>@Html.DisplayNameFor(model => model.Date)</th>
+            <th>@Html.DisplayNameFor(model => model.UserId)</th>
+            <th style="width:20%"></th>
+            <th style="width:12%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="row-content">
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td><div class="col-sm-2 hidden-xs"></div></td>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                <td>@Html.DisplayFor(modelItem => item.UserId)</td>
+                <td><div class="col-sm-2 hidden-xs"></div></td>
+                <td class="td-actions">
+                    <div style="max-width:5em;"><a href="/Order/OrderDetailAdminView?id=@item.Id&userId=@item.UserId" class="btn btn-success">Details</a></div>
+                </td>
+            </tr>
+        }
+        <tfoot>
+            <tr>
+                <td class="hidden-xs"></td>
+                <td class="hidden-xs"></td>
+                <td class="hidden-xs"></td>
+                <td class="hidden-xs"></td>
+                <td class="hidden-xs"></td>
+                <td class="row-content">
+                    <div style="max-width:5em;"><a href="/User/UserList" class="btn btn-success">Back</a></div>
+                </td>
+                <
+            </tr>>
+        </tfoot>
+        </tbody>
+    </table>
+    </body>
+    </html>

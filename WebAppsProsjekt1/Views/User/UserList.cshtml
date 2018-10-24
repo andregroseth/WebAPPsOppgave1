@@ -6,6 +6,7 @@
 }
 @if (Session["Login"] == null)
 {
+    Session["AccessFailedLogin"] = "true";
     Response.Redirect("UserLogin");
 }
 <link href="~/Content/cssList.css" rel="stylesheet" />

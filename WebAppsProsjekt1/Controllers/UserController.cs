@@ -58,7 +58,20 @@ namespace WebAppsProsjekt1.Controllers
                 Response.Redirect("/Movie/MovieList");
             }
         }
-
+        public ActionResult UserDetail()
+        {
+            try
+            {
+                int.TryParse(Session["Login"].ToString(), out int userId);
+                VMUser oneUser = db.GetVMUserInfo(userId);
+                return View(oneUser);
+            }
+            catch
+            {
+                Session["AccessFailedLogin"] = "true";
+                return RedirectToAction("UserLogin");
+            }
+        }
         //GET: User/UserRegister
         public ActionResult UserRegister()
         {
@@ -66,19 +79,6 @@ namespace WebAppsProsjekt1.Controllers
         }
 
         //GET: User/UserList
-        public ActionResult UserList()
-        {
-            int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
-            if (userlevel > 0) {
-                List<VMUser> allUsers = db.AllUserInfo();
-                return View(allUsers);
-            } else
-            {
-                Session["AccessFailedAdmin"] = "true";
-                return RedirectToAction("MovieList", "Movie");
-            }
- 
-        }
 
         [HttpPost]
         public ActionResult UserRegister(VMUser inUser)
@@ -94,7 +94,29 @@ namespace WebAppsProsjekt1.Controllers
             }
             return View();
         }
+        public ActionResult UserList()
+        {
+            try
+            {
+                int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
+                if (userlevel > 0)
+                {
+                    List<VMUser> allUsers = db.AllUserInfo();
+                    return View(allUsers);
+                }
+                else
+                {
+                    Session["AccessFailedAdmin"] = "true";
+                    return RedirectToAction("MovieList", "Movie");
+                }
+            }
+            catch
+            {
+                Session["AccessFailedLogin"] = "true";
+                return RedirectToAction("UserLogin");
+            }
 
+        }
         public ActionResult UserDelete(int id)
         {
             int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
@@ -106,22 +128,6 @@ namespace WebAppsProsjekt1.Controllers
             {
                 Session["AccessFailedAdmin"] = "true";
                 return RedirectToAction("MovieList", "Movie");
-            }
-        }
-
-        public ActionResult UserDetail()
-        {
-            try
-            {
-                System.Diagnostics.Debug.Print(Session["Login"].ToString());
-                int.TryParse(Session["Login"].ToString(), out int userId);
-                VMUser oneUser = db.GetVMUserInfo(userId);
-                return View(oneUser);
-            }
-            catch
-            {
-                Session["AccessFailedLogin"] = "true";
-                return RedirectToAction("UserLogin");
             }
         }
 

@@ -169,6 +169,7 @@
     <Content Include="App_Data\MovieMonster_log.ldf">
       <DependentUpon>MovieMonster.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\images\avatar.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -178,6 +179,7 @@
     <Content Include="Content\cssGlobal.css" />
     <Content Include="Content\cssFeedbackModal.css" />
     <Content Include="Content\cssIndex.css" />
+    <Content Include="Content\cssList.css" />
     <Content Include="Content\cssMovieList.css" />
     <Content Include="Content\cssBackground.css" />
     <Content Include="Content\images\icon\favicon.ico" />
@@ -309,6 +311,8 @@
     <Content Include="Views\Order\OrderDetail.cshtml" />
     <Content Include="Views\User\UserDetailAdminView.cshtml" />
     <Content Include="Views\User\UserEdit.cshtml" />
+    <Content Include="Views\Order\OrderListAdminView.cshtml" />
+    <Content Include="Views\Order\OrderDetailAdminView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -15,6 +15,7 @@ namespace WebAppsProsjekt1.Model
 
     public class VMOrderline
     {
+        public int UserId { get; set; }
         public int Id { get; set; }
 
         [Display(Name ="Movie Id")]
