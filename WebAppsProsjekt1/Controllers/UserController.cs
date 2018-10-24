@@ -126,22 +126,8 @@ namespace WebAppsProsjekt1.Controllers
         }
 
         public ActionResult UserDetailAdminView(int id) {
-            try
-            {
-                int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
-                if (userlevel > 0)
-                {
-                    var oneUser = db.GetVMUserInfo(id);
-                    return View(oneUser);
-                } else
-                {
-                    Session["AccessFailedAdmin"] = "true";
-                    return RedirectToAction("MovieList", "Movie");
-                }
-            }catch {
-                Session["AccessFailedLogin"] = "true";
-                return RedirectToAction("UserLogin");
-            }
+            var oneUser = db.GetVMUserInfo(id);
+            return View(oneUser);
         }
 
         public ActionResult UserEdit(int id)

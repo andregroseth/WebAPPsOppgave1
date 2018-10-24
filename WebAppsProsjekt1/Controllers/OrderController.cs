@@ -10,15 +10,17 @@ namespace WebAppsProsjekt1.Controllers
     {
         public ActionResult OrderList()
         {
-            if (Session["Login"] != null)
+            try
             {
                 var db = new OrderBLL();
                 int.TryParse(Session["Login"].ToString(), out int userId);
                 var allOrder = db.AllOrderInfo(userId);
                 return View(allOrder);
+            } catch
+            {
+                Session["AccessFailedLogin"] = "true";
+                return RedirectToAction("UserLogin", "User");
             }
-            Session["AccessFailedLogin"] = "true";
-            return RedirectToAction("UserLogin","User");
         }
 
         public ActionResult OrderDelete(int Id)
