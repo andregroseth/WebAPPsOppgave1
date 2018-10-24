@@ -14,6 +14,15 @@ namespace WebAppsProsjekt1.Controllers
         //private DB db = new Models.DB();
 
         //GET: User/Login
+        private IUserBLL db;
+
+        public UserController() {
+            db = new UserBLL();
+        }
+
+        public UserController(IUserBLL stub) {
+            db = stub;
+        }
 
         public ActionResult UserLogin()
         {
@@ -21,21 +30,20 @@ namespace WebAppsProsjekt1.Controllers
         }
 
         [HttpPost]
-        public ActionResult UserLogin(User user)
+        public ActionResult UserLogin(User partialUser)
         {
-            var db = new UserBLL();
-            if(db.UserFind(user))
+            if(db.UserFind(partialUser))
             {
+                User user = db.GetUserInfo(partialUser.Email);
                 Session["Login"] = db.GetSession(user).ToString();
 				Session["LoginSuccess"] = "true";
                 Session.Remove("LoginFailed");
-                if (db.checkIfAdmin() == true) {
-                    Session["IfAdmin"] = "true";
-                    return RedirectToAction("Movielist", "Movie");
-                }
+                Session["Userlevel"] = user.Userlevel;
                 return RedirectToAction("Movielist", "Movie");
+            } else
+            {
+                Session["LoginFailed"] = "true";
             }
-            Session["LoginFailed"] = "true";
             return View();
         }
         
@@ -60,17 +68,16 @@ namespace WebAppsProsjekt1.Controllers
         //GET: User/UserList
         public ActionResult UserList()
         {
-            var db = new UserBLL();
-			if(Session["Login"] == null) {
-				Session["AccessFailedLogin"] = "true";
-				return RedirectToAction("UserLogin");
-			}
-			if (db.checkIfAdmin() == true) {
+            int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
+            if (userlevel > 0) {
                 List<VMUser> allUsers = db.AllUserInfo();
                 return View(allUsers);
+            } else
+            {
+                Session["AccessFailedAdmin"] = "true";
+                return RedirectToAction("MovieList", "Movie");
             }
-            Session["AccessFailedAdmin"] = "true";
-			return RedirectToAction("MovieList", "Movie");
+ 
         }
 
         [HttpPost]
@@ -78,7 +85,6 @@ namespace WebAppsProsjekt1.Controllers
         {
             if (ModelState.IsValid)
             {
-                var db = new UserBLL();
                 bool OK = db.SaveUserToDB(inUser);
                 if (OK)
                 {
@@ -91,18 +97,16 @@ namespace WebAppsProsjekt1.Controllers
 
         public ActionResult UserDelete(int id)
         {
-            var db = new UserBLL();
-            if (db.checkIfAdmin() == true)
+            int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
+            if (userlevel > 0)
             {
-                bool OK = db.DeleteUser(id);
-                if (OK)
-                {
-                    return RedirectToAction("UserList");
-                }
+                db.DeleteUser(id);
                 return View();
+            } else
+            {
+                Session["AccessFailedAdmin"] = "true";
+                return RedirectToAction("MovieList", "Movie");
             }
-            Session["AccessFailedAdmin"] = "true";
-            return RedirectToAction("MovieList", "Movie");
         }
 
         public ActionResult UserDetail()
@@ -110,9 +114,8 @@ namespace WebAppsProsjekt1.Controllers
             try
             {
                 System.Diagnostics.Debug.Print(Session["Login"].ToString());
-                var db = new UserBLL();
                 int.TryParse(Session["Login"].ToString(), out int userId);
-                VMUser oneUser = db.GetUserInfo(userId);
+                VMUser oneUser = db.GetVMUserInfo(userId);
                 return View(oneUser);
             }
             catch
@@ -121,55 +124,30 @@ namespace WebAppsProsjekt1.Controllers
                 return RedirectToAction("UserLogin");
             }
         }
+
         public ActionResult UserDetailAdminView(int id) {
-            var db = new UserBLL();
-            try
-            {
-                if (db.checkIfAdmin() == true)
-                {          
-                    var oneUser = db.GetUserInfo(id);
-                    return View(oneUser);
-                }
-                Session["AccessFailedAdmin"] = "true";
-                return RedirectToAction("MovieList", "Movie");
-            }
-            catch {
-                Session["AccessFailedLogin"] = "true";
-                return RedirectToAction("UserLogin");
-            }
+            var oneUser = db.GetVMUserInfo(id);
+            return View(oneUser);
         }
+
         public ActionResult UserEdit(int id)
         {
-            var db = new UserBLL();
-            if (Session["Login"] == null)
-            {
-                Session["AccessFailedLogin"] = "true";
-                return RedirectToAction("UserLogin");
-            }
-            if (db.checkIfAdmin() == true)
-            {
-                VMUser oneUser= db.GetUserInfo(id);
-                VMAdmin newOneUser = db.GetUserInfoEdit(oneUser);
-                return View(newOneUser);
-            }
-            Session["AccessFailedAdmin"] = "true";
-            return RedirectToAction("MovieList", "Movie");
+            VMUser oneUser = db.GetVMUserInfo(id);
+            return View(oneUser);
         }
+
         [HttpPost]
-        public ActionResult UserEdit(int id, VMAdmin edituser) {
-            if (ModelState.IsValid) {
-                var db = new UserBLL();
+        public ActionResult UserEdit(int id, VMUser edituser) {
                 bool EditOk = db.EditUser(id,edituser);
                 if (EditOk) {
                     return RedirectToAction("UserList");
                 }
-            }
             return View();
         }
+
         //Sjekker om Email eksistere fra før.
         public JsonResult CheckEmail(string Email)
         {
-            var db = new UserBLL();            
                return Json(!db.CheckEmail(Email), JsonRequestBehavior.AllowGet);
             
         }

@@ -7,9 +7,16 @@
 <link href="~/Content/cssUserDetail.css" rel="stylesheet" />
 @if (Session["Login"] == null)
 {
-
     Response.Redirect("UserLogin");
-
+}
+else
+{
+    int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
+    if (userlevel < 1)
+    {
+        Session["AccessFailedAdmin"] = "true";
+        Response.Redirect("/Movie/MovieList");
+    }
 }
 <div>
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
@@ -29,8 +36,8 @@
                                     <td>@Html.DisplayFor(model => model.Id)</td>
                                 </tr>
                                 <tr>
-                                    <td>@Html.DisplayNameFor(model => model.Userlvl)</td>
-                                    <td>@Html.DisplayFor(model => model.Userlvl)</td>
+                                    <td>@Html.DisplayNameFor(model => model.Userlevel)</td>
+                                    <td>@Html.DisplayFor(model => model.Userlevel)</td>
                                 </tr>
                                 <tr>
                                     <td>@Html.DisplayNameFor(model => model.Email)</td>
@@ -55,7 +62,7 @@
 
                             </tbody>
                         </table>
-                        <div style="padding-left:1em;float:right;width:auto"><a href="/User/UserList" class="btn btn-success">Back</a></div>
+                        <div style="padding-left:1em;float:right;width:auto"><a href="/User/UserList" class="btn btn-primary">Back</a></div>
                         <div style="padding-left:1em;float:right;width:auto"><a href="/Order/OrderList" class="btn btn-success">Show Order History</a></div>
                     </div>
                 </div>

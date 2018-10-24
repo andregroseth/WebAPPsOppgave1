@@ -476,7 +476,7 @@ namespace WebAppsProsjekt1.DAL
 					{
 						new User
 						{
-							Userlvl = 1,
+							Userlevel = 1,
 							Email = "test@test.test",
 							Firstname = "testname",
 							Surname = "testsurname",
@@ -487,7 +487,7 @@ namespace WebAppsProsjekt1.DAL
 
 						new User
 						{
-							Userlvl = 1,
+							Userlevel = 1,
 							Email = "ola@gmail.com",
 							Firstname = "Ola",
 							Surname = "Nordmann",
@@ -498,18 +498,18 @@ namespace WebAppsProsjekt1.DAL
 
 						new User
 						{
-							Userlvl = 0,
+							Userlevel = 0,
 							Email = "trude@oslomet.no",
 							Firstname = "Trude",
 							Surname = "Solberg",
-							Password = dbUser.getHash("prinsesse123"),
+							Password = dbUser.getHash("hallo123"),
 							Address = "Frognerveien 24B",
 							Mail = testMail,
 						},
 
 						new User
 						{
-							Userlvl = 2,
+							Userlevel = 2,
 							Email = "admin@oslomet.no",
 							Firstname = "Admin",
 							Surname = "Admin",

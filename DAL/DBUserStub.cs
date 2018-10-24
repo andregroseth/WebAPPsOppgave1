@@ -6,12 +6,13 @@ using WebAppsProsjekt1.Model;
 
 namespace WebAppsProsjekt1.DAL
 {
-    public class DBUser : DAL.IDBUser
+    public class DBUserStub : DAL.IDBUser
     {
         public int GetSession(User user)
         {
             int loginSession;
-            using (var db = new DB()) {
+            using (var db = new DB())
+            {
                 var verifiedUser = db.User.FirstOrDefault(u => u.Email == user.Email);
                 loginSession = verifiedUser.Id;
             }
@@ -54,6 +55,7 @@ namespace WebAppsProsjekt1.DAL
                     ZipCode = k.Mail.ZipCode,
                     Area = k.Mail.Area
                 }).ToList();
+
                 return AllUserInfo;
             }
 
@@ -133,20 +135,45 @@ namespace WebAppsProsjekt1.DAL
             }
 
         }
-
-
+    
         public VMUser GetVMUserInfo(int id)
+        {
+            if (id == 0)
+            {
+                var user = new VMUser();
+                user.Id = 0;
+                return user;
+            }
+            else
+            {
+                var user = new VMUser()
+                {
+                    Id = 1,
+                    Userlevel = 0,
+                    Email = "trude@oslomet.no",
+                    Firstname = "Trude",
+                    Surname = "Solberg",
+                    Password = "test",
+                    Address = "Frognerveien 24B",
+                    ZipCode = "9999",
+                    Area = "test"
+                };
+                return user;
+            }
+        }
+
+        public User GetUserInfo(string email)
         {
             using (var db = new DB())
             {
-                var oneUser = db.User.Find(id);
+                var oneUser = db.User.Find(email);
                 if (oneUser == null)
                 {
                     return null;
                 }
                 else
                 {
-                    var oneUserOutput = new VMUser()
+                    var oneUserOutput = new User()
                     {
                         Id = oneUser.Id,
                         Userlevel = oneUser.Userlevel,
@@ -155,44 +182,18 @@ namespace WebAppsProsjekt1.DAL
                         Surname = oneUser.Surname,
                         Password = oneUser.Password,
                         Address = oneUser.Address,
-                        ZipCode = oneUser.Mail.ZipCode,
-                        Area = oneUser.Mail.Area
+                        Mail = oneUser.Mail,
                     };
                     return oneUserOutput;
                 }
             }
         }
 
-        public User GetUserInfo(string email)
+        public bool EditUser(int id, VMUser inUser)
         {
-            using (var db = new DB())
-            {
-                var user = db.User.FirstOrDefault(u => u.Email == email);
-                if (user == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    var userOutput = new User()
-                    {
-                        Id = user.Id,
-                        Userlevel = user.Userlevel,
-                        Email = user.Email,
-                        Firstname = user.Firstname,
-                        Surname = user.Surname,
-                        Password = user.Password,
-                        Address = user.Address,
-                        Mail = user.Mail,
-                    };
-                    return userOutput;
-                }
-            }
-        }
-
-        public bool EditUser(int id, VMUser inUser) {
             var db = new DB();
-            try {
+            try
+            {
                 User find = db.User.Find(id);
                 find.Userlevel = inUser.Userlevel;
                 find.Email = inUser.Email;
@@ -208,8 +209,10 @@ namespace WebAppsProsjekt1.DAL
                         find.Mail = inUserMail;
                     }
                 }
-                else {
-                    var newMail = new Mail() {
+                else
+                {
+                    var newMail = new Mail()
+                    {
                         ZipCode = inUser.ZipCode,
                         Area = inUser.Area
                     };
@@ -218,24 +221,27 @@ namespace WebAppsProsjekt1.DAL
                 db.SaveChanges();
                 return true;
             }
-            catch {
+            catch
+            {
                 return false;
             }
         }
 
-		public string getHash(string password) {
-			byte[] unhashed, hashed;
-			var algorithm = System.Security.Cryptography.SHA256.Create();
-			unhashed = System.Text.Encoding.ASCII.GetBytes(password);
-			hashed = algorithm.ComputeHash(unhashed);
-			return System.Text.Encoding.UTF8.GetString(hashed);
-		}
+        public string getHash(string password)
+        {
+            byte[] unhashed, hashed;
+            var algorithm = System.Security.Cryptography.SHA256.Create();
+            unhashed = System.Text.Encoding.ASCII.GetBytes(password);
+            hashed = algorithm.ComputeHash(unhashed);
+            return System.Text.Encoding.UTF8.GetString(hashed);
+        }
 
         public bool CheckEmail(string Email)
         {
             using (var db = new DB())
             {
-                if (db.User.Any(x => x.Email == Email) ) {
+                if (db.User.Any(x => x.Email == Email))
+                {
 
                     return true;
                 }

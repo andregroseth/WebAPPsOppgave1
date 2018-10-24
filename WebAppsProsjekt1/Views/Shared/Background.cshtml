@@ -63,8 +63,8 @@
 
                         <li><a href="/User/UserLogout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                         <li><a href="/User/UserDetail"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-                        if (Session["IfAdmin"] != null)
-                        {
+                        int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
+                        if (userlevel > 0) {
                             <li><a href="/User/UserList"><span class="glyphicon glyphicon-list"></span> User List</a></li>
                         }
                     }
