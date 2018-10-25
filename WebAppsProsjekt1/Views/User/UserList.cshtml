@@ -9,6 +9,14 @@
     Session["AccessFailedLogin"] = "true";
     Response.Redirect("UserLogin");
 }
+else {
+    int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
+    if (userlevel < 1)
+    {
+        Session["AccessFailedAdmin"] = "true";
+        Response.Redirect("Movie/MovieList");
+    }
+}
 <link href="~/Content/cssList.css" rel="stylesheet" />
 <h1>List of Users</h1>
 
@@ -46,39 +54,39 @@
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Userlevel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Firstname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Surname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ZipCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Area)
-        </td>
-		<td>
-			@Html.ActionLink("Edit", "UserEdit", new { id = item.Id }) |
-			@Html.ActionLink("Details", "UserDetailAdminView", new { id = item.Id }) |
-			@Html.ActionLink("Delete", "UserDelete", new { id = item.Id })
-</tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Userlevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Area)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "UserEdit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "UserDetailAdminView", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "UserDelete", new { id = item.Id })
+        </tr>
     }
 </table>
 </body>

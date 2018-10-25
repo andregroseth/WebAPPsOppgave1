@@ -96,13 +96,18 @@ namespace WebAppsProsjekt1.Controllers
         }
         public ActionResult UserList()
         {
+              List<VMUser> allUsers = db.AllUserInfo();
+              return View(allUsers);
+        }
+        public ActionResult UserDelete(int id)
+        {
             try
             {
                 int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
                 if (userlevel > 0)
                 {
-                    List<VMUser> allUsers = db.AllUserInfo();
-                    return View(allUsers);
+                    db.DeleteUser(id);
+                    return View();
                 }
                 else
                 {
@@ -110,24 +115,9 @@ namespace WebAppsProsjekt1.Controllers
                     return RedirectToAction("MovieList", "Movie");
                 }
             }
-            catch
-            {
+            catch {
                 Session["AccessFailedLogin"] = "true";
-                return RedirectToAction("UserLogin");
-            }
-
-        }
-        public ActionResult UserDelete(int id)
-        {
-            int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
-            if (userlevel > 0)
-            {
-                db.DeleteUser(id);
-                return View();
-            } else
-            {
-                Session["AccessFailedAdmin"] = "true";
-                return RedirectToAction("MovieList", "Movie");
+               return RedirectToAction("UserLogin");
             }
         }
 
