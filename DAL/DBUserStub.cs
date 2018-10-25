@@ -41,24 +41,24 @@ namespace WebAppsProsjekt1.DAL
 
         public List<VMUser> AllUserInfo()
         {
-            using (var db = new DB())
+            var expectedResult = new List<VMUser>();
+            var user = new VMUser()
             {
-                List<VMUser> AllUserInfo = db.User.Select(k => new VMUser
-                {
-                    Id = k.Id,
-                    Userlevel = k.Userlevel,
-                    Email = k.Email,
-                    Firstname = k.Firstname,
-                    Surname = k.Surname,
-                    Password = k.Password,
-                    Address = k.Address,
-                    ZipCode = k.Mail.ZipCode,
-                    Area = k.Mail.Area
-                }).ToList();
+                Id = 1,
+                Userlevel = 1,
+                Email = "trude@oslomet.no",
+                Firstname = "Trude",
+                Surname = "Solberg",
+                Password = "test",
+                Address = "Frognerveien 24B",
+                ZipCode = "9999",
+                Area = "test",
+            };
+            expectedResult.Add(user);
+            expectedResult.Add(user);
+            expectedResult.Add(user);
 
-                return AllUserInfo;
-            }
-
+            return expectedResult;
         }
 
         public bool SaveUserToDB(VMUser InUser)
@@ -106,7 +106,6 @@ namespace WebAppsProsjekt1.DAL
 
         public bool DeleteUser(int id)
         {
-
             if (id != null)
             {
                 return true;
@@ -172,39 +171,13 @@ namespace WebAppsProsjekt1.DAL
 
         public bool EditUser(int id, VMUser inUser)
         {
-            var db = new DB();
-            try
-            {
-                User find = db.User.Find(id);
-                find.Userlevel = inUser.Userlevel;
-                find.Email = inUser.Email;
-                find.Firstname = inUser.Firstname;
-                find.Surname = inUser.Surname;
-                find.Password = inUser.Password;
-                find.Address = inUser.Address;
-                Mail inUserMail = db.Mail.FirstOrDefault(m => m.ZipCode == inUser.ZipCode);
-                if (inUserMail != null)
-                {
-                    if (find.Mail != inUserMail)
-                    {
-                        find.Mail = inUserMail;
-                    }
-                }
-                else
-                {
-                    var newMail = new Mail()
-                    {
-                        ZipCode = inUser.ZipCode,
-                        Area = inUser.Area
-                    };
-                    find.Mail = newMail;
-                }
-                db.SaveChanges();
-                return true;
-            }
-            catch
+            if (id == 0)
             {
                 return false;
+            }
+            else
+            {
+                return true;
             }
         }
 

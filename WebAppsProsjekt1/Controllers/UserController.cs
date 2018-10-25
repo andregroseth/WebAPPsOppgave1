@@ -99,6 +99,7 @@ namespace WebAppsProsjekt1.Controllers
               List<VMUser> allUsers = db.AllUserInfo();
               return View(allUsers);
         }
+
         public ActionResult UserDelete(int id)
         {
             try
@@ -117,7 +118,7 @@ namespace WebAppsProsjekt1.Controllers
             }
             catch {
                 Session["AccessFailedLogin"] = "true";
-               return RedirectToAction("UserLogin");
+                return RedirectToAction("UserLogin");
             }
         }
 
@@ -134,19 +135,18 @@ namespace WebAppsProsjekt1.Controllers
 
         [HttpPost]
         public ActionResult UserEdit(int id, VMUser edituser) {
-                bool EditOk = db.EditUser(id,edituser);
-                if (EditOk) {
-                    return RedirectToAction("UserList");
-                }
+            bool EditOk = db.EditUser(id,edituser);
+            if (EditOk) {
+                return RedirectToAction("UserList");
+            }
             return View();
         }
 
         //Sjekker om Email eksistere fra før.
-        public JsonResult CheckEmail(string Email)
-        {
-               return Json(!db.CheckEmail(Email), JsonRequestBehavior.AllowGet);
+        //public JsonResult CheckEmail(string Email)
+        //{
+        //    return Json(!db.CheckEmail(Email), JsonRequestBehavior.AllowGet);
             
-        }
-
+        //}
     }
 }
