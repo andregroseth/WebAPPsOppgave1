@@ -169,6 +169,7 @@
     <Content Include="App_Data\MovieMonster_log.ldf">
       <DependentUpon>MovieMonster.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\DBLog.txt" />
     <Content Include="Content\images\avatar.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

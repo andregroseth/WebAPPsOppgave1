@@ -1,0 +1,111 @@
+Opened connection at 10/25/2018 4:47:58 PM +02:00
+SELECT 
+    [Limit1].[Id] AS [Id], 
+    [Limit1].[Userlevel] AS [Userlevel], 
+    [Limit1].[Email] AS [Email], 
+    [Limit1].[Firstname] AS [Firstname], 
+    [Limit1].[Surname] AS [Surname], 
+    [Limit1].[Password] AS [Password], 
+    [Limit1].[Address] AS [Address], 
+    [Limit1].[Mail_ZipCode] AS [Mail_ZipCode]
+    FROM ( SELECT TOP (2) 
+        [Extent1].[Id] AS [Id], 
+        [Extent1].[Userlevel] AS [Userlevel], 
+        [Extent1].[Email] AS [Email], 
+        [Extent1].[Firstname] AS [Firstname], 
+        [Extent1].[Surname] AS [Surname], 
+        [Extent1].[Password] AS [Password], 
+        [Extent1].[Address] AS [Address], 
+        [Extent1].[Mail_ZipCode] AS [Mail_ZipCode]
+        FROM [dbo].[User] AS [Extent1]
+        WHERE [Extent1].[Id] = @p0
+    )  AS [Limit1]
+-- p0: '3' (Type = Int32)
+-- Executing at 10/25/2018 4:47:58 PM +02:00
+-- Completed in 30 ms with result: SqlDataReader
+
+Closed connection at 10/25/2018 4:47:58 PM +02:00
+Opened connection at 10/25/2018 4:47:58 PM +02:00
+SELECT TOP (1) 
+    [Extent1].[ZipCode] AS [ZipCode], 
+    [Extent1].[Area] AS [Area]
+    FROM [dbo].[Mail] AS [Extent1]
+    WHERE [Extent1].[ZipCode] = @p__linq__0
+-- p__linq__0: '9999' (Type = String, Size = 4000)
+-- Executing at 10/25/2018 4:47:58 PM +02:00
+-- Completed in 25 ms with result: SqlDataReader
+
+Closed connection at 10/25/2018 4:47:58 PM +02:00
+Opened connection at 10/25/2018 4:47:58 PM +02:00
+Started transaction at 10/25/2018 4:47:58 PM +02:00
+UPDATE [dbo].[User]
+SET [Firstname] = @0
+WHERE ([Id] = @1)
+-- @0: 'Hassan' (Type = String, Size = -1)
+-- @1: '3' (Type = Int32)
+-- Executing at 10/25/2018 4:47:58 PM +02:00
+-- Completed in 26 ms with result: 1
+
+Committed transaction at 10/25/2018 4:47:59 PM +02:00
+Closed connection at 10/25/2018 4:47:59 PM +02:00
+Opened connection at 10/25/2018 4:51:05 PM +02:00
+SELECT 
+    [Limit1].[Id] AS [Id], 
+    [Limit1].[Userlevel] AS [Userlevel], 
+    [Limit1].[Email] AS [Email], 
+    [Limit1].[Firstname] AS [Firstname], 
+    [Limit1].[Surname] AS [Surname], 
+    [Limit1].[Password] AS [Password], 
+    [Limit1].[Address] AS [Address], 
+    [Limit1].[Mail_ZipCode] AS [Mail_ZipCode]
+    FROM ( SELECT TOP (2) 
+        [Extent1].[Id] AS [Id], 
+        [Extent1].[Userlevel] AS [Userlevel], 
+        [Extent1].[Email] AS [Email], 
+        [Extent1].[Firstname] AS [Firstname], 
+        [Extent1].[Surname] AS [Surname], 
+        [Extent1].[Password] AS [Password], 
+        [Extent1].[Address] AS [Address], 
+        [Extent1].[Mail_ZipCode] AS [Mail_ZipCode]
+        FROM [dbo].[User] AS [Extent1]
+        WHERE [Extent1].[Id] = @p0
+    )  AS [Limit1]
+-- p0: '2' (Type = Int32)
+-- Executing at 10/25/2018 4:51:05 PM +02:00
+-- Completed in 78 ms with result: SqlDataReader
+
+Closed connection at 10/25/2018 4:51:05 PM +02:00
+Opened connection at 10/25/2018 4:51:05 PM +02:00
+SELECT TOP (1) 
+    [Extent1].[ZipCode] AS [ZipCode], 
+    [Extent1].[Area] AS [Area]
+    FROM [dbo].[Mail] AS [Extent1]
+    WHERE [Extent1].[ZipCode] = @p__linq__0
+-- p__linq__0: '1363' (Type = String, Size = 4000)
+-- Executing at 10/25/2018 4:51:05 PM +02:00
+-- Completed in 30 ms with result: SqlDataReader
+
+Closed connection at 10/25/2018 4:51:05 PM +02:00
+Opened connection at 10/25/2018 4:51:05 PM +02:00
+Started transaction at 10/25/2018 4:51:05 PM +02:00
+INSERT [dbo].[Mail]([ZipCode], [Area])
+VALUES (@0, NULL)
+-- @0: '1363' (Type = String, Size = 128)
+-- Executing at 10/25/2018 4:51:06 PM +02:00
+-- Completed in 20 ms with result: 1
+
+UPDATE [dbo].[User]
+SET [Email] = @0, [Firstname] = @1, [Surname] = @2, [Address] = @3, [Mail_ZipCode] = @4
+WHERE (([Id] = @5) AND ([Mail_ZipCode] = @6))
+-- @0: 'carlohoa@gmail.com' (Type = String, Size = -1)
+-- @1: 'Carlo' (Type = String, Size = -1)
+-- @2: 'Nguyen' (Type = String, Size = -1)
+-- @3: 'Sandviksveien 54' (Type = String, Size = -1)
+-- @4: '1363' (Type = String, Size = 128)
+-- @5: '2' (Type = Int32)
+-- @6: '9999' (Type = String, Size = 128)
+-- Executing at 10/25/2018 4:51:06 PM +02:00
+-- Completed in 27 ms with result: 1
+
+Committed transaction at 10/25/2018 4:51:06 PM +02:00
+Closed connection at 10/25/2018 4:51:06 PM +02:00
