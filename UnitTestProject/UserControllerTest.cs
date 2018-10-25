@@ -12,14 +12,40 @@ namespace UnitTestProject
     [TestClass]
     public class UserControllerTest
     {
+
         [TestMethod]
-        public void UserDetailAdminView_Session_True()
+        public void UserDelete()
         {
             // Arrange
             var SessionMock = new TestControllerBuilder();
             var controller = new UserController(new UserBLL(new DBUserStub()));
             SessionMock.InitializeController(controller);
-            controller.Session["Userlevel"] = "true";
+            controller.Session["Userlevel"] = "1";
+            var user = new VMUser()
+            {
+                Id = 1,
+                Userlevel = 1,
+                Email = "trude@oslomet.no",
+                Firstname = "Trude",
+                Surname = "Solberg",
+                Password = "test",
+                Address = "Frognerveien 24B",
+                ZipCode = "9999",
+                Area = "test",
+            };
+
+            // Act
+            var result = (ViewResult)controller.UserDelete(1);
+
+            // Assert
+            Assert.AreEqual(result.ViewName, "");
+        }
+
+        [TestMethod]
+        public void UserDetailAdminView()
+        {
+            // Arrange
+            var controller = new UserController(new UserBLL(new DBUserStub()));
             var expectedResult = new VMUser()
             {
                 Id = 1,
@@ -50,13 +76,10 @@ namespace UnitTestProject
         }
 
         [TestMethod]
-        public void UserDetailAdminView_Session_Null()
+        public void UserEdit()
         {
             // Arrange
-            var SessionMock = new TestControllerBuilder();
             var controller = new UserController(new UserBLL(new DBUserStub()));
-            SessionMock.InitializeController(controller);
-            controller.Session["Userlevel"] = null;
             var expectedResult = new VMUser()
             {
                 Id = 1,
@@ -71,109 +94,10 @@ namespace UnitTestProject
             };
 
             // Act
-            var result = (RedirectToRouteResult)controller.UserDetailAdminView(1);
+            var result = (ViewResult)controller.UserEdit(1);
 
             // Assert
-            Assert.AreEqual(result.RouteName, "");
-            Assert.AreEqual(result.RouteValues.Values.First(), "MovieList");
-        }
-
-        [TestMethod]
-        public void UserDetailAdminView_Not_Logged_In()
-        {
-            // Arrange
-            var SessionMock = new TestControllerBuilder();
-            var controller = new UserController(new UserBLL(new DBUserStub()));
-            SessionMock.InitializeController(controller);
-            controller.Session["Userlevel"] = null;
-            controller.Session["AccessFailedLogin"] = true;
-            var expectedResult = new VMUser()
-            {
-                Id = 1,
-                Userlevel = 0,
-                Email = "trude@oslomet.no",
-                Firstname = "Trude",
-                Surname = "Solberg",
-                Password = "test",
-                Address = "Frognerveien 24B",
-                ZipCode = "9999",
-                Area = "test",
-            };
-
-            // Act
-            var result = (RedirectToRouteResult)controller.UserDetailAdminView(1);
-
-            // Assert
-            Assert.AreEqual(result.RouteName, "");
-        }
-
-        [TestMethod]
-        public void UserEdit_NotLoggedIn()
-        {
-            // Arrange
-            var SessionMock = new TestControllerBuilder();
-            var controller = new UserController(new UserBLL(new DBUserStub()));
-            SessionMock.InitializeController(controller);
-            controller.Session["Login"] = null;
-            var expectedResult = new VMUser()
-            {
-                Id = 1,
-                Userlevel = 0,
-                Email = "trude@oslomet.no",
-                Firstname = "Trude",
-                Surname = "Solberg",
-                Password = "test",
-                Address = "Frognerveien 24B",
-                ZipCode = "9999",
-                Area = "test",
-            };
-
-            // Act
-            var result = (RedirectToRouteResult)controller.UserEdit(1);
-
-            // Assert
-            Assert.AreEqual(result.RouteName, "");
-        }
-
-        [TestMethod]
-        public void UserEdit_LoggedIn_Admin()
-        {
-            // Arrange
-            var SessionMock = new TestControllerBuilder();
-            var controller = new UserController(new UserBLL(new DBUserStub()));
-            SessionMock.InitializeController(controller);
-            controller.Session["Userlevel"] = "true";
-            var vmUser = new VMUser()
-            {
-                Id = 1,
-                Userlevel = 0,
-                Email = "trude@oslomet.no",
-                Firstname = "Trude",
-                Surname = "Solberg",
-                Password = "test",
-                Address = "Frognerveien 24B",
-                ZipCode = "9999",
-                Area = "test",
-            };
-            var vmAdmin = new VMUser()
-            {
-                Id = 2,
-                Userlevel = 2,
-                Email = "admin@oslomet.no",
-                Firstname = "Admin",
-                Surname = "Admin",
-                Password = "admin123",
-                Address = "Pilestredet 35",
-                ZipCode = "9999",
-                Area = "test",
-            };
-
-
-            // Act
-            var result = (RedirectToRouteResult)controller.UserEdit(1);
-
-            // Assert
-            Assert.AreEqual(result.RouteName, "");
+            Assert.AreEqual(result.ViewName, "");
         }
     }
 

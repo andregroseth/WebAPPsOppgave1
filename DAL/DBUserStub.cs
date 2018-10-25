@@ -106,34 +106,15 @@ namespace WebAppsProsjekt1.DAL
 
         public bool DeleteUser(int id)
         {
-            using (var db = new DB())
+
+            if (id != null)
             {
-                try
-                {
-                    var DeleteUserRad = db.User.FirstOrDefault(u => u.Id == id);
-                    var DeleteOrderRad = db.Order.Where(x => x.User.Id == DeleteUserRad.Id).ToList();
-                    if (DeleteOrderRad != null)
-                    {
-                        System.Diagnostics.Debug.Write("AIHODASHDFNADK" + DeleteOrderRad);
-                        foreach (var item in DeleteOrderRad)
-                        {
-
-                            var DeleteOrderlineRad = db.Orderline.Where(a => a.Order.Id == item.Id);
-                            foreach (var itemline in DeleteOrderlineRad)
-                            {
-                                db.Orderline.Remove(itemline);
-                            }
-                            db.Order.Remove(item);
-                        }
-
-                    }
-                    db.User.Remove(DeleteUserRad);
-                    db.SaveChanges();
-                    return true;
-                }
-                catch (Exception error) { return false; }
+                return true;
             }
-
+            else
+            {
+                return false;
+            }
         }
     
         public VMUser GetVMUserInfo(int id)
