@@ -71,7 +71,7 @@ else
                     <div class="col-sm-6">
                         <div class="form-group">
                             @Html.LabelFor(model => model.ConfirmEmail)
-                            @Html.EditorFor(model => model.ConfirmEmail, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Confirm Email", @tabindex = "6" } })
+                            @Html.EditorFor(model => model.ConfirmEmail, new { htmlAttributes = new { @Value = Model.Email, @class = "form-control input-lg", @placeholder = "Confirm Email", @tabindex = "6" } })
                             @Html.ValidationMessageFor(model => model.ConfirmEmail, "", new { @class = "text-danger" })
                         </div>
                     </div>

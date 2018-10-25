@@ -107,7 +107,7 @@ namespace WebAppsProsjekt1.Controllers
                 if (userlevel > 0)
                 {
                     db.DeleteUser(id);
-                    return View();
+                    return RedirectToAction("UserList"); ;
                 }
                 else
                 {
