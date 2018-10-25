@@ -22,6 +22,7 @@ else {
 
 <table class="table table-striped">
     <tr>
+        <th style="width:5%"></th>
         <th>
             @Html.DisplayNameFor(model => model.Id)
         </th>
@@ -50,43 +51,53 @@ else {
             @Html.DisplayNameFor(model => model.Area)
         </th>
         <th></th>
+        <th></th>
+        <th></th>
+        <th style="width:5%"></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Userlevel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Firstname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Surname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZipCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Area)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "UserEdit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "UserDetailAdminView", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "UserDelete", new { id = item.Id })
-        </tr>
+    <tr>
+        <td><div class="col-sm-2 hidden-xs"></div></td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Userlevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ZipCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Area)
+        </td>
+        <td>
+            <div style="max-width:5em;"><a href="/User/UserEdit?id=@item.Id" class="btn btn-success">Edit</a></div>
+        </td>
+        <td>
+            <div style="max-width:5em;"><a href="/User/UserDetailAdminView?id=@item.Id" class="btn btn-primary">Details</a></div>
+        </td>
+        <td>
+            <div style="max-width:5em;"> @Html.ActionLink("Delete", "UserDelete", new { id = item.Id}, new { @class = "btn btn-danger" }) </div>
+        </td>
+        <td><div class="col-sm-2 hidden-xs"></div></td>
+    </tr>
     }
 </table>
 </body>

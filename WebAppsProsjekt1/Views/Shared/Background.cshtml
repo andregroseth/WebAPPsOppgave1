@@ -64,8 +64,10 @@
                         <li><a href="/User/UserLogout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                         <li><a href="/User/UserDetail"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
                         int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
-                        if (userlevel > 0) {
+                        if (userlevel > 0)
+                        {
                             <li><a href="/User/UserList"><span class="glyphicon glyphicon-list"></span> User List</a></li>
+                            <li><a href="/Movie/MovieListAdminView"><span class="glyphicon glyphicon-list"></span> Movie List</a></li>
                         }
                     }
                     <li><a href="/Cart/CartList" id="cartCount"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>

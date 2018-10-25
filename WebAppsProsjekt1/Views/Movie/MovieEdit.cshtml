@@ -1,0 +1,83 @@
+﻿@model WebAppsProsjekt1.Model.Movie
+
+@{
+    ViewBag.Title = "MovieEdit";
+    Layout = "~/Views/Shared/Background.cshtml";
+}
+@if (Session["Login"] == null)
+{
+    Session["AccessFailedLogin"] = "true";
+    Response.Redirect("/User/UserLogin");
+}
+else
+{
+    int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
+    if (userlevel < 1)
+    {
+        Session["AccessFailedAdmin"] = "true";
+        Response.Redirect("MovieList");
+    }
+}
+<link href="~/Content/cssUserRegister.css" rel="stylesheet" />
+<script src="~/Scripts/UserRegister.js"></script>
+
+<h1>Add Movie</h1>
+<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 form-container">
+    @using (Html.BeginForm())
+    {
+        try
+        {
+    <center>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title)
+                    @Html.EditorFor(model => model.Title, new { @id = "Title", htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Movie Tittle", @tabindex = "1" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Category)
+                    @Html.EditorFor(model => model.Category, new { @id = "Category", htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Category", @tabindex = "2" } })
+                    @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Cost)
+                    @Html.EditorFor(model => model.Cost, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Cost", @tabindex = "3" } })
+                    @Html.ValidationMessageFor(model => model.Cost, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ImagePath)
+                    @Html.EditorFor(model => model.ImagePath, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Image Path", @tabindex = "4" } })
+                    @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MovieSrc)
+                    @Html.EditorFor(model => model.MovieSrc, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Trailer Link", @tabindex = "5" } })
+                    @Html.ValidationMessageFor(model => model.MovieSrc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="Save" class="btn btn-success btn-lg" tabindex="7">
+        <br />
+        @Html.ActionLink("Back", "MovieListAdminView", new { tom = "" }, new { @class = "btn btn-primary btn-lg", @style = "width:inherit; margin-top:1vh", @tabindex = "7" })
+    </center>
+        }
+        catch (System.Web.HttpException) {
+            return;
+        }
+    }
+</div>
+</body>
+</html>
