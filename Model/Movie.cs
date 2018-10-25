@@ -2,7 +2,7 @@
 
 namespace WebAppsProsjekt1.Model
 {
-    public class Movie
+    public class Movie : BaseEntity
     {
         public int Id { get; set; }
 

@@ -1,0 +1,33 @@
+﻿---------------------------------------
+Added to following table: User
+Added by: Anonymous
+Time: 25-Oct-18 18:16:05
+---------------------------------------
+
+Opened connection at 25-Oct-18 20:16:05 +02:00
+Started transaction at 25-Oct-18 20:16:05 +02:00
+INSERT [dbo].[Mail]([ZipCode], [Area])
+VALUES (@0, NULL)
+-- @0: '1354' (Type = String, Size = 128)
+-- Executing at 25-Oct-18 20:16:05 +02:00
+-- Completed in 37 ms with result: 1
+
+INSERT [dbo].[User]([Userlevel], [Email], [Firstname], [Surname], [Password], [Address], [TimeAdded], [UserAdded], [TimeEdited], [UserEdited], [TimeDeleted], [UserDeleted], [Mail_ZipCode])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, NULL, NULL, NULL, NULL, @8)
+SELECT [Id]
+FROM [dbo].[User]
+WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()
+-- @0: '0' (Type = Int32)
+-- @1: 'viktor.v.johansen@hotmail.com' (Type = String, Size = -1)
+-- @2: 'Viktor' (Type = String, Size = -1)
+-- @3: 'Johansen' (Type = String, Size = -1)
+-- @4: '_�$b_j�j̘���IK�u�Cա�͸' (Type = String, Size = -1)
+-- @5: 'Jansveien 13' (Type = String, Size = -1)
+-- @6: '25-Oct-18 18:16:05' (Type = DateTime2)
+-- @7: 'Anonymous' (Type = String, Size = -1)
+-- @8: '1354' (Type = String, Size = 128)
+-- Executing at 25-Oct-18 20:16:06 +02:00
+-- Completed in 34 ms with result: SqlDataReader
+
+Committed transaction at 25-Oct-18 20:16:06 +02:00
+Closed connection at 25-Oct-18 20:16:06 +02:00

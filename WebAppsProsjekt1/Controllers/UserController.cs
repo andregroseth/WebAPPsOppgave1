@@ -35,9 +35,10 @@ namespace WebAppsProsjekt1.Controllers
                 User user = db.GetUserInfo(partialUser.Email);
                 Session["Login"] = db.GetSession(user).ToString();
 				Session["LoginSuccess"] = "true";
-                Session.Remove("LoginFailed");
                 Session["Userlevel"] = user.Userlevel;
-                return RedirectToAction("Movielist", "Movie");
+				Session["Email"] = user.Email;
+				Session.Remove("LoginFailed");
+				return RedirectToAction("Movielist", "Movie");
             } else
             {
                 Session["LoginFailed"] = "true";
