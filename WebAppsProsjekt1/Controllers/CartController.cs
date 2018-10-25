@@ -52,7 +52,6 @@ namespace WebAppsProsjekt1.Controllers
         }
 
         public ActionResult CartDelete(int id) {
-
             var cookieHelper = new CartBLL();
             cookieHelper.CookieCartDelete(id, Response);
             return RedirectToAction("CartList");

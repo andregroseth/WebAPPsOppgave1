@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseEntity.cs" />
     <Compile Include="Mail.cs" />
     <Compile Include="Movie.cs" />
     <Compile Include="Order.cs" />

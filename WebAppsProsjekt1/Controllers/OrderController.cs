@@ -34,6 +34,17 @@ namespace WebAppsProsjekt1.Controllers
             }
         }
 
+        public ActionResult OrderDelete(int Id)
+        {
+            var db = new OrderBLL();
+            if (db.DeleteOrder(Id))
+            {
+                return RedirectToAction("OrderList");
+            }
+			Session["DeleteFailed"] = "true";
+			return View();
+        }
+
         public ActionResult OrderDetail(int id)
         {
             if (Session["Login"] != null)
@@ -49,17 +60,6 @@ namespace WebAppsProsjekt1.Controllers
             Session["AccessFailedLogin"] = "true";
             return RedirectToAction("UserLogin","User");
         }
-
-        public ActionResult OrderDelete(int Id)
-        {
-            bool OK = db.DeleteOrder(Id);
-            if (OK)
-            {
-                return RedirectToAction("OrderList");
-            }
-            return View();
-        }
-
         public ActionResult OrderListAdminView(int userId) {
             var allOrder = db.AllOrderInfo(userId);
             return View(allOrder);

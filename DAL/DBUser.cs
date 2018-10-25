@@ -91,8 +91,11 @@ namespace WebAppsProsjekt1.DAL
                         NewUserRad.Mail = CheckZipcode;
                     }
                     db.User.Add(NewUserRad);
-                    db.SaveChanges();
-                    return true;
+					DBLogger logger = new DBLogger();
+					db.addExtrasToEntries(db.ChangeTracker);
+					logger.logChanges(db);
+					db.SaveChanges();
+					return true;
                 }
                 catch (Exception error)
                 {
@@ -125,7 +128,10 @@ namespace WebAppsProsjekt1.DAL
 
                     }
                     db.User.Remove(DeleteUserRad);
-                    db.SaveChanges();
+					DBLogger logger = new DBLogger();
+					db.addExtrasToEntries(db.ChangeTracker);
+					db.Database.Log = tableInfo => logger.logChanges(db);
+					db.SaveChanges();
                     return true;
                 }
                 catch (Exception error) { return false; }
@@ -213,8 +219,11 @@ namespace WebAppsProsjekt1.DAL
                     };
                     find.Mail = newMail;
                 }
-                db.SaveChanges();
-                return true;
+				DBLogger logger = new DBLogger();
+				db.addExtrasToEntries(db.ChangeTracker);
+				db.Database.Log = tableInfo => logger.logChanges(db);
+				db.SaveChanges();
+				return true;
             }
             catch {
                 return false;
@@ -234,7 +243,6 @@ namespace WebAppsProsjekt1.DAL
             using (var db = new DB())
             {
                 if (db.User.Any(x => x.Email == Email) ) {
-
                     return true;
                 }
                 return false;

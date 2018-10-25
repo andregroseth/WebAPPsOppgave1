@@ -1,44 +1,53 @@
 ﻿@model IEnumerable<WebAppsProsjekt1.Model.VMOrder>
 
 @{
-    ViewBag.Title = "OrderList";
-    Layout = "~/Views/Shared/Background.cshtml";
+	ViewBag.Title = "OrderList";
+	Layout = "~/Views/Shared/Background.cshtml";
 
 }
 @if (Session["Login"] == null)
 {
-    Session["AccessFailedLogin"] = "true";
-    Response.Redirect("/User/UserLogin");
+	Session["AccessFailedLogin"] = "true";
+	Response.Redirect("/User/UserLogin");
 }
 else if (Session["AccessUnauthorized"] != null)
 {
-    <script type="text/javascript">
-        $(window).on('load', function () {
-            showFeedbackModal("You are not authorized to access this order.", "red", 4000);
-        });
-    </script>
-    Session.Remove("AccessUnauthorized");
+	<script type="text/javascript">
+		$(window).on('load', function () {
+			showFeedbackModal("You are not authorized to access this order.", "red", 4000);
+		});
+	</script>
+	Session.Remove("AccessUnauthorized");
+}
+else if (Session["DeleteFailed"] != null)
+{
+	<script type="text/javascript">
+		$(window).on('load', function () {
+			showFeedbackModal("Order deletion failed.", "red", 4000);
+		});
+	</script>
+	Session.Remove("DeleteFailed");
 }
 <link href="~/Content/cssList.css" rel="stylesheet" />
 <div id="feedback-modal" class="modal" role="dialog">
-    <div class="modal-body">
-        <p align="center"></p>
-    </div>
+	<div class="modal-body">
+		<p align="center"></p>
+	</div>
 </div>
 
 <h1>List of Orders</h1>
 
 <table class="table table-striped">
-    <thead>
-        <tr class="row-name">
-            <th style="width:5%"></th>
-            <th>@Html.DisplayNameFor(model => model.Id)</th>
-            <th>@Html.DisplayNameFor(model => model.Date)</th>
-            <th>@Html.DisplayNameFor(model => model.UserId)</th>
-            <th style="width:20%"></th>
-            <th style="width:12%"></th>
-        </tr>
-    </thead>
+	<thead>
+		<tr class="row-name">
+			<th style="width:5%"></th>
+			<th>@Html.DisplayNameFor(model => model.Id)</th>
+			<th>@Html.DisplayNameFor(model => model.Date)</th>
+			<th>@Html.DisplayNameFor(model => model.UserId)</th>
+			<th style="width:20%"></th>
+			<th style="width:12%"></th>
+		</tr>
+	</thead>
 	<tbody>
 		<tr class="row-content">
 			@foreach (var item in Model)
@@ -53,8 +62,8 @@ else if (Session["AccessUnauthorized"] != null)
 					<div style="max-width:5em;"><a href="/Order/OrderDetail?id=@item.Id" class="btn btn-success">Details</a></div>
 				</td>
 			</tr>
-			}
-	</tbody>
-</table>
-</body>
-</html>
+		}
+		</tbody>
+	</table>
+	</body>
+	</html>

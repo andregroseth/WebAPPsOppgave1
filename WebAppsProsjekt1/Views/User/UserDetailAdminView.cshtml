@@ -8,7 +8,7 @@
 @if (Session["Login"] == null)
 {
     Session["AccessFailedLogin"] = "true";
-    Response.Redirect("UserLogin");
+    Response.Redirect("/User/UserLogin");
 }
 else
 {

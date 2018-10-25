@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebAppsProsjekt1.Model
 {
-    public class Movie
+    public class Movie : BaseEntity
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Fill in Movie Tittle")]

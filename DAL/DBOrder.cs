@@ -35,8 +35,11 @@ namespace WebAppsProsjekt1.DAL
                 order.Orderline = orderlineList;
 
                 db.Order.Add(order);
-                db.SaveChanges();
-            }
+				DBLogger logger = new DBLogger();
+				db.addExtrasToEntries(db.ChangeTracker);
+				db.Database.Log = tableInfo => logger.logChanges(db);
+				db.SaveChanges();
+			}
         }
 
         public List<VMOrder> AllOrderInfo(int id)
@@ -71,7 +74,10 @@ namespace WebAppsProsjekt1.DAL
                     }
                     var DeleteOrderRad = db.Order.FirstOrDefault(u => u.Id == Id);
                     db.Order.Remove(DeleteOrderRad);
-                    db.SaveChanges();
+					DBLogger logger = new DBLogger();
+					db.addExtrasToEntries(db.ChangeTracker);
+					db.Database.Log = tableInfo => logger.logChanges(db);
+					db.SaveChanges();
                     return true;
                 }
                 catch (Exception error) { return false; }
@@ -109,8 +115,6 @@ namespace WebAppsProsjekt1.DAL
                 }).ToList();
 
                 return OrderlineDetail;
-
-
             }
         }
     }

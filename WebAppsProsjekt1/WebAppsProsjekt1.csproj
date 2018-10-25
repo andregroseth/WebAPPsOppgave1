@@ -165,6 +165,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\logs\dbLog.txt" />
     <Content Include="App_Data\MovieMonster.mdf" />
     <Content Include="App_Data\MovieMonster_log.ldf">
       <DependentUpon>MovieMonster.mdf</DependentUpon>

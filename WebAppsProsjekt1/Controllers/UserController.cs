@@ -11,8 +11,6 @@ namespace WebAppsProsjekt1.Controllers
 {
     public class UserController : Controller
     {
-        //private DB db = new Models.DB();
-
         //GET: User/Login
         private IUserBLL db;
 
@@ -37,9 +35,10 @@ namespace WebAppsProsjekt1.Controllers
                 User user = db.GetUserInfo(partialUser.Email);
                 Session["Login"] = db.GetSession(user).ToString();
 				Session["LoginSuccess"] = "true";
-                Session.Remove("LoginFailed");
                 Session["Userlevel"] = user.Userlevel;
-                return RedirectToAction("Movielist", "Movie");
+				Session["Email"] = user.Email;
+				Session.Remove("LoginFailed");
+				return RedirectToAction("Movielist", "Movie");
             } else
             {
                 Session["LoginFailed"] = "true";
@@ -85,8 +84,7 @@ namespace WebAppsProsjekt1.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool OK = db.SaveUserToDB(inUser);
-                if (OK)
+                if (db.SaveUserToDB(inUser))
                 {
 					Session["RegistrationSuccess"] = true;
                     return RedirectToAction("UserLogin");
@@ -117,8 +115,8 @@ namespace WebAppsProsjekt1.Controllers
                 }
             }
             catch {
-                Session["AccessFailedLogin"] = "true";
-                return RedirectToAction("UserLogin");
+               Session["AccessFailedLogin"] = "true";
+               return RedirectToAction("UserLogin");
             }
         }
 
@@ -135,10 +133,9 @@ namespace WebAppsProsjekt1.Controllers
 
         [HttpPost]
         public ActionResult UserEdit(int id, VMUser edituser) {
-            bool EditOk = db.EditUser(id,edituser);
-            if (EditOk) {
-                return RedirectToAction("UserList");
-            }
+                if (db.EditUser(id, edituser)) {
+                    return RedirectToAction("UserList");
+                }
             return View();
         }
 
