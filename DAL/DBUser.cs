@@ -191,7 +191,7 @@ namespace WebAppsProsjekt1.DAL
            
             var db = new DB();
             try {
-                db.Database.Log = logInfo => FileLogger.Log(logInfo);                
+                //db.Database.Log = logInfo => FileLogger.Log(logInfo);                
                 User find = db.User.Find(id);
                 find.Userlevel = inUser.Userlevel;
                 find.Email = inUser.Email;
@@ -214,6 +214,7 @@ namespace WebAppsProsjekt1.DAL
                     };
                     find.Mail = newMail;
                 }
+                db.Database.Log = logInfo => FileLogger.Log(logInfo);
                 db.SaveChanges();
                 return true;
             }
@@ -247,7 +248,12 @@ namespace WebAppsProsjekt1.DAL
     {
         public static void Log(string logInfo)
         {
-            File.AppendAllText("C:\\Users\\Carlo Nguyen\\source\\repos\\WebAPPsOppgave1\\WebAppsProsjekt1\\Content\\DBLog.txt", logInfo);
+            string path = HttpContext.Current.Server.MapPath("~/Content/DBLog.txt");
+
+            if (!File.Exists(path))
+            {
+                File.AppendAllText(path, logInfo);
+            }
         }
     }
 }
