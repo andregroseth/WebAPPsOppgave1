@@ -52,6 +52,7 @@
     <Compile Include="CookieHelper.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="DbInit.cs" />
+    <Compile Include="DBLogger.cs" />
     <Compile Include="DBMovie.cs" />
     <Compile Include="DBOrder.cs" />
     <Compile Include="DBOrderStub.cs" />

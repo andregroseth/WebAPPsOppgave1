@@ -2,7 +2,7 @@
 
 namespace WebAppsProsjekt1.Model
 {
-    public class User
+    public class User : BaseEntity
     {
         public int Id { get; set; }
         public int Userlevel { get; set; }

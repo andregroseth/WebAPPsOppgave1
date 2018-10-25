@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebAppsProsjekt1.Model
 {
-    public class Order
+    public class Order : BaseEntity
     {
         public int Id { get; set; }
 

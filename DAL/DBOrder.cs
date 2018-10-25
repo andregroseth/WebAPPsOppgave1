@@ -35,6 +35,9 @@ namespace WebAppsProsjekt1.DAL
                 order.Orderline = orderlineList;
 
                 db.Order.Add(order);
+                DBLogger logger = new DBLogger();
+                db.addExtrasToEntries(db.ChangeTracker);
+                logger.logChanges(db);
                 db.SaveChanges();
             }
         }
