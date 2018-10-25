@@ -11,8 +11,6 @@ namespace WebAppsProsjekt1.Controllers
 {
     public class UserController : Controller
     {
-        //private DB db = new Models.DB();
-
         //GET: User/Login
         private IUserBLL db;
 
@@ -85,8 +83,7 @@ namespace WebAppsProsjekt1.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool OK = db.SaveUserToDB(inUser);
-                if (OK)
+                if (db.SaveUserToDB(inUser))
                 {
 					Session["RegistrationSuccess"] = true;
                     return RedirectToAction("UserLogin");
@@ -116,7 +113,7 @@ namespace WebAppsProsjekt1.Controllers
                 }
             }
             catch {
-                Session["AccessFailedLogin"] = "true";
+               Session["AccessFailedLogin"] = "true";
                return RedirectToAction("UserLogin");
             }
         }
@@ -134,8 +131,7 @@ namespace WebAppsProsjekt1.Controllers
 
         [HttpPost]
         public ActionResult UserEdit(int id, VMUser edituser) {
-                bool EditOk = db.EditUser(id,edituser);
-                if (EditOk) {
+                if (db.EditUser(id, edituser)) {
                     return RedirectToAction("UserList");
                 }
             return View();
@@ -145,7 +141,6 @@ namespace WebAppsProsjekt1.Controllers
         public JsonResult CheckEmail(string Email)
         {
                return Json(!db.CheckEmail(Email), JsonRequestBehavior.AllowGet);
-            
         }
 
     }

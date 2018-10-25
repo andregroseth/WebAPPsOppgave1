@@ -26,12 +26,12 @@ namespace WebAppsProsjekt1.Controllers
         public ActionResult OrderDelete(int Id)
         {
             var db = new OrderBLL();
-            bool OK = db.DeleteOrder(Id);
-            if (OK)
+            if (db.DeleteOrder(Id))
             {
                 return RedirectToAction("OrderList");
             }
-            return View();
+			Session["DeleteFailed"] = "true";
+			return View();
         }
 
         public ActionResult OrderDetail(int id)
@@ -51,15 +51,14 @@ namespace WebAppsProsjekt1.Controllers
             return RedirectToAction("UserLogin","User");
         }
         public ActionResult OrderListAdminView(int userId) {
-                var db = new OrderBLL();
-                var allOrder = db.AllOrderInfo(userId);
-                return View(allOrder);
+            var db = new OrderBLL();
+            var allOrder = db.AllOrderInfo(userId);
+            return View(allOrder);
         }
         public ActionResult OrderDetailAdminView(int id,int userId) {
-                var db = new OrderBLL();
-                List<VMOrderline> ShowOrder = db.GetOrderInfo(id, userId);
-                return View(ShowOrder);
-
+            var db = new OrderBLL();
+            List<VMOrderline> ShowOrder = db.GetOrderInfo(id, userId);
+            return View(ShowOrder);
         }
     }
 }
