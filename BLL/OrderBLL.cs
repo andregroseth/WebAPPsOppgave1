@@ -9,21 +9,28 @@ using WebAppsProsjekt1.Models;
 
 namespace WebAppsProsjekt1.BLL
 {
-    public class OrderBLL
+    public class OrderBLL : BLL.IOrderBLL
     {
+        private IDBOrder db;
+        public OrderBLL()
+        {
+            db = new DBOrder();
+        }
+
+        public OrderBLL(IDBOrder stub)
+        {
+            db = stub;
+        }
         public List<VMOrder> AllOrderInfo(int id)
         {
-            var db = new DBOrder();
             return db.AllOrderInfo(id);
         }
         public bool DeleteOrder(int Id)
         {
-            var db = new DBOrder();
             return db.DeleteOrder(Id);
         }
         public List<VMOrderline> GetOrderInfo(int id, int userid)
         {
-            var db = new DBOrder();
             return db.GetOrderInfo(id, userid);
         }
     }

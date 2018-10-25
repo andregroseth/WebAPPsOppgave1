@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CartBLL.cs" />
+    <Compile Include="IOrderBLL.cs" />
     <Compile Include="IUserBLL.cs" />
     <Compile Include="MovieBLL.cs" />
     <Compile Include="OrderBLL.cs" />

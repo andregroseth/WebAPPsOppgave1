@@ -5,7 +5,7 @@ using WebAppsProsjekt1.Model;
 
 namespace WebAppsProsjekt1.DAL
 { 
-    public class DBOrder
+    public class DBOrder : DAL.IDBOrder
     {
         public void AddOrder(List<Movie> inMovie, int id)
         {
