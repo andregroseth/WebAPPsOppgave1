@@ -191,7 +191,6 @@ namespace WebAppsProsjekt1.DAL
            
             var db = new DB();
             try {
-                db.Database.Log = logInfo => FileLogger.Log(logInfo);                
                 User find = db.User.Find(id);
                 find.Userlevel = inUser.Userlevel;
                 find.Email = inUser.Email;
@@ -240,14 +239,6 @@ namespace WebAppsProsjekt1.DAL
                 }
                 return false;
             }
-        }
-    }
-
-    public class FileLogger
-    {
-        public static void Log(string logInfo)
-        {
-            File.AppendAllText("C:\\Users\\Carlo Nguyen\\source\\repos\\WebAPPsOppgave1\\WebAppsProsjekt1\\Content\\DBLog.txt", logInfo);
         }
     }
 }
