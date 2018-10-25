@@ -65,7 +65,7 @@ namespace WebAppsProsjekt1.Controllers
             return View(allOrder);
         }
 
-        public ActionResult OrderDetailAdminView(int id,int userId) {
+        public ActionResult OrderDetailAdminView(int id, int userId) {
             List<VMOrderline> ShowOrder = db.GetOrderInfo(id, userId);
             return View(ShowOrder);
         }

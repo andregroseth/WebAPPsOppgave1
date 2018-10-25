@@ -41,17 +41,25 @@ namespace WebAppsProsjekt1.DAL
 
         public List<VMOrder> AllOrderInfo(int id)
         {
-            var orderList = new List<VMOrder>();
-            var order = new VMOrder()
+            if (id == 0)
             {
-                Id = 1,
-                Date = "12/10/2018",
-                UserId = 1,
-            };
-            orderList.Add(order);
-            orderList.Add(order);
-            orderList.Add(order);
-            return orderList;
+                var orderList = new List<VMOrder>();
+                return orderList;
+            }
+            else
+            {
+                var orderList = new List<VMOrder>();
+                var order = new VMOrder()
+                {
+                    Id = 1,
+                    Date = "12/10/2018",
+                    UserId = 1,
+                };
+                orderList.Add(order);
+                orderList.Add(order);
+                orderList.Add(order);
+                return orderList;
+            }
         }
 
         public bool DeleteOrder(int Id)
@@ -78,7 +86,9 @@ namespace WebAppsProsjekt1.DAL
         public List<VMOrderline> GetOrderInfo(int id, int userid)
         {
             var orderlineList = new List<VMOrderline>();
-            var orderline = new VMOrderline()
+            if (id != 0)
+            {
+                var orderline = new VMOrderline()
                 {
                     UserId = 1,
                     Id = 1,
@@ -88,13 +98,16 @@ namespace WebAppsProsjekt1.DAL
                     Cost = 123,
                     ImagePath = "Test"
                 };
-            orderlineList.Add(orderline);
-            orderlineList.Add(orderline);
-            orderlineList.Add(orderline);
+                orderlineList.Add(orderline);
+                orderlineList.Add(orderline);
+                orderlineList.Add(orderline);
 
-            return orderlineList;
-
-
+                return orderlineList;
             }
+            else
+            {
+                return orderlineList;
+            }
+        }
         }
 }
