@@ -112,10 +112,8 @@ namespace WebAppsProsjekt1.DAL
                     var DeleteOrderRad = db.Order.Where(x => x.User.Id == DeleteUserRad.Id).ToList();
                     if (DeleteOrderRad != null)
                     {
-                        System.Diagnostics.Debug.Write("AIHODASHDFNADK" + DeleteOrderRad);
                         foreach (var item in DeleteOrderRad)
                         {
-
                             var DeleteOrderlineRad = db.Orderline.Where(a => a.Order.Id == item.Id);
                             foreach (var itemline in DeleteOrderlineRad)
                             {
@@ -131,9 +129,7 @@ namespace WebAppsProsjekt1.DAL
                 }
                 catch (Exception error) { return false; }
             }
-
         }
-
 
         public VMUser GetVMUserInfo(int id)
         {
@@ -242,6 +238,5 @@ namespace WebAppsProsjekt1.DAL
                 return false;
             }
         }
-
     }
 }
