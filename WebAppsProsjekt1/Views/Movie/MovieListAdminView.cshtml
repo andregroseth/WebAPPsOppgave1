@@ -18,23 +18,23 @@ else
 		Response.Redirect("MovieList");
 	}
 }
-@if (Session["DeleteSuccessful"] != null)
+@if (Session["DeleteSuccess"] != null)
 {
 	<script type="text/javascript">
 		$(window).on('load', function () {
 			showFeedbackModal("Movie deleted.", "green", 4000);
 		});
 	</script>
-	Session.Remove("DeleteSuccessful");
+	Session.Remove("DeleteSuccess");
 }
-else if (Session["EditSuccessful"] != null)
+else if (Session["EditSuccess"] != null)
 {
 	<script type="text/javascript">
 		$(window).on('load', function () {
 			showFeedbackModal("Movie edited.", "green", 4000);
 		});
 	</script>
-	Session.Remove("EditSuccessful");
+	Session.Remove("EditSuccess");
 }
 else if (Session["AddSuccess"] != null)
 {
