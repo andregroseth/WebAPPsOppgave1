@@ -37,7 +37,7 @@ namespace WebAppsProsjekt1.DAL
                 db.Order.Add(order);
 				DBLogger logger = new DBLogger();
 				db.addExtrasToEntries(db.ChangeTracker);
-				db.Database.Log = tableInfo => logger.logChanges(db);
+				logger.logChanges(db);
 				db.SaveChanges();
 			}
         }
@@ -76,7 +76,7 @@ namespace WebAppsProsjekt1.DAL
                     db.Order.Remove(DeleteOrderRad);
 					DBLogger logger = new DBLogger();
 					db.addExtrasToEntries(db.ChangeTracker);
-					db.Database.Log = tableInfo => logger.logChanges(db);
+					logger.logChanges(db);
 					db.SaveChanges();
                     return true;
                 }

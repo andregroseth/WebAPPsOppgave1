@@ -18,7 +18,7 @@ namespace WebAppsProsjekt1.DAL
 			StringBuilder log = new StringBuilder();
 			var entities = db.ChangeTracker.Entries().Where(x => x.Entity is BaseEntity && !x.Entity.GetType().Name.Equals("Mail"));
 
-			log.Append("---------------------------------------");
+			log.Append("\n---------------------------------------");
 			foreach (var entry in entities)
 			{
 				if (entry.State.Equals(EntityState.Added)) {
@@ -28,7 +28,7 @@ namespace WebAppsProsjekt1.DAL
 					}
 					if (!entry.Entity.GetType().Name.Equals("Orderline")) {
 						log.Append("\nAdded by: " + ((BaseEntity)entry.Entity).UserAdded);
-						log.Append("\nTime: " + ((BaseEntity)entry.Entity).TimeAdded);
+						log.Append("\nTime added: " + ((BaseEntity)entry.Entity).TimeAdded);
 					}
 					//indent
 					if (entry.Entity.GetType().Name.Equals("Orderline")) {
@@ -39,23 +39,22 @@ namespace WebAppsProsjekt1.DAL
 				{
 					log.Append("\nEdited: " + entry.Entity.GetType().Name);
 					log.Append("\nEdited by: " + ((BaseEntity)entry.Entity).UserEdited);
-					log.Append("\nTime: " + ((BaseEntity)entry.Entity).TimeEdited);
+					log.Append("\nTime edited: " + ((BaseEntity)entry.Entity).TimeEdited);
 				}
 				if (entry.State.Equals(EntityState.Deleted))
 				{
 					log.Append("\nDeleted: " + entry.Entity.GetType().Name);
 					log.Append("\nDeleted by: " + ((BaseEntity)entry.Entity).UserDeleted);
-					log.Append("\nTime: " + ((BaseEntity)entry.Entity).TimeDeleted);
+					log.Append("\nTime deleted: " + ((BaseEntity)entry.Entity).TimeDeleted);
 				}
 				if (entry.State.Equals(EntityState.Unchanged))
 				{
 					log.Append("\n\t\tFollowing table attributed to a changed entry: " + entry.Entity.GetType().Name);
 				}
 			}
-			log.Append("\n---------------------------------------\n");
-			db.Database.Log = tableInfo => File.AppendAllText(filePath, tableInfo);
-			log.Append("\n");
+			log.Append("\n\n");
 			File.AppendAllText(filePath, log.ToString());
+			db.Database.Log = tableInfo => File.AppendAllText(filePath, tableInfo);
 		}
 	}
 }

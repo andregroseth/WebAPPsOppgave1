@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using WebAppsProsjekt1.Model;
 
@@ -32,14 +33,14 @@ namespace WebAppsProsjekt1.DAL
 			{
 				if (entity.State == EntityState.Added)
 				{
-					((BaseEntity)entity.Entity).TimeAdded = DateTime.UtcNow;
+					((BaseEntity)entity.Entity).TimeAdded = DateTime.Now;
 					((BaseEntity)entity.Entity).UserAdded = username;
 				} else if (entity.State == EntityState.Modified)
 				{
-					((BaseEntity)entity.Entity).TimeEdited = DateTime.UtcNow;
+					((BaseEntity)entity.Entity).TimeEdited = DateTime.Now;
 					((BaseEntity)entity.Entity).UserEdited = username;
 				} else if (entity.State == EntityState.Deleted) {
-					((BaseEntity)entity.Entity).TimeDeleted = DateTime.UtcNow;
+					((BaseEntity)entity.Entity).TimeDeleted = DateTime.Now;
 					((BaseEntity)entity.Entity).UserDeleted = username;
 				}
 			}

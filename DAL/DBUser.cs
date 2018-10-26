@@ -130,7 +130,7 @@ namespace WebAppsProsjekt1.DAL
                     db.User.Remove(DeleteUserRad);
 					DBLogger logger = new DBLogger();
 					db.addExtrasToEntries(db.ChangeTracker);
-					db.Database.Log = tableInfo => logger.logChanges(db);
+					logger.logChanges(db);
 					db.SaveChanges();
                     return true;
                 }
@@ -221,7 +221,7 @@ namespace WebAppsProsjekt1.DAL
                 }
 				DBLogger logger = new DBLogger();
 				db.addExtrasToEntries(db.ChangeTracker);
-				db.Database.Log = tableInfo => logger.logChanges(db);
+				logger.logChanges(db);
 				db.SaveChanges();
 				return true;
             }

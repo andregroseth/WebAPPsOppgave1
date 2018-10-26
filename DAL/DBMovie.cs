@@ -48,7 +48,10 @@ namespace WebAppsProsjekt1.DAL
                         MovieSrc = inMovie.MovieSrc
                     };
                     db.Movie.Add(newMovie);
-                    db.SaveChanges();
+					DBLogger logger = new DBLogger();
+					db.addExtrasToEntries(db.ChangeTracker);
+					logger.logChanges(db);
+					db.SaveChanges();
                     return true;
                 }
             }
@@ -74,7 +77,10 @@ namespace WebAppsProsjekt1.DAL
 
                     }
                     db.Movie.Remove(DeleteMovie);
-                    db.SaveChanges();
+					DBLogger logger = new DBLogger();
+					db.addExtrasToEntries(db.ChangeTracker);
+					logger.logChanges(db);
+					db.SaveChanges();
                     return true;
                 }
                 catch (Exception error) { return false; }
@@ -114,7 +120,10 @@ namespace WebAppsProsjekt1.DAL
                 find.Cost = inMovie.Cost;
                 find.ImagePath = inMovie.ImagePath;
                 find.MovieSrc = inMovie.MovieSrc;
-                db.SaveChanges();
+				DBLogger logger = new DBLogger();
+				db.addExtrasToEntries(db.ChangeTracker);
+				logger.logChanges(db);
+				db.SaveChanges();
                 return true;
             }
             catch
