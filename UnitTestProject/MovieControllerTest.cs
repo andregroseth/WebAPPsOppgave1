@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MvcContrib.TestHelper;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using WebAppsProsjekt1.BLL;
 using WebAppsProsjekt1.Controllers;
@@ -35,6 +37,7 @@ namespace UnitTestProject
             var result = (List<Movie>)actionResult.Model;
 
             // Assert
+            Assert.AreEqual(actionResult.ViewName, "");
             for (var i = 0; i < result.Count; i++)
             {
                 Assert.AreEqual(expectedResult[i].Id, result[i].Id);
@@ -44,6 +47,37 @@ namespace UnitTestProject
                 Assert.AreEqual(expectedResult[i].ImagePath, result[i].ImagePath);
                 Assert.AreEqual(expectedResult[i].MovieSrc, result[i].MovieSrc);
             }
+        }
+
+        [TestMethod]
+        public void MovieAdd_Post_Valid()
+        {
+            // Arrange
+            var SessionMock = new TestControllerBuilder();
+            var controller = new MovieController(new MovieBLL(new DBMovieStub()));
+            SessionMock.InitializeController(controller);
+            controller.Session["AddSuccess"] = "true";
+            var movie = new Movie()
+            {
+                Id = 1,
+                Title = "The Matrix",
+                Category = "Sci-Fi",
+                Cost = 59,
+                ImagePath = "/Content/images/movie/matrixImage.jpg",
+                MovieSrc = "https://www.youtube.com/embed/m8e-FF8MsqU"
+            };
+            // Act
+            var result = (RedirectToRouteResult)controller.MovieAdd(movie);
+
+            // Assert
+            Assert.AreEqual(result.RouteName, "");
+            Assert.AreEqual(result.RouteValues.Values.First(), "MovieListAdminView");
+        }
+
+        [TestMethod]
+        public void MovieAdd_Post_Model_Error()
+        {
+
         }
     }
 }

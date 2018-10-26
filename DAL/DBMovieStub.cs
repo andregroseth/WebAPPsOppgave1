@@ -26,6 +26,7 @@ namespace WebAppsProsjekt1.DAL
             }
             return movieList;
         }
+
         public List<Movie> AllMovies()
         {
             var movieList = new List<Movie>();
@@ -43,30 +44,19 @@ namespace WebAppsProsjekt1.DAL
             movieList.Add(movie);
             return movieList;
         }
+
         public bool addMovie(Movie inMovie)
         {
-            try
-            {
-                using (var db = new DB())
-                {
-                    var newMovie = new Movie()
-                    {
-                        Title = inMovie.Title,
-                        Category = inMovie.Category,
-                        Cost = inMovie.Cost,
-                        ImagePath = inMovie.ImagePath,
-                        MovieSrc = inMovie.MovieSrc
-                    };
-                    db.Movie.Add(newMovie);
-                    db.SaveChanges();
-                    return true;
-                }
-            }
-            catch
+            if (inMovie.Equals(null))
             {
                 return false;
             }
+            else
+            {
+                return true;
+            }
         }
+
         public bool DeleteMovie(int id)
         {
             using (var db = new DB())
