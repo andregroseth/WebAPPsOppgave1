@@ -29,13 +29,21 @@ else
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
+                    @Html.LabelFor(model => model.Title)
                     @Html.EditorFor(model => model.Title, new { @id = "Title", htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Movie Tittle", @tabindex = "1" } })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    @Html.EditorFor(model => model.Category, new { @id = "Category", htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Category", @tabindex = "2" } })
+                    @Html.LabelFor(model => model.Category)
+                    @*@Html.EditorFor(model => model.Category, new { @id = "Category", htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Category", @tabindex = "2" } })*@
+                    <select name="Category" id="Category" class="form-control input-lg" tabindex="2">
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Crime">Crime</option>
+                        <option value="Horror">Horror</option>
+                    </select>
                     @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -43,12 +51,14 @@ else
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
+                    @Html.LabelFor(model => model.Cost)
                     @Html.EditorFor(model => model.Cost, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Cost", @tabindex = "3" } })
                     @Html.ValidationMessageFor(model => model.Cost, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
+                    @Html.LabelFor(model => model.ImagePath)
                     @Html.EditorFor(model => model.ImagePath, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Image Path", @tabindex = "4" } })
                     @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
                 </div>
@@ -57,6 +67,7 @@ else
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
+                    @Html.LabelFor(model => model.MovieSrc)
                     @Html.EditorFor(model => model.MovieSrc, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Trailer Link", @tabindex = "5" } })
                     @Html.ValidationMessageFor(model => model.MovieSrc, "", new { @class = "text-danger" })
                 </div>
