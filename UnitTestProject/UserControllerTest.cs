@@ -75,10 +75,11 @@ namespace UnitTestProject
             };
 
             // Act
-            var result = (ViewResult)controller.UserDelete(1);
+            var result = (RedirectToRouteResult)controller.UserDelete(1);
 
             // Assert
-            Assert.AreEqual(result.ViewName, "");
+            Assert.AreEqual(result.RouteName, "");
+            Assert.AreEqual(result.RouteValues.Values.First(), "UserList");
         }
 
         [TestMethod]

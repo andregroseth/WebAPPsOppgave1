@@ -31,3 +31,92 @@ WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()
 
 Committed transaction at 25-Oct-18 20:16:06 +02:00
 Closed connection at 25-Oct-18 20:16:06 +02:00
+---------------------------------------
+Added to following table: User
+Added by: Anonymous
+Time: 10/25/2018 6:29:53 PM
+---------------------------------------
+
+Opened connection at 10/25/2018 8:29:53 PM +02:00
+Started transaction at 10/25/2018 8:29:53 PM +02:00
+INSERT [dbo].[Mail]([ZipCode], [Area])
+VALUES (@0, NULL)
+-- @0: '1363' (Type = String, Size = 128)
+-- Executing at 10/25/2018 8:29:53 PM +02:00
+-- Completed in 19 ms with result: 1
+
+INSERT [dbo].[User]([Userlevel], [Email], [Firstname], [Surname], [Password], [Address], [TimeAdded], [UserAdded], [TimeEdited], [UserEdited], [TimeDeleted], [UserDeleted], [Mail_ZipCode])
+VALUES (@0, @1, @2, @3, @4, @5, @6, @7, NULL, NULL, NULL, NULL, @8)
+SELECT [Id]
+FROM [dbo].[User]
+WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()
+-- @0: '0' (Type = Int32)
+-- @1: 'carlohoa@gmail.com' (Type = String, Size = -1)
+-- @2: 'Carlo' (Type = String, Size = -1)
+-- @3: 'Nguyen' (Type = String, Size = -1)
+-- @4: '���\詰$Ax�(�l,�8W#�jk��X���
+' (Type = String, Size = -1)
+-- @5: 'Sandviksveien 54' (Type = String, Size = -1)
+-- @6: '10/25/2018 6:29:53 PM' (Type = DateTime2)
+-- @7: 'Anonymous' (Type = String, Size = -1)
+-- @8: '1363' (Type = String, Size = 128)
+-- Executing at 10/25/2018 8:29:54 PM +02:00
+-- Completed in 29 ms with result: SqlDataReader
+
+Committed transaction at 10/25/2018 8:29:54 PM +02:00
+Closed connection at 10/25/2018 8:29:54 PM +02:00
+---------------------------------------
+Added to following table: Order
+Added by: carlohoa@gmail.com
+Time: 10/25/2018 6:30:40 PM
+		Added: Orderline
+		Following table attributed to a changed entry: User_BB2E8082F0F9E752BF2FB8236C6C54BE3F759BA7FB70B91AC2A7D8C3BAD9760B
+		Following table attributed to a changed entry: Movie
+---------------------------------------
+
+Started transaction at 10/25/2018 8:30:40 PM +02:00
+INSERT [dbo].[Order]([Date], [TimeAdded], [UserAdded], [TimeEdited], [UserEdited], [TimeDeleted], [UserDeleted], [User_Id])
+VALUES (@0, @1, @2, NULL, NULL, NULL, NULL, @3)
+SELECT [Id]
+FROM [dbo].[Order]
+WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()
+-- @0: '10/25/2018' (Type = String, Size = -1)
+-- @1: '10/25/2018 6:30:40 PM' (Type = DateTime2)
+-- @2: 'carlohoa@gmail.com' (Type = String, Size = -1)
+-- @3: '5' (Type = Int32)
+-- Executing at 10/25/2018 8:30:41 PM +02:00
+-- Completed in 24 ms with result: SqlDataReader
+
+INSERT [dbo].[Orderline]([TimeAdded], [UserAdded], [TimeEdited], [UserEdited], [TimeDeleted], [UserDeleted], [Movie_Id], [Order_Id])
+VALUES (@0, @1, NULL, NULL, NULL, NULL, @2, @3)
+SELECT [Id]
+FROM [dbo].[Orderline]
+WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()
+-- @0: '10/25/2018 6:30:40 PM' (Type = DateTime2)
+-- @1: 'carlohoa@gmail.com' (Type = String, Size = -1)
+-- @2: '5' (Type = Int32)
+-- @3: '5' (Type = Int32)
+-- Executing at 10/25/2018 8:30:41 PM +02:00
+-- Completed in 15 ms with result: SqlDataReader
+
+Committed transaction at 10/25/2018 8:30:41 PM +02:00
+Closed connection at 10/25/2018 8:30:41 PM +02:00
+---------------------------------------
+Edited: User_BB2E8082F0F9E752BF2FB8236C6C54BE3F759BA7FB70B91AC2A7D8C3BAD9760B
+Edited by: admin@oslomet.no
+Time: 10/25/2018 6:32:09 PM
+---------------------------------------
+
+Started transaction at 10/25/2018 8:32:09 PM +02:00
+UPDATE [dbo].[User]
+SET [Firstname] = @0, [TimeEdited] = @1, [UserEdited] = @2
+WHERE ([Id] = @3)
+-- @0: 'Horeooeoro' (Type = String, Size = -1)
+-- @1: '10/25/2018 6:32:09 PM' (Type = DateTime2)
+-- @2: 'admin@oslomet.no' (Type = String, Size = -1)
+-- @3: '3' (Type = Int32)
+-- Executing at 10/25/2018 8:32:09 PM +02:00
+-- Completed in 20 ms with result: 1
+
+Committed transaction at 10/25/2018 8:32:09 PM +02:00
+Closed connection at 10/25/2018 8:32:09 PM +02:00

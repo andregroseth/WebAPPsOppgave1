@@ -6,17 +6,17 @@ using WebAppsProsjekt1.Model;
 using WebAppsProsjekt1.Models;
 
 namespace WebAppsProsjekt1.DAL
-{ 
-    public class DBMovie : DAL.IDBMovie
+{
+    public class DBMovieStub : DAL.IDBMovie
     {
         public List<Movie> MovieGet()
         {
-			HttpCookie cookie = HttpContext.Current.Request.Cookies["Cart"];
+            HttpCookie cookie = HttpContext.Current.Request.Cookies["Cart"];
             List<Movie> movieList = new List<Movie>();
             if (cookie != null)
             {
-				CookieHelper cookieHelper = new CookieHelper();
-				using (var db = new DB())
+                CookieHelper cookieHelper = new CookieHelper();
+                using (var db = new DB())
                 {
                     foreach (int id in cookieHelper.CookieParse(cookie))
                     {
@@ -26,15 +26,25 @@ namespace WebAppsProsjekt1.DAL
             }
             return movieList;
         }
-        public List<Movie> AllMovies() {
-            using (var db = new DB())
+        public List<Movie> AllMovies()
+        {
+            var movieList = new List<Movie>();
+            var movie = new Movie()
             {
-                List<Movie> allMovies = db.Movie.ToList();
-                return allMovies;
-            }
-
+                Id = 1,
+                Title = "The Matrix",
+                Category = "Sci-Fi",
+                Cost = 59,
+                ImagePath = "/Content/images/movie/matrixImage.jpg",
+                MovieSrc = "https://www.youtube.com/embed/m8e-FF8MsqU"
+            };
+            movieList.Add(movie);
+            movieList.Add(movie);
+            movieList.Add(movie);
+            return movieList;
         }
-        public bool addMovie(Movie inMovie) {
+        public bool addMovie(Movie inMovie)
+        {
             try
             {
                 using (var db = new DB())
@@ -68,8 +78,8 @@ namespace WebAppsProsjekt1.DAL
                     if (DeleteOrderLineRad != null)
                     {
                         foreach (var item in DeleteOrderLineRad)
-                        {                           
-                                db.Orderline.Remove(item);
+                        {
+                            db.Orderline.Remove(item);
                         }
 
                     }

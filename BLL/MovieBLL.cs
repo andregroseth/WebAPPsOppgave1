@@ -9,8 +9,19 @@ using WebAppsProsjekt1.Models;
 
 namespace WebAppsProsjekt1.BLL
 {
-    public class MovieBLL
+    public class MovieBLL : BLL.IMovieBLL
     {
+        private IDBMovie db;
+        public MovieBLL()
+        {
+            db = new DBMovie();
+        }
+
+        public MovieBLL(IDBMovie stub)
+        {
+            db = stub;
+        }
+
         public List<Movie> AllMovies()
         {
             var db = new DBMovie();

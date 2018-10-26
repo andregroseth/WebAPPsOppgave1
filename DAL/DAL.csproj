@@ -54,10 +54,12 @@
     <Compile Include="DbInit.cs" />
     <Compile Include="DBLogger.cs" />
     <Compile Include="DBMovie.cs" />
+    <Compile Include="DBMovieStub.cs" />
     <Compile Include="DBOrder.cs" />
     <Compile Include="DBOrderStub.cs" />
     <Compile Include="DBUser.cs" />
     <Compile Include="DBUserStub.cs" />
+    <Compile Include="IDBMovie.cs" />
     <Compile Include="IDBOrder.cs" />
     <Compile Include="IDBUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
