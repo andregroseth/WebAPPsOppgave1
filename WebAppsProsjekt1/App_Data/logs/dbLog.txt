@@ -1,1 +1,47 @@
 ﻿
+---------------------------------------
+Deleted: Order_BA45D2292091D1672BD3A828277016382403F7CEA240604AADF80DF9589C1120
+Deleted by: Anonymous
+Time deleted: 26-Oct-18 16:01:25
+Deleted: User_BB2E8082F0F9E752BF2FB8236C6C54BE3F759BA7FB70B91AC2A7D8C3BAD9760B
+Deleted by: Anonymous
+Time deleted: 26-Oct-18 16:01:25
+
+Opened connection at 26-Oct-18 16:01:25 +02:00
+Started transaction at 26-Oct-18 16:01:25 +02:00
+DELETE [dbo].[Order]
+WHERE (([Id] = @0) AND ([User_Id] = @1))
+-- @0: '4' (Type = Int32)
+-- @1: '4' (Type = Int32)
+-- Executing at 26-Oct-18 16:01:25 +02:00
+-- Completed in 17 ms with result: 1
+
+DELETE [dbo].[User]
+WHERE (([Id] = @0) AND ([Mail_ZipCode] = @1))
+-- @0: '4' (Type = Int32)
+-- @1: '9999' (Type = String, Size = 128)
+-- Executing at 26-Oct-18 16:01:26 +02:00
+-- Completed in 19 ms with result: 1
+
+Committed transaction at 26-Oct-18 16:01:26 +02:00
+Closed connection at 26-Oct-18 16:01:26 +02:00
+
+---------------------------------------
+		Following table attributed to a changed entry: Movie
+
+
+---------------------------------------
+Deleted: Movie
+Deleted by: Anonymous
+Time deleted: 26-Oct-18 16:43:37
+
+Opened connection at 26-Oct-18 16:43:38 +02:00
+Started transaction at 26-Oct-18 16:43:38 +02:00
+DELETE [dbo].[Movie]
+WHERE ([Id] = @0)
+-- @0: '1' (Type = Int32)
+-- Executing at 26-Oct-18 16:43:38 +02:00
+-- Completed in 16 ms with result: 1
+
+Committed transaction at 26-Oct-18 16:43:38 +02:00
+Closed connection at 26-Oct-18 16:43:38 +02:00

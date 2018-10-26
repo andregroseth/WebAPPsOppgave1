@@ -4,7 +4,6 @@
 	Layout = "~/Views/Shared/Background.cshtml";
 }
 <link rel="stylesheet" type="text/css" href="~/Content/cssMovieList.css" />
-@*FeedbackModal*@
 @if (Session["PurchaseSuccess"] != null)
 {
 	<script type="text/javascript">
@@ -92,11 +91,6 @@ else if (Session["AccessFailedAdmin"] != null)
 		})
 	});
 </script>
-<div id="feedback-modal" class="modal" role="dialog">
-	<div class="modal-body">
-		<p align="center"></p>
-	</div>
-</div>
 <div>
 	<h1 class="moviesList" style="color:white;">Movies</h1>
 	<h2>Sci-Fi</h2>
