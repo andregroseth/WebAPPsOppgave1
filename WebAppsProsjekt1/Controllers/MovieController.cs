@@ -51,7 +51,6 @@ namespace WebAppsProsjekt1.Controllers
             if (ModelState.IsValid) {
                 bool OK = db.addMovie(inMovie);
                 if (OK) {
-                    Session["AddSuccess"]= "true";
                     return RedirectToAction("MovieListAdminView");
                 }
             }

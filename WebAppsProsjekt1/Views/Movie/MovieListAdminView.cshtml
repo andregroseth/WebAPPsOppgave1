@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<WebAppsProsjekt1.Model.Movie>
 
 @{
+    /**/
+
     ViewBag.Title = "MovieListAdminView";
     Layout = "~/Views/Shared/Background.cshtml";
 }
@@ -50,34 +52,34 @@ else
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td><div class="col-sm-2 hidden-xs"></div></td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImagePath)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MovieSrc)
-        </td>
-        <td>
-            <div style="max-width:5em;"><a href="/Movie/MovieEdit?id=@item.Id" class="btn btn-success">Edit</a></div>
-        </td>
-        <td>
-            <div style="max-width:5em;"><a href="/Movie/MovieDelete?id=@item.Id" class="btn btn-danger">Delete</a></div>
-        </td>
-        <td><div class="col-sm-2 hidden-xs"></div></td>
-    </tr>
+        <tr>
+            <td><div class="col-sm-2 hidden-xs"></div></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImagePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MovieSrc)
+            </td>
+            <td>
+                <div style="max-width:5em;"><a href="/Movie/MovieEdit?id=@item.Id" class="btn btn-success">Edit</a></div>
+            </td>
+            <td>
+                <div style="max-width:5em;"><a href="/Movie/MovieDelete?id=@item.Id" class="btn btn-danger">Delete</a></div>
+            </td>
+            <td><div class="col-sm-2 hidden-xs"></div></td>
+        </tr>
     }
 
 </table>
