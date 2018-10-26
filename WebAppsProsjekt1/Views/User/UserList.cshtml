@@ -107,13 +107,13 @@ else if (Session["EditSuccess"] != null)
 				@Html.DisplayFor(modelItem => item.Area)
 			</td>
 			<td>
-				<div style="max-width:1em;"><a href="/User/UserEdit?id=@item.Id" class="btn btn-success"></a></div>
+				<div><a href="/User/UserEdit?id=@item.Id" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></a></div>
 			</td>
 			<td>
-				<div style="max-width:1em;"><a href="/User/UserDetailAdminView?id=@item.Id" class="btn btn-primary"></a></div>
+				<div><a href="/User/UserDetailAdminView?id=@item.Id" class="btn btn-primary"><span class="glyphicon glyphicon-info-sign"></span></a></div>
 			</td>
 			<td>
-				<div style="max-width:1em;"> @Html.ActionLink(" ", "UserDelete", "User", new { id = item.Id, style ="text:hidden" }, new { @class = "btn btn-danger" }) </div>
+				<div><a class="btn btn-danger" href="@Url.Action("UserDelete", "User", new { id = item.Id })"><span class="glyphicon glyphicon-trash"></span></a></div>
 			</td>
 			<td class="hidden-xs hidden-sm hidden-md"><div class="col-sm-2 hidden-xs"></div></td>
 		</tr>

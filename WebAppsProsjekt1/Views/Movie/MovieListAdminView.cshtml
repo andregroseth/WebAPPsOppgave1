@@ -98,10 +98,10 @@ else if (Session["AddSuccess"] != null)
 				@Html.DisplayFor(modelItem => item.MovieSrc)
 			</td>
 			<td>
-				<div style="max-width:5em;"><a href="/Movie/MovieEdit?id=@item.Id" class="btn btn-success">Edit</a></div>
+				<div style="max-width:5em;"><a href="/Movie/MovieEdit?id=@item.Id" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></a></div>
 			</td>
 			<td>
-				<div style="max-width:5em;"><a href="/Movie/MovieDelete?id=@item.Id" class="btn btn-danger">Delete</a></div>
+				<div style="max-width:5em;"><a href="/Movie/MovieDelete?id=@item.Id" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></div>
 			</td>
 			<td class="hidden-xs hidden-sm hidden-md"><div class="col-sm-2 hidden-xs"></div></td>
 		</tr>

@@ -47,7 +47,7 @@
 				</tr>
                 <tr>
 					<td class="hidden-xs"></td>
-                    <td>@Html.ActionLink("Clear Cart", "CartClear", "Cart", new { @class = "btn btn-danger" })</td>
+                    <td><a class="btn btn-danger" href="@Url.Action("CartClear", "Cart")"><span class="glyphicon glyphicon-trash"></span></a></td>
                     <td><input type="submit" class="btn btn-success" value="Checkout"/></td>
                 </tr>
             </tfoot>

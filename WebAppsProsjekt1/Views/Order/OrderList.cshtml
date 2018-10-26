@@ -53,7 +53,7 @@ else if (Session["DeleteFailed"] != null)
 				<td>@Html.DisplayFor(modelItem => item.UserId)</td>
 				<td><div class="col-sm-2 hidden-xs"></div></td>
 				<td class="td-actions">
-					<div style="max-width:5em;"><a href="/Order/OrderDetail?id=@item.Id" class="btn btn-success">Details</a></div>
+					<div style="max-width:5em;"><a href="/Order/OrderDetail?id=@item.Id" class="btn btn-success"><span class="glyphicon glyphicon-info-sign"></span></a></div>
 				</td>
 			</tr>
 		}
