@@ -19,9 +19,13 @@ else
     }
 }
 <link href="~/Content/cssUserRegister.css" rel="stylesheet" />
-<script src="~/Scripts/UserRegister.js"></script>
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('#Category').find('option[value="@Model.Category"]').attr("selected", true);
+    });
+</script>
 
-<h1>Add Movie</h1>
+<h1>Edit Movie</h1>
 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 form-container">
     @using (Html.BeginForm())
     {
@@ -39,7 +43,13 @@ else
             <div class="col-sm-6">
                 <div class="form-group">
                     @Html.LabelFor(model => model.Category)
-                    @Html.EditorFor(model => model.Category, new { @id = "Category", htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Category", @tabindex = "2" } })
+                    @*@Html.EditorFor(model => model.Category, new { @id = "Category", htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Category", @tabindex = "2" } })*@
+                    <select name="Category" id="Category" class="form-control input-lg" tabindex="2" >
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Crime">Crime</option>
+                        <option value="Horror">Horror</option>
+                    </select>
                     @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
                 </div>
             </div>
