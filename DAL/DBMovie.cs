@@ -74,14 +74,13 @@ namespace WebAppsProsjekt1.DAL
                         {                           
                                 db.Orderline.Remove(item);
                         }
-
                     }
                     db.Movie.Remove(DeleteMovie);
 					DBLogger logger = new DBLogger();
 					db.addExtrasToEntries(db.ChangeTracker);
 					logger.logChanges(db);
 					db.SaveChanges();
-                    return true;
+					return true;
                 }
                 catch (Exception error) { return false; }
             }

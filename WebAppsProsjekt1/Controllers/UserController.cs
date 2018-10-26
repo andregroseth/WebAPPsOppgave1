@@ -30,20 +30,27 @@ namespace WebAppsProsjekt1.Controllers
         [HttpPost]
         public ActionResult UserLogin(User partialUser)
         {
-            if(db.UserFind(partialUser))
+            try
             {
-                User user = db.GetUserInfo(partialUser.Email);
-                Session["Login"] = db.GetSession(user).ToString();
-				Session["LoginSuccess"] = "true";
-                Session["Userlevel"] = user.Userlevel;
-				Session["Email"] = user.Email;
-				Session.Remove("LoginFailed");
-				return RedirectToAction("Movielist", "Movie");
-            } else
-            {
-                Session["LoginFailed"] = "true";
+                if (db.UserFind(partialUser))
+                {
+                    User user = db.GetUserInfo(partialUser.Email);
+                    Session["Login"] = db.GetSession(user).ToString();
+                    Session["LoginSuccess"] = "true";
+                    Session.Remove("LoginFailed");
+                    Session["Userlevel"] = user.Userlevel;
+                    return RedirectToAction("Movielist", "Movie");
+                }
+                else
+                {
+                    Session["LoginFailed"] = "true";
+                }
+                return View();
             }
-            return View();
+            catch {
+                Session["LoginFailed"] = "true";
+                return View();
+            }
         }
         
         public void UserLogout()
@@ -86,7 +93,7 @@ namespace WebAppsProsjekt1.Controllers
             {
                 if (db.SaveUserToDB(inUser))
                 {
-					Session["RegistrationSuccess"] = true;
+					Session["RegistrationSuccess"] = "true";
                     return RedirectToAction("UserLogin");
                 }
             }
@@ -106,7 +113,7 @@ namespace WebAppsProsjekt1.Controllers
                 if (userlevel > 0)
                 {
                     db.DeleteUser(id);
-                    return RedirectToAction("UserList"); ;
+                    return RedirectToAction("UserList");
                 }
                 else
                 {

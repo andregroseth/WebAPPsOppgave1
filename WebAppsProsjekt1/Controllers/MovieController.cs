@@ -51,7 +51,6 @@ namespace WebAppsProsjekt1.Controllers
             if (ModelState.IsValid) {
                 bool OK = db.addMovie(inMovie);
                 if (OK) {
-                    Session["AddSuccess"]= "true";
                     return RedirectToAction("MovieListAdminView");
                 }
             }
@@ -66,7 +65,9 @@ namespace WebAppsProsjekt1.Controllers
                 if (userlevel > 0)
                 {
                     db.DeleteMovie(id);
-                    return RedirectToAction("MovieListAdminView"); ;
+					Session["DeleteSuccess"] = "true";
+					System.Diagnostics.Debug.WriteLine(Session["DeleteSuccess"].ToString());
+					return RedirectToAction("MovieListAdminView", "Movie");
                 }
                 else
                 {
