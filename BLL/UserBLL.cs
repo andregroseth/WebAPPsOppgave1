@@ -60,10 +60,5 @@ namespace WebAppsProsjekt1.BLL
         {
             return db.getHash(password);
         }
-        public bool CheckEmail(string Email)
-        {
-            return db.CheckEmail(Email);
-        }
-
     }
 }

@@ -6,7 +6,6 @@ namespace WebAppsProsjekt1.DAL
     public interface IDBUser
     {
         List<VMUser> AllUserInfo();
-        bool CheckEmail(string Email);
         bool DeleteUser(int id);
         bool EditUser(int id, VMUser inUser);
         string getHash(string password);

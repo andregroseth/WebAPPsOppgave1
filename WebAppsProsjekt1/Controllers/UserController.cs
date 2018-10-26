@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using WebAppsProsjekt1.Model;
 using WebAppsProsjekt1.BLL;
+using System.Web.Script.Serialization;
 
 namespace WebAppsProsjekt1.Controllers
 {
@@ -133,17 +134,22 @@ namespace WebAppsProsjekt1.Controllers
 
         [HttpPost]
         public ActionResult UserEdit(int id, VMUser edituser) {
-                if (db.EditUser(id, edituser)) {
-                    return RedirectToAction("UserList");
-                }
+            if (db.EditUser(id, edituser)) {
+                return RedirectToAction("UserList");
+            }
             return View();
         }
 
         //Sjekker om Email eksistere fra før.
-        //public JsonResult CheckEmail(string Email)
-        //{
-        //    return Json(!db.CheckEmail(Email), JsonRequestBehavior.AllowGet);
-            
-        //}
+        public string CheckEmail(string Email)
+        {
+            System.Diagnostics.Debug.WriteLine("Input: " + Email);
+            var jsonSerializer = new JavaScriptSerializer();
+            if (db.GetUserInfo(Email) != null)
+            {
+                return jsonSerializer.Serialize("Email already used!");
+            }
+            return jsonSerializer.Serialize("Email is free!");
+        }
     }
 }
