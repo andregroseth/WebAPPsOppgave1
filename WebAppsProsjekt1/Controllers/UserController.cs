@@ -140,16 +140,15 @@ namespace WebAppsProsjekt1.Controllers
             return View();
         }
 
-        //Sjekker om Email eksistere fra før.
         public string CheckEmail(string Email)
         {
             System.Diagnostics.Debug.WriteLine("Input: " + Email);
             var jsonSerializer = new JavaScriptSerializer();
             if (db.GetUserInfo(Email) != null)
             {
-                return jsonSerializer.Serialize("Email already used!");
+                return jsonSerializer.Serialize("1");
             }
-            return jsonSerializer.Serialize("Email is free!");
+            return jsonSerializer.Serialize("0");
         }
     }
 }
