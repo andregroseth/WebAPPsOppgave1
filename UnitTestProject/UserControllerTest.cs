@@ -177,7 +177,7 @@ namespace UnitTestProject
         }
 
         [TestMethod]
-        public void UserEdit_Post_OK()
+        public void UserEdit_Post_Valid()
         {
             // Arrange
             var controller = new UserController(new UserBLL(new DBUserStub()));

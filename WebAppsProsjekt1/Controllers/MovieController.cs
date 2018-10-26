@@ -92,15 +92,16 @@ namespace WebAppsProsjekt1.Controllers
             }
         }
 
-        public ActionResult MovieEdit(int id) {
+        public ActionResult MovieEdit(int id)
+        {
             Movie oneMovie = db.GetMovieInfo(id);
             return View(oneMovie);
         }
 
         [HttpPost]
-        public ActionResult MovieEdit(int id, Movie inMovie) {
-            bool EditOk = db.EditMovie(id, inMovie);
-            if (EditOk)
+        public ActionResult MovieEdit(int id, Movie inMovie)
+        {
+            if (db.EditMovie(id, inMovie))
             {
                 return RedirectToAction("MovieListAdminView");
             }

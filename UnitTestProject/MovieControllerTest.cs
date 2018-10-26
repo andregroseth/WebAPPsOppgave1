@@ -77,7 +77,159 @@ namespace UnitTestProject
         [TestMethod]
         public void MovieAdd_Post_Model_Error()
         {
+            // Arrange
+            var controller = new MovieController(new MovieBLL(new DBMovieStub()));
+            var movie = new Movie();
+            controller.ViewData.ModelState.AddModelError("Title", "Invalid title");
 
+            // Act
+            var result = (ViewResult)controller.MovieAdd(movie);
+
+            // Assert
+            Assert.AreEqual(result.ViewName, "");
+        }
+
+        [TestMethod]
+        public void MovieAdd_Post_DB_Error()
+        {
+            // Arrange
+            var controller = new MovieController(new MovieBLL(new DBMovieStub()));
+            var movie = new Movie();
+            movie.Title = "";
+
+            // Act
+            var result = (ViewResult)controller.MovieAdd(movie);
+
+            // Assert
+            Assert.AreEqual(result.ViewName, "");
+        }
+
+        [TestMethod]
+        public void MovieDelete_Admin()
+        {
+            // Arrange
+            var SessionMock = new TestControllerBuilder();
+            var controller = new MovieController(new MovieBLL(new DBMovieStub()));
+            SessionMock.InitializeController(controller);
+            controller.Session["Userlevel"] = "1";
+            var movie = new Movie()
+            {
+                Id = 1,
+                Title = "The Matrix",
+                Category = "Sci-Fi",
+                Cost = 59,
+                ImagePath = "/Content/images/movie/matrixImage.jpg",
+                MovieSrc = "https://www.youtube.com/embed/m8e-FF8MsqU"
+            };
+
+            // Act
+            var result = (RedirectToRouteResult)controller.MovieDelete(1);
+
+            // Assert
+            Assert.AreEqual(result.RouteName, "");
+            Assert.AreEqual(result.RouteValues.Values.First(), "MovieListAdminView");
+        }
+
+        [TestMethod]
+        public void MovieDelete_Not_Admin()
+        {
+            // Arrange
+            var SessionMock = new TestControllerBuilder();
+            var controller = new MovieController(new MovieBLL(new DBMovieStub()));
+            SessionMock.InitializeController(controller);
+            controller.Session["Userlevel"] = "0";
+            controller.Session["AccessFailedAdmin"] = "true";
+
+            // Act
+            var result = (RedirectToRouteResult)controller.MovieDelete(1);
+
+            // Assert
+            Assert.AreEqual(result.RouteName, "");
+            Assert.AreEqual(result.RouteValues.Values.First(), "MovieList");
+        }
+
+        [TestMethod]
+        public void MovieDelete_Not_Logged_In()
+        {
+            // Arrange
+            var SessionMock = new TestControllerBuilder();
+            var controller = new MovieController(new MovieBLL(new DBMovieStub()));
+            SessionMock.InitializeController(controller);
+            controller.Session["AccessFailedLogin"] = "true";
+
+            // Act
+            var result = (RedirectToRouteResult)controller.MovieDelete(1);
+
+            // Assert
+            Assert.AreEqual(result.RouteName, "");
+            Assert.AreEqual(result.RouteValues.Values.First(), "UserLogin");
+        }
+
+        [TestMethod]
+        public void MovieEdit()
+        {
+            // Arrange
+            var controller = new MovieController(new MovieBLL(new DBMovieStub()));
+            var movie = new Movie()
+            {
+                Id = 1,
+                Title = "The Matrix",
+                Category = "Sci-Fi",
+                Cost = 59,
+                ImagePath = "/Content/images/movie/matrixImage.jpg",
+                MovieSrc = "https://www.youtube.com/embed/m8e-FF8MsqU"
+            };
+
+            // Act
+            var result = (ViewResult)controller.MovieEdit(1);
+
+            // Assert
+            Assert.AreEqual(result.ViewName, "");
+        }
+
+        [TestMethod]
+        public void MovieEdit_Post_Valid()
+        {
+            // Arrange
+            var controller = new MovieController(new MovieBLL(new DBMovieStub()));
+            var movie = new Movie()
+            {
+                Id = 1,
+                Title = "The Matrix",
+                Category = "Sci-Fi",
+                Cost = 59,
+                ImagePath = "/Content/images/movie/matrixImage.jpg",
+                MovieSrc = "https://www.youtube.com/embed/m8e-FF8MsqU"
+            };
+
+            // Act
+            var result = (RedirectToRouteResult)controller.MovieEdit(1, movie);
+
+            // Assert
+            Assert.AreEqual(result.RouteName, "");
+            Assert.AreEqual(result.RouteValues.Values.First(), "MovieListAdminView");
+        }
+
+        [TestMethod]
+        public void MovieEdit_DB_Error()
+        {
+            // Arrange
+            var controller = new MovieController(new MovieBLL(new DBMovieStub()));
+            var movie = new Movie()
+            {
+                Id = 1,
+                Title = "The Matrix",
+                Category = "Sci-Fi",
+                Cost = 59,
+                ImagePath = "/Content/images/movie/matrixImage.jpg",
+                MovieSrc = "https://www.youtube.com/embed/m8e-FF8MsqU"
+            };
+
+            // Act
+            var result = (ViewResult)controller.MovieEdit(0, movie);
+
+            // Assert
+            Assert.AreEqual(result.ViewName, "");
         }
     }
 }

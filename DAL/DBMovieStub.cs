@@ -47,7 +47,7 @@ namespace WebAppsProsjekt1.DAL
 
         public bool addMovie(Movie inMovie)
         {
-            if (inMovie.Equals(null))
+            if (inMovie.Title.ToString().Equals(""))
             {
                 return false;
             }
@@ -59,67 +59,48 @@ namespace WebAppsProsjekt1.DAL
 
         public bool DeleteMovie(int id)
         {
-            using (var db = new DB())
+            if (id != null)
             {
-                try
-                {
-                    var DeleteMovie = db.Movie.FirstOrDefault(m => m.Id == id);
-                    var DeleteOrderLineRad = db.Orderline.Where(x => x.Movie.Id == DeleteMovie.Id).ToList();
-                    if (DeleteOrderLineRad != null)
-                    {
-                        foreach (var item in DeleteOrderLineRad)
-                        {
-                            db.Orderline.Remove(item);
-                        }
-
-                    }
-                    db.Movie.Remove(DeleteMovie);
-                    db.SaveChanges();
-                    return true;
-                }
-                catch (Exception error) { return false; }
-            }
-        }
-        public Movie GetMovieInfo(int id)
-        {
-            using (var db = new DB())
-            {
-                var oneMovie = db.Movie.Find(id);
-                if (oneMovie == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    var oneMovieOutput = new Movie()
-                    {
-                        Title = oneMovie.Title,
-                        Category = oneMovie.Category,
-                        Cost = oneMovie.Cost,
-                        ImagePath = oneMovie.ImagePath,
-                        MovieSrc = oneMovie.MovieSrc
-                    };
-                    return oneMovieOutput;
-                }
-            }
-        }
-        public bool EditMovie(int id, Movie inMovie)
-        {
-            var db = new DB();
-            try
-            {
-                Movie find = db.Movie.Find(id);
-                find.Title = inMovie.Title;
-                find.Category = inMovie.Category;
-                find.Cost = inMovie.Cost;
-                find.ImagePath = inMovie.ImagePath;
-                find.MovieSrc = inMovie.MovieSrc;
-                db.SaveChanges();
                 return true;
             }
-            catch
+            else
             {
                 return false;
+            }
+        }
+
+        public Movie GetMovieInfo(int id)
+        {
+            if (id != null)
+            {
+                var movie = new Movie()
+                {
+                    Id = 1,
+                    Title = "The Matrix",
+                    Category = "Sci-Fi",
+                    Cost = 59,
+                    ImagePath = "/Content/images/movie/matrixImage.jpg",
+                    MovieSrc = "https://www.youtube.com/embed/m8e-FF8MsqU"
+                };
+                return movie;
+            }
+            else
+            {
+                var movie = new Movie();
+                movie.Title = "";
+                return movie;
+            }
+        }
+
+        public bool EditMovie(int id, Movie inMovie)
+        {
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }
