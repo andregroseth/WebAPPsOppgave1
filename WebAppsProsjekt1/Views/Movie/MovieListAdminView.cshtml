@@ -4,15 +4,6 @@
 	ViewBag.Title = "MovieListAdminView";
 	Layout = "~/Views/Shared/Background.cshtml";
 }
-@if (Session["DeleteSuccess"] != null)
-{
-	<script type="text/javascript">
-		$(window).on('load', function () {
-			showFeedbackModal("Login successful.", "green", 2000);
-		});
-	</script>
-	Session.Remove("DeleteSuccess");
-}
 @if (Session["Login"] == null)
 {
 	Session["AccessFailedLogin"] = "true";

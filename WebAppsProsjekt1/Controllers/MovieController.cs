@@ -65,8 +65,6 @@ namespace WebAppsProsjekt1.Controllers
                 if (userlevel > 0)
                 {
                     db.DeleteMovie(id);
-					Session["DeleteSuccess"] = "true";
-					System.Diagnostics.Debug.WriteLine(Session["DeleteSuccess"].ToString());
 					return RedirectToAction("MovieListAdminView", "Movie");
                 }
                 else
