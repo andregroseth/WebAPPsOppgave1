@@ -41,8 +41,8 @@ else if (Session["EditSuccess"] != null)
 
 <table class="table table-striped">
 	<tr>
-		<th style="width:5%"></th>
-		<th>
+		<th class="hidden-xs hidden-sm hidden-md" style="width:5%"></th>
+		<th class="hidden-xs hidden-sm hidden-md">
 			@Html.DisplayNameFor(model => model.Id)
 		</th>
 		<th>
@@ -51,35 +51,35 @@ else if (Session["EditSuccess"] != null)
 		<th>
 			@Html.DisplayNameFor(model => model.Email)
 		</th>
-		<th>
+		<th class="hidden-sm hidden-xs hidden-md">
 			@Html.DisplayNameFor(model => model.Firstname)
 		</th>
-		<th>
+		<th class="hidden-sm hidden-xs hidden-md">
 			@Html.DisplayNameFor(model => model.Surname)
 		</th>
-		<th>
+		<th class="hidden-sm hidden-xs hidden-md">
 			@Html.DisplayNameFor(model => model.Password)
 		</th>
-		<th>
+		<th class="hidden-xs hidden-sm hidden-md">
 			@Html.DisplayNameFor(model => model.Address)
 		</th>
-		<th>
+		<th class="hidden-xs hidden-sm hidden-md">
 			@Html.DisplayNameFor(model => model.ZipCode)
 		</th>
-		<th>
+		<th class="hidden-xs hidden-sm hidden-md">
 			@Html.DisplayNameFor(model => model.Area)
 		</th>
 		<th></th>
 		<th></th>
 		<th></th>
-		<th style="width:5%"></th>
+		<th class="hidden-xs hidden-sm hidden-md" style="width:5%"></th>
 	</tr>
 
 	@foreach (var item in Model)
 	{
 		<tr>
-			<td><div class="col-sm-2 hidden-xs"></div></td>
-			<td>
+			<td class="hidden-xs hidden-sm hidden-md"><div class="col-sm-2 hidden-xs"></div></td>
+			<td class="hidden-xs hidden-sm hidden-md">
 				@Html.DisplayFor(modelItem => item.Id)
 			</td>
 			<td>
@@ -88,34 +88,34 @@ else if (Session["EditSuccess"] != null)
 			<td>
 				@Html.DisplayFor(modelItem => item.Email)
 			</td>
-			<td>
+			<td class="hidden-xs hidden-sm hidden-md">
 				@Html.DisplayFor(modelItem => item.Firstname)
 			</td>
-			<td>
+			<td class="hidden-xs hidden-sm hidden-md">
 				@Html.DisplayFor(modelItem => item.Surname)
 			</td>
-			<td>
+			<td class="hidden-xs hidden-sm hidden-md">
 				@Html.DisplayFor(modelItem => item.Password)
 			</td>
-			<td>
+			<td class="hidden-xs hidden-sm hidden-md">
 				@Html.DisplayFor(modelItem => item.Address)
 			</td>
-			<td>
+			<td class="hidden-xs hidden-sm hidden-md">
 				@Html.DisplayFor(modelItem => item.ZipCode)
 			</td>
-			<td>
+			<td class="hidden-xs hidden-sm hidden-md">
 				@Html.DisplayFor(modelItem => item.Area)
 			</td>
 			<td>
-				<div style="max-width:5em;"><a href="/User/UserEdit?id=@item.Id" class="btn btn-success">Edit</a></div>
+				<div style="max-width:1em;"><a href="/User/UserEdit?id=@item.Id" class="btn btn-success"></a></div>
 			</td>
 			<td>
-				<div style="max-width:5em;"><a href="/User/UserDetailAdminView?id=@item.Id" class="btn btn-primary">Details</a></div>
+				<div style="max-width:1em;"><a href="/User/UserDetailAdminView?id=@item.Id" class="btn btn-primary"></a></div>
 			</td>
 			<td>
-				<div style="max-width:5em;"> @Html.ActionLink("Delete", "UserDelete", new { id = item.Id }, new { @class = "btn btn-danger" }) </div>
+				<div style="max-width:1em;"> @Html.ActionLink(" ", "UserDelete", "User", new { id = item.Id, style ="text:hidden" }, new { @class = "btn btn-danger" }) </div>
 			</td>
-			<td><div class="col-sm-2 hidden-xs"></div></td>
+			<td class="hidden-xs hidden-sm hidden-md"><div class="col-sm-2 hidden-xs"></div></td>
 		</tr>
 	}
 </table>

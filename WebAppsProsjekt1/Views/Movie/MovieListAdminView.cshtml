@@ -52,6 +52,9 @@ else if (Session["AddSuccess"] != null)
 <table class="table table-striped">
 	<tr>
 		<th style="width:5%"></th>
+		<th class="hidden-xs hidden-sm hidden-md">
+			@Html.DisplayNameFor(model => model.Id)
+		</th>
 		<th>
 			@Html.DisplayNameFor(model => model.Title)
 		</th>
@@ -61,14 +64,24 @@ else if (Session["AddSuccess"] != null)
 		<th>
 			@Html.DisplayNameFor(model => model.Cost)
 		</th>
+		<th class="hidden-xs hidden-sm hidden-md">
+			@Html.DisplayNameFor(model => model.ImagePath)
+		</th>
+		<th class="hidden-xs hidden-sm hidden-md">
+			@Html.DisplayNameFor(model => model.MovieSrc)
+		</th>
 		<th></th>
 		<th></th>
+		<th class="hidden-xs hidden-sm hidden-md" style="width:5%"></th>
 	</tr>
 
 	@foreach (var item in Model)
 	{
 		<tr>
-			<td></td>
+			<td><div class="col-sm-2 hidden-xs"></div></td>
+			<td class="hidden-xs hidden-sm hidden-md">
+				@Html.DisplayFor(modelItem => item.Id)
+			</td>
 			<td>
 				@Html.DisplayFor(modelItem => item.Title)
 			</td>
@@ -78,14 +91,22 @@ else if (Session["AddSuccess"] != null)
 			<td>
 				@Html.DisplayFor(modelItem => item.Cost)
 			</td>
+			<td class="hidden-xs hidden-sm hidden-md">
+				@Html.DisplayFor(modelItem => item.ImagePath)
+			</td>
+			<td class="hidden-xs hidden-sm hidden-md">
+				@Html.DisplayFor(modelItem => item.MovieSrc)
+			</td>
 			<td>
 				<div style="max-width:5em;"><a href="/Movie/MovieEdit?id=@item.Id" class="btn btn-success">Edit</a></div>
 			</td>
 			<td>
 				<div style="max-width:5em;"><a href="/Movie/MovieDelete?id=@item.Id" class="btn btn-danger">Delete</a></div>
 			</td>
+			<td class="hidden-xs hidden-sm hidden-md"><div class="col-sm-2 hidden-xs"></div></td>
 		</tr>
 	}
+
 </table>
 	</body>
 	</html>

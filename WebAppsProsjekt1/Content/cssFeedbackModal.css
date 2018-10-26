@@ -7,7 +7,8 @@
 }
 
 .modal-body {
-	display:inline-block;
+	display: inline-block;
+	margin-top: -0.30em;
 }
 
 #feedback-modal-close {
@@ -20,8 +21,5 @@
 @media only screen and (max-width: 766px) {
 	#feedback-modal {
 		height:3em;
-	}
-	.modal-body {
-		margin-top:-0.30em;
 	}
 }
