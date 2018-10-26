@@ -1,23 +1,1 @@
 ﻿
----------------------------------------
-Edited: User_BB2E8082F0F9E752BF2FB8236C6C54BE3F759BA7FB70B91AC2A7D8C3BAD9760B
-Edited by: admin@oslomet.no
-Time edited: 26-Oct-18 12:07:10
-
-Opened connection at 26-Oct-18 12:07:10 +02:00
-Started transaction at 26-Oct-18 12:07:10 +02:00
-UPDATE [dbo].[User]
-SET [Password] = @0, [Address] = @1, [TimeEdited] = @2, [UserEdited] = @3
-WHERE ([Id] = @4)
--- @0: '�s^
-�����
-{�?�qS�)ނ��ܙW(�' (Type = String, Size = -1)
--- @1: 'Testaddress 2' (Type = String, Size = -1)
--- @2: '26-Oct-18 12:07:10' (Type = DateTime2)
--- @3: 'admin@oslomet.no' (Type = String, Size = -1)
--- @4: '1' (Type = Int32)
--- Executing at 26-Oct-18 12:07:10 +02:00
--- Completed in 47 ms with result: 1
-
-Committed transaction at 26-Oct-18 12:07:10 +02:00
-Closed connection at 26-Oct-18 12:07:10 +02:00
