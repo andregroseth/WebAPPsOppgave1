@@ -7,7 +7,7 @@ using WebAppsProsjekt1.Models;
 
 namespace WebAppsProsjekt1.DAL
 { 
-    public class DBMovie
+    public class DBMovie : DAL.IDBMovie
     {
         public List<Movie> MovieGet()
         {

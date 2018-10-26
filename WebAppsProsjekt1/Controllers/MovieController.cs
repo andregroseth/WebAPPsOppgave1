@@ -12,11 +12,23 @@ namespace WebAppsProsjekt1.Controllers
     public class MovieController : Controller
     {
         // GET: Movie/MovieList
+        private IMovieBLL db;
+
+        public MovieController()
+        {
+            db = new MovieBLL();
+        }
+
+        public MovieController(IMovieBLL stub)
+        {
+            db = stub;
+        }
+
         public ActionResult MovieList()
         {
-            var db = new MovieBLL();
             return View(db.AllMovies());
         }
+
         public void AddMovieToCart(int id)
         {
             HttpCookie cartCookie;
@@ -35,30 +47,30 @@ namespace WebAppsProsjekt1.Controllers
 				cartCookie.Expires = DateTime.Now.AddMinutes(10);
 				Response.Cookies.Add(cartCookie);
             }
-
         }
+
         public ActionResult MovieListAdminView()
         {
-            var db = new MovieBLL();
             return View(db.AllMovies());
         }
+
         public ActionResult MovieAdd() {
             return View();
         }
+
         [HttpPost]
         public ActionResult MovieAdd(Movie inMovie) {
-            var db = new MovieBLL();
             if (ModelState.IsValid) {
                 if (db.addMovie(inMovie)) {
-					Session["AddSuccess"] = "true";
+                    Session["AddSuccess"] = "true";
                     return RedirectToAction("MovieListAdminView");
                 }
             }
             return View();
         }
+
         public ActionResult MovieDelete(int id)
         {
-            var db = new MovieBLL();
             try
             {
                 int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
@@ -80,14 +92,16 @@ namespace WebAppsProsjekt1.Controllers
                 return RedirectToAction("UserLogin");
             }
         }
-        public ActionResult MovieEdit(int id) {
-            var db = new MovieBLL();
+
+        public ActionResult MovieEdit(int id)
+        {
             Movie oneMovie = db.GetMovieInfo(id);
             return View(oneMovie);
         }
+
         [HttpPost]
-        public ActionResult MovieEdit(int id, Movie inMovie) {
-            var db = new MovieBLL();
+        public ActionResult MovieEdit(int id, Movie inMovie)
+        {
             if (db.EditMovie(id, inMovie))
             {
 				Session["EditSuccess"] = "true";
@@ -95,6 +109,5 @@ namespace WebAppsProsjekt1.Controllers
             }
             return View();
         }
-    
     }
 }

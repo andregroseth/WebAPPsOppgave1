@@ -75,10 +75,11 @@ namespace UnitTestProject
             };
 
             // Act
-            var result = (ViewResult)controller.UserDelete(1);
+            var result = (RedirectToRouteResult)controller.UserDelete(1);
 
             // Assert
-            Assert.AreEqual(result.ViewName, "");
+            Assert.AreEqual(result.RouteName, "");
+            Assert.AreEqual(result.RouteValues.Values.First(), "UserList");
         }
 
         [TestMethod]
@@ -176,7 +177,7 @@ namespace UnitTestProject
         }
 
         [TestMethod]
-        public void UserEdit_Post_OK()
+        public void UserEdit_Post_Valid()
         {
             // Arrange
             var controller = new UserController(new UserBLL(new DBUserStub()));
