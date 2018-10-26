@@ -49,8 +49,8 @@ namespace WebAppsProsjekt1.Controllers
         public ActionResult MovieAdd(Movie inMovie) {
             var db = new MovieBLL();
             if (ModelState.IsValid) {
-                bool OK = db.addMovie(inMovie);
-                if (OK) {
+                if (db.addMovie(inMovie)) {
+					Session["AddSuccess"] = "true";
                     return RedirectToAction("MovieListAdminView");
                 }
             }
@@ -65,6 +65,7 @@ namespace WebAppsProsjekt1.Controllers
                 if (userlevel > 0)
                 {
                     db.DeleteMovie(id);
+					Session["DeleteSuccess"] = "true";
 					return RedirectToAction("MovieListAdminView", "Movie");
                 }
                 else
@@ -87,10 +88,10 @@ namespace WebAppsProsjekt1.Controllers
         [HttpPost]
         public ActionResult MovieEdit(int id, Movie inMovie) {
             var db = new MovieBLL();
-            bool EditOk = db.EditMovie(id, inMovie);
-            if (EditOk)
+            if (db.EditMovie(id, inMovie))
             {
-                return RedirectToAction("MovieListAdminView");
+				Session["EditSuccess"] = "true";
+				return RedirectToAction("MovieListAdminView");
             }
             return View();
         }

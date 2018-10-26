@@ -1,105 +1,128 @@
 ﻿@model IEnumerable<WebAppsProsjekt1.Model.VMUser>
 
 @{
-    ViewBag.Title = "UserList";
-    Layout = "~/Views/Shared/Background.cshtml";
+	ViewBag.Title = "UserList";
+	Layout = "~/Views/Shared/Background.cshtml";
 }
 @if (Session["Login"] == null)
 {
-    Session["AccessFailedLogin"] = "true";
-    Response.Redirect("UserLogin");
+	Session["AccessFailedLogin"] = "true";
+	Response.Redirect("UserLogin");
 }
 else
 {
-    int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
-    if (userlevel < 1)
-    {
-        Session["AccessFailedAdmin"] = "true";
-        Response.Redirect("Movie/MovieList");
-    }
+	int.TryParse(Session["Userlevel"].ToString(), out int userlevel);
+	if (userlevel < 1)
+	{
+		Session["AccessFailedAdmin"] = "true";
+		Response.Redirect("Movie/MovieList");
+	}
 }
+@if (Session["DeleteSuccess"] != null)
+{
+	<script type="text/javascript">
+		$(window).on('load', function () {
+			showFeedbackModal("User deleted.", "green", 4000);
+		});
+	</script>
+	Session.Remove("DeleteSuccess");
+}
+else if (Session["EditSuccess"] != null)
+{
+	<script type="text/javascript">
+		$(window).on('load', function () {
+			showFeedbackModal("User edited.", "green", 4000);
+		});
+	</script>
+	Session.Remove("EditSuccess");
+}
+<div id="feedback-modal" class="modal" role="dialog">
+	<div class="modal-body">
+		<p align="center"></p>
+	</div>
+</div>
 <link href="~/Content/cssList.css" rel="stylesheet" />
 <h1>List of Users</h1>
 
 <table class="table table-striped">
-    <tr>
-        <th style="width:5%"></th>
-        <th>
-            @Html.DisplayNameFor(model => model.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Userlevel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Firstname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Surname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Area)
-        </th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th style="width:5%"></th>
-    </tr>
+	<tr>
+		<th style="width:5%"></th>
+		<th>
+			@Html.DisplayNameFor(model => model.Id)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Userlevel)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Email)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Firstname)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Surname)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Password)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Address)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ZipCode)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Area)
+		</th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th style="width:5%"></th>
+	</tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td><div class="col-sm-2 hidden-xs"></div></td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Userlevel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Firstname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Surname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZipCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Area)
-            </td>
-            <td>
-                <div style="max-width:5em;"><a href="/User/UserEdit?id=@item.Id" class="btn btn-success">Edit</a></div>
-            </td>
-            <td>
-                <div style="max-width:5em;"><a href="/User/UserDetailAdminView?id=@item.Id" class="btn btn-primary">Details</a></div>
-            </td>
-            <td>
-                <div style="max-width:5em;"> @Html.ActionLink("Delete", "UserDelete", new { id = item.Id }, new { @class = "btn btn-danger" }) </div>
-            </td>
-            <td><div class="col-sm-2 hidden-xs"></div></td>
-        </tr>
-    }
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td><div class="col-sm-2 hidden-xs"></div></td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Id)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Userlevel)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Email)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Firstname)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Surname)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Password)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Address)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.ZipCode)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Area)
+			</td>
+			<td>
+				<div style="max-width:5em;"><a href="/User/UserEdit?id=@item.Id" class="btn btn-success">Edit</a></div>
+			</td>
+			<td>
+				<div style="max-width:5em;"><a href="/User/UserDetailAdminView?id=@item.Id" class="btn btn-primary">Details</a></div>
+			</td>
+			<td>
+				<div style="max-width:5em;"> @Html.ActionLink("Delete", "UserDelete", new { id = item.Id }, new { @class = "btn btn-danger" }) </div>
+			</td>
+			<td><div class="col-sm-2 hidden-xs"></div></td>
+		</tr>
+	}
 </table>
 </body>
 </html>

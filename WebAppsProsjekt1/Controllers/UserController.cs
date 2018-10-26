@@ -58,7 +58,8 @@ namespace WebAppsProsjekt1.Controllers
             if (Session["Login"] != null)
             {
                 Session.Clear();
-                Response.Redirect("UserLogin");
+				Session["LogoutSuccess"] = "true";
+				Response.Redirect("UserLogin");
             } else
             {
                 Response.Redirect("/Movie/MovieList");
@@ -113,7 +114,8 @@ namespace WebAppsProsjekt1.Controllers
                 if (userlevel > 0)
                 {
                     db.DeleteUser(id);
-                    return RedirectToAction("UserList");
+					Session["DeleteSuccess"] = "true";
+					return RedirectToAction("UserList");
                 }
                 else
                 {
@@ -141,16 +143,10 @@ namespace WebAppsProsjekt1.Controllers
         [HttpPost]
         public ActionResult UserEdit(int id, VMUser edituser) {
                 if (db.EditUser(id, edituser)) {
-                    return RedirectToAction("UserList");
+					Session["EditSuccess"] = "true";
+					return RedirectToAction("UserList");
                 }
             return View();
         }
-
-        //Sjekker om Email eksistere fra før.
-        //public JsonResult CheckEmail(string Email)
-        //{
-        //    return Json(!db.CheckEmail(Email), JsonRequestBehavior.AllowGet);
-            
-        //}
     }
 }
