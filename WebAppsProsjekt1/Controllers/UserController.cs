@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using WebAppsProsjekt1.Model;
 using WebAppsProsjekt1.BLL;
+using System.Web.Script.Serialization;
 
 namespace WebAppsProsjekt1.Controllers
 {
@@ -97,6 +98,8 @@ namespace WebAppsProsjekt1.Controllers
 					Session["RegistrationSuccess"] = "true";
                     return RedirectToAction("UserLogin");
                 }
+                Session["EmailExist"] = "true";
+                return View();
             }
             return View();
         }
@@ -148,5 +151,16 @@ namespace WebAppsProsjekt1.Controllers
                 }
             return View();
         }
+
+        public JsonResult CheckEmail(string Email)
+        {
+            System.Diagnostics.Debug.WriteLine("Input: " + Email);
+            if (db.GetUserInfo(Email) != null)
+            {
+                return Json(1);
+            }
+            return Json(0);
+        }
     }
+
 }
