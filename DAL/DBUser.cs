@@ -65,7 +65,6 @@ namespace WebAppsProsjekt1.DAL
             var NewUserRad = new User()
             {
                 Userlevel = InUser.Userlevel,
-                Email = InUser.Email,
                 Firstname = InUser.Firstname,
                 Surname = InUser.Surname,
                 Password = getHash(InUser.Password),
@@ -76,6 +75,10 @@ namespace WebAppsProsjekt1.DAL
                 try
                 {
                     var CheckZipcode = db.Mail.FirstOrDefault(m => m.ZipCode == InUser.ZipCode);
+                    var CheckEmail = db.User.FirstOrDefault(u => u.Email == InUser.Email);
+                    if (CheckEmail != null) {
+                        return false;
+                    }
                     if (CheckZipcode == null)
                     {
                         var NewMailRad = new Mail()
@@ -90,6 +93,7 @@ namespace WebAppsProsjekt1.DAL
 
                         NewUserRad.Mail = CheckZipcode;
                     }
+                    NewUserRad.Email = InUser.Email;
                     db.User.Add(NewUserRad);
 					DBLogger logger = new DBLogger();
 					db.addExtrasToEntries(db.ChangeTracker);

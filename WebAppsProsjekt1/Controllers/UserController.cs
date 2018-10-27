@@ -90,6 +90,8 @@ namespace WebAppsProsjekt1.Controllers
 					Session["RegistrationSuccess"] = true;
                     return RedirectToAction("UserLogin");
                 }
+                Session["EmailExist"] = "true";
+                return View();
             }
             return View();
         }
@@ -140,15 +142,15 @@ namespace WebAppsProsjekt1.Controllers
             return View();
         }
 
-        public string CheckEmail(string Email)
+        public JsonResult CheckEmail(string Email)
         {
             System.Diagnostics.Debug.WriteLine("Input: " + Email);
-            var jsonSerializer = new JavaScriptSerializer();
             if (db.GetUserInfo(Email) != null)
             {
-                return jsonSerializer.Serialize("1");
+                return Json(1);
             }
-            return jsonSerializer.Serialize("0");
+            return Json(0);
         }
     }
+
 }
