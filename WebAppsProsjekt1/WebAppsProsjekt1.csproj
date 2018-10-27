@@ -170,7 +170,6 @@
     <Content Include="App_Data\MovieMonster_log.ldf">
       <DependentUpon>MovieMonster.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\DBLog.txt" />
     <Content Include="Content\images\avatar.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -281,6 +280,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <None Include="Views\Modal\feedbackModal.cshtml" />
+    <Content Include="Scripts\UserRegister.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
