@@ -191,7 +191,10 @@ namespace UnitTestProject
         public void MovieEdit_Post_Valid()
         {
             // Arrange
+            var SessionMock = new TestControllerBuilder();
             var controller = new MovieController(new MovieBLL(new DBMovieStub()));
+            SessionMock.InitializeController(controller);
+            controller.Session["EditSuccess"] = "true";
             var movie = new Movie()
             {
                 Id = 1,

@@ -180,7 +180,10 @@ namespace UnitTestProject
         public void UserEdit_Post_Valid()
         {
             // Arrange
+            var SessionMock = new TestControllerBuilder();
             var controller = new UserController(new UserBLL(new DBUserStub()));
+            SessionMock.InitializeController(controller);
+            controller.Session["EditSuccess"] = "true";
             var user = new VMUser()
             {
                 Id = 1,
