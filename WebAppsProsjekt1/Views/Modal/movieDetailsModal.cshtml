@@ -5,28 +5,30 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h2 class="modal-title" id="movieTitle"></h2>
             </div>
-            <div class="modal-body">
-                <div id="movieDetailsModalDiv">
-                    <div id="movieId" style="visibility:hidden"></div>
-                    <div id="movieTrailerDiv">
-                        <iframe name="movieTrailer" id="movieTrailer" src="" width="500" height="315"
-                                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <center>
+                <div class="modal-body">
+                    <div id="movieDetailsModalDiv">
+                        <div id="movieId" style="visibility:hidden"></div>
+                        <div id="movieTrailerDiv">
+                            <iframe name="movieTrailer" id="movieTrailer" src="" width="500" height="315"
+                                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                        <br />
+                        <table class="table" id="cart_container">
+                            <tr>
+                                <th><div class="col-sm-2 hidden-xs"</div></th>
+                                <th>Price</th>
+                                <th>Category</th>
+                            </tr>
+                            <tr>
+                                <td><div class="col-sm-2 hidden-xs"</div></td>
+                                <td id="movieCost"></td>
+                                <td id="movieCategory"></td>
+                            </tr>
+                        </table>
                     </div>
-                    <br />
-                    <table class="table" id="cart_container">
-                        <tr>
-                            <th><div class="col-sm-2 hidden-xs"</div></th>
-                            <th>Price</th>
-                            <th>Category</th>
-                        </tr>
-                        <tr>
-                            <td><div class="col-sm-2 hidden-xs"</div></td>
-                            <td id="movieCost"></td>
-                            <td id="movieCategory"></td>
-                        </tr>
-                    </table>
                 </div>
-            </div>
+            </center>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal" id="addToCartBtn">
                     <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart
